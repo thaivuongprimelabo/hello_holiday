@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+
+  # DB
+  db:
+    image: mysql:5.6
+    # 別名
+    container_name: "gulfoil_db"
+    # ポート番号(ローカル側:コンテナ側)
+    ports:
+      - "13308:3306"
+    # 各ファイルのマウントのバス場所(ローカル側:コンテナ側)
+    volumes:
+      - ./docker/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
+      - ./docker/mysql/charset.cnf:/etc/mysql/conf.d/charset.cnf
+      - ./docker/mysql/query.log:/var/log/query.log
+      # 初期データ投入場所
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./.db:/var/lib/mysql
+    # DBの環境変数設定
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: gulfoil
+      MYSQL_USER: gulfoil
+      MYSQL_PASSWORD: WtGOr8vb
+
+  # Webサーバ
+  web:
+    container_name: "gulfoil_web"
+    build:
+      context: .
+      args:
+        - APP_ENV=${APP_ENV}
+        - INSTALL_XDEBUG=${INSTALL_XDEBUG}
+        - ENABLE_MAILHOG=${ENABLE_MAILHOG}
+        - ENABLE_DUSK=${ENABLE_DUSK}
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - DOMAIN=localhost:8082
+    ports:
+      - "8081:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/php/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/zzz-www.conf
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    links:
+      - db

@@ -1,0 +1,1 @@
+@extends('cms::auth.layouts.main')

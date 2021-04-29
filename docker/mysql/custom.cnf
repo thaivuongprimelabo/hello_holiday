@@ -1,0 +1,6 @@
+[mysqld]
+sql_mode = ""
+# クエリログを記録したい時場合有効にする
+#general_log=ON
+#general_log_file=/var/log/query.log
+
