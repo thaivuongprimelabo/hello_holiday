@@ -16,6 +16,7 @@ class AddAvatarFieldToUser extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
             $table->string('avatar')->after('remember_token')->nullable();
+            $table->string('status')->after('avatar')->nullable()->default(1);
         });
     }
 

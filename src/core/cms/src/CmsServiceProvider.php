@@ -5,6 +5,7 @@ namespace Cms;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Cms\Middlewares\AuthCms;
+use Illuminate\Support\Facades\Artisan;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -15,7 +16,6 @@ class CmsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**
@@ -33,6 +33,10 @@ class CmsServiceProvider extends ServiceProvider
             __DIR__.'/Locale' => resource_path('lang'),
         ], 'lang');
 
+        $this->publishes([
+            __DIR__.'/Seeders' => database_path('seeders'),
+        ], 'seeder');
+
         //
         $this->app->make('Cms\Controllers\CmsController'); 
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
@@ -40,9 +44,16 @@ class CmsServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/Locale', 'cms');
         $this->loadMigrationsFrom(__DIR__. '/Migrations');
         
+        $env = config('app.env');
+        if($env == 'local') {
+            Artisan::call('vendor:publish', [
+                '--tag' => ['public', 'lang', 'seeder'], 
+                '--force' => true,
+            ]);
+        }
 
         $router = $this->app->make(Router::class);
-        $router->aliasMiddleware('auth_cms', AuthCms::class);
+        $router->aliasMiddleware('auth.cms', AuthCms::class);
         
     }
 }

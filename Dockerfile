@@ -29,12 +29,7 @@ RUN git clone -b 5.3.1 --depth 1 https://github.com/phpredis/phpredis.git /usr/s
 RUN docker-php-ext-install intl exif zip iconv sockets mysqli pdo_mysql mbstring soap opcache redis fileinfo pcntl && docker-php-ext-enable opcache
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg && docker-php-ext-install -j$(nproc) gd
 RUN pecl install apcu && docker-php-ext-enable apcu
-
-ARG INSTALL_XDEBUG=false
-# Xdebug をインストールして有効化
-RUN if [ "${INSTALL_XDEBUG}" = "true" ]; then \
- pecl install xdebug && docker-php-ext-enable xdebug \
-; fi
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 # useradd
 RUN groupadd -g 1000 www && \

@@ -26,13 +26,20 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             //
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8|max:32',
-            'conf_password' => 'required|min:8|max:32',
+            'password' => 'required|min:8|max:32|confirmed',
+            'password_confirmation' => 'required|min:8|max:32',
         ];
+
+        $user = $this->route('user');
+        if($user->exists) {
+            unset($rules['email']);
+        }
+
+        return $rules;
     }
 
     public function validator($factory) {

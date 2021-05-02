@@ -5,28 +5,26 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <a href="{{ route('auth.user.create') }}" class="btn btn-primary btn-block">
               <i class="fas fa-plus"></i>
               Đăng ký mới
             </a>
           </div>
         </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('auth.dashboard') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Danh sách tài khoản</li>
-          </ol>
-        </div>
+        
       </div>
     </div><!-- /.container-fluid -->
   </section>
+  
   <div class="container-fluid">
     <div class="row">
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"></h3>
+              <h3 class="card-title">
+                {{ $users->links('cms::auth.components.pagination') }}
+              </h3>
 
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -47,9 +45,11 @@
                   <tr>
                     <th>ID</th>
                     <th>Tên gọi</th>
+                    <th>Ảnh đại diện</th>
                     <th>Ngày tạo</th>
                     <th>Trạng thái</th>
                     <th>Email</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -57,9 +57,19 @@
                   <tr>
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
+                    <td><img src="{{ $user->getAvatar() }}" class="img-thumbnail" style="width:50px" /></td>
                     <td>{{ $user->created_at }}</td>
-                    <td><span class="tag tag-success text-success">Approved</span></td>
+                    <td>{!! $user->getStatusText() !!}</td>
                     <td>{{ $user->email }}</td>
+                    <td>
+                      <a href="{{ route('auth.user.edit', ['user' => $user->id]) }}" title="Sửa">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                      &nbsp;
+                      <a href="{{ route('auth.user.remove', ['user' => $user->id]) }}" title="Xóa">
+                        <i class="fa fa-trash"></i>
+                      </a>
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>

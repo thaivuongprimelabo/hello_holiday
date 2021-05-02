@@ -14,7 +14,9 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
         // Users
         Route::group(['prefix' => 'user', 'as' => 'user.'], function() {
             Route::get('/',  'Cms\Controllers\CmsController@listUser')->name('list');
-            Route::match(['get', 'post'], '/create',  'Cms\Controllers\CmsController@createUser')->name('create');
+            Route::match(['get', 'post'], '/create',  'Cms\Controllers\CmsController@saveUser')->name('create');
+            Route::match(['get', 'post'], '/edit/{user}',  'Cms\Controllers\CmsController@saveUser')->name('edit');
+            Route::get('/remove/{user}',  'Cms\Controllers\CmsController@removeUser')->name('remove');
         });
         
     });

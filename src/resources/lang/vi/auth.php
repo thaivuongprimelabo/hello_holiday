@@ -17,4 +17,9 @@ return [
     'password' => 'Mật khẩu không chính xác.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'user' => [
+        'list' => 'Danh sách tài khoản',
+        'create' => 'Đăng ký tài khoản',
+        'edit' => 'Chỉnh sửa tài khoản'
+    ]
 ];

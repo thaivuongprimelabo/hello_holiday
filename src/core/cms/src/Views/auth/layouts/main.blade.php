@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="{{ asset('cms/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="{{ asset('cms/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="{{ asset('cms/plugins/toastr/toastr.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('cms/dist/css/adminlte.min.css') }}">
 </head>
@@ -39,7 +41,16 @@
 <script src="{{ asset('cms/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('cms/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Toastr -->
+<script src="{{ asset('cms/plugins/toastr/toastr.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('cms/dist/js/adminlte.min.js') }}"></script>
+@if (session('success'))
+<script>
+  $(function() {
+    toastr.success("{{ session('success') }}")
+  });
+</script>
+@endif
 </body>
 </html>
