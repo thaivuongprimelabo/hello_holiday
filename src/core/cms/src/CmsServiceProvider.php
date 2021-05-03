@@ -6,6 +6,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Cms\Middlewares\AuthCms;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -50,6 +51,14 @@ class CmsServiceProvider extends ServiceProvider
                 '--tag' => ['public', 'lang', 'seeder'], 
                 '--force' => true,
             ]);
+
+            DB::listen(function($query) {
+                \Log::info(
+                    $query->sql,
+                    $query->bindings,
+                    $query->time
+                );
+            });
         }
 
         $router = $this->app->make(Router::class);

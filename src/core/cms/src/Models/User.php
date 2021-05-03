@@ -42,10 +42,14 @@ class User extends Authenticatable
     ];
 
     public function getAvatar() {
-        return !is_null($this->avatar) ? asset($this->avatar) : asset('cms/dist/img/user2-160x160.jpg');
+        return !is_null($this->avatar) ? asset($this->avatar) : $this->getDefaultAvatar();
     }
 
     public function getStatusText() {
         return ($this->status) ? '<span class="tag tag-success text-success">Đã xác nhận</span>' : '<span class="tag tag-success text-warning">Đang chờ</span>';
+    }
+
+    public function getDefaultAvatar() {
+        return asset('cms/dist/img/user2-160x160.jpg');
     }
 }

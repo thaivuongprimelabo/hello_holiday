@@ -45,6 +45,7 @@
 <script src="{{ asset('cms/plugins/toastr/toastr.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('cms/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset('cms/custom.js') }}"></script>
 @if (session('success'))
 <script>
   $(function() {
@@ -52,5 +53,6 @@
   });
 </script>
 @endif
+@yield('scripts')
 </body>
 </html>

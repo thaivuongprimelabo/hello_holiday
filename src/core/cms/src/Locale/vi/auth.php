@@ -16,7 +16,10 @@ return [
     'failed' => 'Tài khoản hoặc mật khẩu không chính xác.',
     'password' => 'Mật khẩu không chính xác.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
+    'message' => [
+        'update_success' => 'Cập nhật thành công',
+        'creatE_success' => 'Đăng ký thành công',
+    ],
     'user' => [
         'list' => 'Danh sách tài khoản',
         'create' => 'Đăng ký tài khoản',

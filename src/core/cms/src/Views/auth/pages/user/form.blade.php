@@ -61,10 +61,11 @@
                   <div class="form-group">
                       <label for="exampleInputEmail1">Ảnh đại diện</label>
                       <br/>
-                      <button type="button" class="btn btn-primary mb-2" onclick="document.getElementById('upload-avatar').click()"><i class="fa fa-upload"></i> Tải lên</button>
-                      <button type="button" class="btn btn-danger mb-2"><i class="fa fa-trash"></i> Xóa</button><br/>
-                      <input type="file" name="avatar" id="upload-avatar" style="display:none" />
-                      <img src="{{ $user->getAvatar() }}" class="img-thumbnail" style="width:150px" />
+                      <button type="button" id="upload-avatar-btn" class="btn btn-primary mb-2"><i class="fa fa-upload"></i> Tải lên</button>
+                      <button type="button" id="remove-avatar-btn" class="btn btn-danger mb-2" data-default-image="{{ $user->getDefaultAvatar() }}"><i class="fa fa-trash"></i> Xóa</button><br/>
+                      <input type="file" name="avatar" id="upload-avatar-file" style="display:none" />
+                      <img src="{{ $user->getAvatar() }}" id="preview" class="img-thumbnail" style="width:150px" />
+                      <input type="hidden" id="current-avatar" name="current_avatar" value="{{ $user->avatar }}" />
                   </div>
                 </div>
               </div>

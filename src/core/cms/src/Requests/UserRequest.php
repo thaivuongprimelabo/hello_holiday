@@ -35,7 +35,7 @@ class UserRequest extends FormRequest
         ];
 
         $user = $this->route('user');
-        if($user->exists) {
+        if($user && $user->exists) {
             unset($rules['email']);
         }
 
