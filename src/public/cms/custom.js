@@ -17,6 +17,7 @@ $(function() {
                 $.get(_url).then(function(data) {
                     $('#search-result').html(data.search_result);
                     $('#pagination').html(data.pagination);
+                    $('#total-record').html(data.total);
                     $('#page-overlay').hide();
                 })
             }
@@ -26,14 +27,24 @@ $(function() {
     $.searchList();
 
     $(document).on('click', '.page-link', function() {
-        let url = $(this).attr('data-url');
-        $.searchList(url);
+        let page = $(this).attr('data-page');
+        $.params['page'] = page;
+        $.searchList();
     })
 
     $(document).on('click', '#search-btn', function() {
-        let keyword = $('#keyword').val();
-        $.params['keyword'] = keyword;
+        let keyword = $('#search-form').serialize();
+        let params = Object.fromEntries(new URLSearchParams(keyword));
+        $.params = {...params};
         $.searchList();
+    })
+
+    $(document).on('click', '#create-btn', function() {
+        window.open($('#create_url').val(), '_self');
+    })
+
+    $(document).on('click', '#check-all', function(e) {
+        $('.primary-id').not(this).prop('checked', this.checked);
     })
 
     $('#upload-avatar-btn').click(function() {
@@ -51,4 +62,62 @@ $(function() {
         $('#current-avatar').val(null);
         $("#preview").attr('src', default_image);
     })
+
+    $('#remove-btn').click(function(e) {
+        let hasChecked = $('.primary-id:checked').length;
+        if(!hasChecked) {
+            return false;
+        }
+
+        let ids = [];
+        $('.primary-id:checked').each(function() {
+            ids.push($(this).val());
+        });
+
+        if(!$('#remove_url').length) {
+            alert('Server not found!');
+            return false;
+        }
+
+        let url = $('#remove_url').val();
+
+        $.post({
+            url: url,
+            data: { ids: ids }, 
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).then(function() {
+            $.searchList();
+        })
+    });
+
+    $('#restore-btn').click(function(e) {
+        let hasChecked = $('.primary-id:checked').length;
+        if(!hasChecked) {
+            return false;
+        }
+
+        let ids = [];
+        $('.primary-id:checked').each(function() {
+            ids.push($(this).val());
+        });
+
+        if(!$('#restore_url').length) {
+            alert('Server not found!');
+            return false;
+        }
+
+        let url = $('#restore_url').val();
+
+        $.post({
+            url: url,
+            data: { ids: ids }, 
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).then(function() {
+            $.searchList();
+        })
+    });
 })

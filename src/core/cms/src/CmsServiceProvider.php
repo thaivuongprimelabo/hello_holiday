@@ -31,6 +31,10 @@ class CmsServiceProvider extends ServiceProvider
         ], 'public');
 
         $this->publishes([
+            __DIR__.'/Assets/custom.js' => public_path('cms/custom.js'),
+        ], 'public_custom_js');
+
+        $this->publishes([
             __DIR__.'/Locale' => resource_path('lang'),
         ], 'lang');
 
@@ -47,18 +51,18 @@ class CmsServiceProvider extends ServiceProvider
         
         $env = config('app.env');
         if($env == 'local') {
-            Artisan::call('vendor:publish', [
-                '--tag' => ['public', 'lang', 'seeder'], 
-                '--force' => true,
-            ]);
+            // Artisan::call('vendor:publish', [
+            //     '--tag' => ['public_custom_js'], 
+            //     '--force' => true,
+            // ]);
 
-            DB::listen(function($query) {
-                \Log::info(
-                    $query->sql,
-                    $query->bindings,
-                    $query->time
-                );
-            });
+            // DB::listen(function($query) {
+            //     \Log::info(
+            //         $query->sql,
+            //         $query->bindings,
+            //         $query->time
+            //     );
+            // });
         }
 
         $router = $this->app->make(Router::class);

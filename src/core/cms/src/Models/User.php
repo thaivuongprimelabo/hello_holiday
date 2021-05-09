@@ -6,10 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Cms\Traits\AppModel;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, AppModel;
 
     /**
      * The attributes that are mass assignable.
@@ -46,7 +47,14 @@ class User extends Authenticatable
     }
 
     public function getStatusText() {
-        return ($this->status) ? '<span class="tag tag-success text-success">Đã xác nhận</span>' : '<span class="tag tag-success text-warning">Đang chờ</span>';
+
+        if($this->status == 0) {
+            return '<span class="tag tag-danger text-danger">Tạm dừng</span>';
+        }
+
+        if($this->status == 1) {
+            return '<span class="tag tag-success text-success">Đã xác nhận</span>';
+        }
     }
 
     public function getDefaultAvatar() {
