@@ -4,7 +4,7 @@ namespace Cms\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
 
     protected function getRedirectUrl()
@@ -33,15 +33,7 @@ class UserRequest extends FormRequest
         $rules = [
             //
             'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:8|max:32|confirmed',
-            'password_confirmation' => 'required|min:8|max:32',
         ];
-
-        $user = $this->route('user');
-        if($user && $user->exists) {
-            unset($rules['email']);
-        }
 
         return $rules;
     }

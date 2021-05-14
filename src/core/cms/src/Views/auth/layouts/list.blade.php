@@ -9,64 +9,7 @@
 @endphp
 <section class="content">
   <section class="content-header">
-    <div class="container-fluid">
-
-      <form id="search-form" action="enhanced-results.html">
-        <div class="row">
-            <div class="col-md-10 offset-md-1">
-                <div class="row">
-                    <div class="col-2">
-                        <div class="form-group">
-                            <label>Tên gọi:</label>
-                            <input type="text" name="name_se" class="form-control" placeholder="Lọc theo tên" />
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="form-group">
-                            <label>Email:</label>
-                            <input type="email" name="email_se" class="form-control" placeholder="Lọc theo tên email" />
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="form-group">
-                            <label>Trạng thái:</label>
-                            <select class="select2"  name="status_se" style="width: 100%;">
-                                <option value="">Lọc theo trạng thái</option>
-                                <option value="0">Tạm dừng</option>
-                                <option value="1">Đang hoạt động</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="form-group">
-                            <label>Ngày tạo:</label>
-                            <div class="input-group date" id="date_from_se" data-target-input="nearest">
-                              <input type="text" name="date_from_se" class="form-control datetimepicker-input" data-target="#date_from_se"  data-toggle="datetimepicker" placeholder="Từ ngày" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="form-group">
-                            <label>&nbsp;</label>
-                            <div class="input-group date" id="date_to_se" data-target-input="nearest">
-                              <input type="text" name="date_to_se" class="form-control datetimepicker-input" data-target="#date_to_se"  data-toggle="datetimepicker" placeholder="Đến ngày" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                  <a href="javascript:void(0)" id="search-btn" class="btn btn-warning">
-                    <i class="fas fa-search"></i>
-                    Tìm kiếm
-                  </a>
-                </div>
-            </div>
-            
-        </div>
-        
-      </form>
-
-    </div><!-- /.container-fluid -->
+    @yield('search_condition')
   </section>
 </section>
 <div class="container-fluid">

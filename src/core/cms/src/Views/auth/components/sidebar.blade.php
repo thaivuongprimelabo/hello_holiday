@@ -31,76 +31,86 @@
               </p>
             </a>
           </li>
+          @if(Route::has('auth.product.list'))
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('auth.product.list') }}" class="nav-link">
             <i class="nav-icon fas fa-archive"></i>
               <p>
                 Sản phẩm
               </p>
             </a>
           </li>
+          @endif
+          @if(Route::has('auth.category.list'))
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('auth.category.list') }}" class="nav-link">
             <i class="nav-icon fas fa-align-justify"></i>
               <p>
                 Loại sản phẩm
               </p>
             </a>
           </li>
+          @endif
+          @if(Route::has('auth.vendor.list'))
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('auth.vendor.list') }}" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
               <p>
                 Nhà cung cấp
               </p>
             </a>
           </li>
-
+          @endif
+          @if(Route::has('auth.order.list'))
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('auth.order.list') }}" class="nav-link">
             <i class="nav-icon fas fa-file"></i>
               <p>
                 Đơn hàng
               </p>
             </a>
           </li>
-
+          @endif
+          @if(Route::has('auth.banner.list'))
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('auth.banner.list') }}" class="nav-link">
             <i class="nav-icon fas fa-image"></i>
               <p>
                 Banner
               </p>
             </a>
           </li>
-
+          @endif
+          @if(Route::has('auth.post.list'))
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('auth.post.list') }}" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
               <p>
                 Bài viết
               </p>
             </a>
           </li>
-
+          @endif
+          @if(Route::has('auth.page.list'))
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('auth.page.list') }}" class="nav-link">
             <i class="nav-icon fas fa-book"></i>
               <p>
                 Trang nội dung
               </p>
             </a>
           </li>
-
+          @endif
+          @if(Route::has('auth.contact.list'))
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('auth.contact.list') }}" class="nav-link">
             <i class="nav-icon fas fa-envelope"></i>
               <p>
                 Liên hệ
               </p>
             </a>
           </li>
-
+          @endif
           <li class="nav-item">
             <a href="{{ route('auth.user.list') }}" class="nav-link">
             <i class="nav-icon fas fa-user"></i>

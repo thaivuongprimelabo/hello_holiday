@@ -25,5 +25,10 @@ return [
         'list' => 'Danh sách tài khoản',
         'create' => 'Đăng ký tài khoản',
         'edit' => 'Chỉnh sửa tài khoản'
+    ],
+    'category' => [
+        'list' => 'Danh sách loại sản phẩm',
+        'create' => 'Đăng ký loại sản phẩm',
+        'edit' => 'Chỉnh sửa loại sản phẩm'
     ]
 ];

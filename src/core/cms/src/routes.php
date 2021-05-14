@@ -26,13 +26,13 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
         });
 
         // Category
-        Route::group(['prefix' => 'category', 'as' => 'user.'], function() {
-            Route::get('/',  'CategoryController@index')->name('list');
-            Route::get('/search',  'CategoryController@search')->name('search');
-            Route::match(['get', 'post'], '/create',  'UserController@save')->name('create');
-            Route::match(['get', 'post'], '/edit/{user}',  'UserController@save')->name('edit');
-            Route::post('/remove}',  'CategoryController@remove')->name('remove');
-            Route::post('/restore}',  'CategoryController@restore')->name('restore');
+        Route::group(['prefix' => 'category', 'as' => 'category.'], function() {
+            Route::get('/',  [CategoryController::class, 'index'])->name('list');
+            Route::get('/search',  [CategoryController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create',  [CategoryController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{category}',  [CategoryController::class, 'save'])->name('edit');
+            Route::post('/remove}',  [CategoryController::class, 'remove'])->name('remove');
+            Route::post('/restore}',  [CategoryController::class, 'restore'])->name('restore');
         });
         
     });
