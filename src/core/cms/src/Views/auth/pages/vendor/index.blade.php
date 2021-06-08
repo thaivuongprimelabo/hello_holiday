@@ -13,12 +13,6 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label>Email:</label>
-                        <input type="email" name="email_se" class="form-control" placeholder="Lọc theo tên email" />
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="form-group">
                         <label>Trạng thái:</label>
                         <select class="select2"  name="status_se" style="width: 100%;">
                             <option value="">Lọc theo trạng thái</option>
@@ -67,10 +61,11 @@
       </th>
       <th>ID</th>
       <th>Tên gọi</th>
-      <th>Ảnh đại diện</th>
+      <th>Slug</th>
+      <th>Logo</th>
       <th>Ngày tạo</th>
       <th>Trạng thái</th>
-      <th>Email</th>
+      <th></th>
     </tr>
   </thead>
   <tbody id="search-result">

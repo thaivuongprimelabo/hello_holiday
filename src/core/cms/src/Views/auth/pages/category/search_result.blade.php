@@ -1,24 +1,20 @@
-@if($categories->count())
-@foreach($categories as $category)
-<tr>
-  <td>
-    <input type="checkbox" class="primary-id" value="{{ $category->getKey() }}" />
-  </td>
-  <td>{{ $category->getKey() }}</td>
-  <td>{{ $category->name }}</td>
-  <td>{{ $category->name_url }}</td>
-  <td>{{ $category->parent_id }}</td>
-  <td>{{ $category->getCreatedAt() }}</td>
-  <td>{!! $category->getStatusText() !!}</td>
-  <td>
-    <a href="{{ route('auth.category.edit', ['category' => $category->getKey()]) }}" title="Sửa">
-      <i class="fa fa-edit"></i>
-    </a>
-  </td>
+@if($searchList->count())
+@foreach($searchList as $data)
+<tr onclick="window.location='{{ route('auth.category.edit', ['category' => $data->getKey()]) }}'" {!! $data->status === 0 ? 'style="background-color: #eeeeee;"' : '' !!}>
+    <td>
+        <input type="checkbox" class="primary-id" value="{{ $data->getKey() }}" />
+    </td>
+    <td>{{ $data->getKey() }}</td>
+    <td>{{ $data->name }}</td>
+    <td>{{ $data->name_url }}</td>
+    <td>{{ $data->getCreatedAt() }}</td>
+    <td>{!! $data->getStatusText() !!}</td>
+    <td>
+    </td>
 </tr>
 @endforeach
 @else
 <tr>
-  <td></td>
+    <td></td>
 </tr>
 @endif

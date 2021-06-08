@@ -42,22 +42,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getAvatar() {
-        return !is_null($this->avatar) ? asset($this->avatar) : $this->getDefaultAvatar();
-    }
-
-    public function getStatusText() {
-
-        if($this->status == 0) {
-            return '<span class="tag tag-danger text-danger">Tạm dừng</span>';
-        }
-
-        if($this->status == 1) {
-            return '<span class="tag tag-success text-success">Đã xác nhận</span>';
-        }
-    }
-
-    public function getDefaultAvatar() {
-        return asset('cms/dist/img/user2-160x160.jpg');
-    }
 }

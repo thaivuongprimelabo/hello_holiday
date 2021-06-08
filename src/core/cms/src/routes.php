@@ -6,6 +6,7 @@ use Cms\Controllers\LoginController;
 use Cms\Controllers\CmsController;
 use Cms\Controllers\UserController;
 use Cms\Controllers\CategoryController;
+use Cms\Controllers\VendorController;
 
 Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], function () {
     Route::match(['get', 'post'], '/login',  [LoginController::class, 'index'])->name('login');
@@ -22,7 +23,6 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::match(['get', 'post'], '/create',  [UserController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{user}',  [UserController::class, 'save'])->name('edit');
             Route::post('/remove}',  [UserController::class, 'remove'])->name('remove');
-            Route::post('/restore}',  [UserController::class, 'restore'])->name('restore');
         });
 
         // Category
@@ -32,7 +32,24 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::match(['get', 'post'], '/create',  [CategoryController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{category}',  [CategoryController::class, 'save'])->name('edit');
             Route::post('/remove}',  [CategoryController::class, 'remove'])->name('remove');
-            Route::post('/restore}',  [CategoryController::class, 'restore'])->name('restore');
+        });
+
+        // Vendor
+        Route::group(['prefix' => 'vendor', 'as' => 'vendor.'], function() {
+            Route::get('/',  [VendorController::class, 'index'])->name('list');
+            Route::get('/search',  [VendorController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create',  [VendorController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{vendor}',  [VendorController::class, 'save'])->name('edit');
+            Route::post('/remove}',  [VendorController::class, 'remove'])->name('remove');
+        });
+
+        // Product
+        Route::group(['prefix' => 'product', 'as' => 'product.'], function() {
+            Route::get('/',  [VendorController::class, 'index'])->name('list');
+            Route::get('/search',  [VendorController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create',  [VendorController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{vendor}',  [VendorController::class, 'save'])->name('edit');
+            Route::post('/remove}',  [VendorController::class, 'remove'])->name('remove');
         });
         
     });

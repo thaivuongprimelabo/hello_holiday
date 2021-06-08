@@ -6,7 +6,7 @@ services:
   db:
     image: mysql:5.6
     # 別名
-    container_name: "gulfoil_db"
+    container_name: "webshop_db"
     # ポート番号(ローカル側:コンテナ側)
     ports:
       - "13308:3306"
@@ -21,13 +21,13 @@ services:
     # DBの環境変数設定
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_DATABASE: gulfoil
-      MYSQL_USER: gulfoil
+      MYSQL_DATABASE: webshop
+      MYSQL_USER: webshop
       MYSQL_PASSWORD: WtGOr8vb
 
   # Webサーバ
   web:
-    container_name: "gulfoil_web"
+    container_name: "webshop_web"
     build:
       context: .
       args:
@@ -35,10 +35,6 @@ services:
         - INSTALL_XDEBUG=${INSTALL_XDEBUG}
         - ENABLE_MAILHOG=${ENABLE_MAILHOG}
         - ENABLE_DUSK=${ENABLE_DUSK}
-    environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - DOMAIN=localhost:8082
     ports:
       - "8081:80"
     volumes:

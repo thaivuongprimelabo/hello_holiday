@@ -21,5 +21,20 @@ return [
         'list' => 'Danh sách tài khoản',
         'create' => 'Đăng ký tài khoản',
         'edit' => 'Chỉnh sửa tài khoản'
+    ],
+    'vendor' => [
+        'list' => 'Danh sách nhà cung cấp',
+        'create' => 'Đăng ký nhà cung cấp',
+        'edit' => 'Chỉnh sửa nhà cung cấp'
+    ],
+    'category' => [
+        'list' => 'Danh sách loại sản phẩm',
+        'create' => 'Đăng ký loại sản phẩm',
+        'edit' => 'Chỉnh sửa loại sản phẩm'
+    ],
+    'product' => [
+        'list' => 'Danh sách sản phẩm',
+        'create' => 'Đăng ký sản phẩm',
+        'edit' => 'Chỉnh sửa sản phẩm'
     ]
 ];

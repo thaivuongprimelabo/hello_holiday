@@ -62,7 +62,6 @@
       <th>ID</th>
       <th>Tên gọi</th>
       <th>Slug</th>
-      <th>Loại cha</th>
       <th>Ngày tạo</th>
       <th>Trạng thái</th>
       <th></th>
