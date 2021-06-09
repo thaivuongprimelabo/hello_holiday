@@ -45,6 +45,7 @@ class CmsServiceProvider extends ServiceProvider
         //
         $this->app->make('Cms\Controllers\CmsController'); 
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes_api.php');
         $this->loadViewsFrom(__DIR__.'/Views', 'cms');
         $this->loadTranslationsFrom(__DIR__ . '/Locale', 'cms');
         $this->loadMigrationsFrom(__DIR__. '/Migrations');
@@ -52,7 +53,7 @@ class CmsServiceProvider extends ServiceProvider
         $env = config('app.env');
         if($env == 'local') {
             // Artisan::call('vendor:publish', [
-            //     '--tag' => ['public_custom_js', 'public'], 
+            //     '--tag' => ['public_custom_js'], 
             //     '--force' => true,
             // ]);
 

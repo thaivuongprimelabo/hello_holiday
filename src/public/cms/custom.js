@@ -175,4 +175,38 @@ $(function() {
             $.searchList();
         })
     });
+
+    $('#submit-form').on('change', '#field_customer_province', function(e) {
+        $('#field_customer_district').html("<option value=''>---</option>");
+        $.get({
+            url: '/api/districts/' + $(this).val(),
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).then(function(res) {
+            const obj = (res);
+            let options = "";
+            for(const item of obj) {
+                options += '<option value="' + item.maqh + '">' + item.name + '</option>';
+            }
+            $('#field_customer_district').append(options);
+        })
+    })
+
+    $('#submit-form').on('change', '#field_customer_district', function(e) {
+        $('#field_customer_block').html("<option value=''>---</option>");
+        $.get({
+            url: '/api/blocks/' + $(this).val(),
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).then(function(res) {
+            const obj = (res);
+            let options = "";
+            for(const item of obj) {
+                options += '<option value="' + item.xaid + '">' + item.name + '</option>';
+            }
+            $('#field_customer_block').append(options);
+        })
+    })
 })

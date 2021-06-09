@@ -71,6 +71,7 @@
       <th>Ngày tạo</th>
       <th>Trạng thái</th>
       <th>Email</th>
+      <th></th>
     </tr>
   </thead>
   <tbody id="search-result">

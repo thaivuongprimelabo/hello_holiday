@@ -11,11 +11,8 @@
     <td>{{ $data->getCreatedAt() }}</td>
     <td>{!! $data->getStatusText() !!}</td>
     <td>
+        <a href="{{ route('auth.vendor.edit', ['vendor' => $data->getKey()]) }}"><i class="fas fa-edit"></i></a>
     </td>
 </tr>
 @endforeach
-@else
-<tr>
-    <td></td>
-</tr>
 @endif

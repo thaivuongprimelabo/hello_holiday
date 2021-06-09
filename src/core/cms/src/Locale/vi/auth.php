@@ -46,4 +46,9 @@ return [
         'create' => 'Đăng ký banner',
         'edit' => 'Chỉnh sửa banner'
     ],
+    'order' => [
+        'list' => 'Danh sách đơn hàng',
+        'create' => 'Đăng ký đơn hàng',
+        'edit' => 'Chỉnh sửa đơn hàng'
+    ],
 ];

@@ -56,7 +56,7 @@
 </div><!-- /.container-fluid -->
 @endsection
 @section('search')
-<table class="table table-hover table-bordered">
+<table class="table table-hover">
     <colgroup> 
         <col span="1" style="width: 5%;">
         <col span="1" style="width: 5%;">
@@ -73,6 +73,7 @@
             <th>URL</th>
             <th>Ngày tạo</th>
             <th>Trạng thái</th>
+            <th></th>
         </tr>
     </thead>
     <tbody id="search-result">

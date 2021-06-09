@@ -1,6 +1,6 @@
 @if($searchList->count())
 @foreach($searchList as $data)
-<tr onclick="window.location='{{ route('auth.category.edit', ['category' => $data->getKey()]) }}'" {!! $data->status === 0 ? 'style="background-color: #eeeeee;"' : '' !!}>
+<tr>
     <td>
         <input type="checkbox" class="primary-id" value="{{ $data->getKey() }}" />
     </td>
@@ -10,11 +10,8 @@
     <td>{{ $data->getCreatedAt() }}</td>
     <td>{!! $data->getStatusText() !!}</td>
     <td>
+        <a href="{{ route('auth.category.edit', ['category' => $data->getKey()]) }}"><i class="fas fa-edit"></i></a>
     </td>
 </tr>
 @endforeach
-@else
-<tr>
-    <td></td>
-</tr>
 @endif

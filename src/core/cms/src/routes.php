@@ -9,6 +9,7 @@ use Cms\Controllers\CategoryController;
 use Cms\Controllers\VendorController;
 use Cms\Controllers\ProductController;
 use Cms\Controllers\BannerController;
+use Cms\Controllers\OrderController;
 
 Route::get('/',  function() {
 
@@ -65,6 +66,15 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::match(['get', 'post'], '/create',  [BannerController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{banner}',  [BannerController::class, 'save'])->name('edit');
             Route::post('/remove}',  [BannerController::class, 'remove'])->name('remove');
+        });
+
+        // Orders
+        Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
+            Route::get('/',  [OrderController::class, 'index'])->name('list');
+            Route::get('/search',  [OrderController::class, 'search'])->name('search');
+            // Route::match(['get', 'post'], '/create',  [OrderController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{order}',  [OrderController::class, 'save'])->name('edit');
+            Route::post('/remove}',  [OrderController::class, 'remove'])->name('remove');
         });
         
     });

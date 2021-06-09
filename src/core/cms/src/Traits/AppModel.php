@@ -18,21 +18,25 @@ trait AppModel {
         return $this->price ? number_format($this->price, 0, '', '.') : 'Liên hệ';
     }
 
+    public function getCost() {
+        return $this->price ? number_format($this->cost, 0, '', '.') : 'Liên hệ';
+    }
+
     public function getCreatedAt() {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d-m-Y H:i:s');
     }
 
     public function getStatusText() {
 
-        if($this->status == 0) {
+        if($this->status == Constants::STATUS_UNACTIVE) {
             return '<span class="tag tag-danger text-danger">Tạm dừng</span>';
         }
 
-        if($this->status == 1) {
+        if($this->status == Constants::STATUS_ACTIVE) {
             return '<span class="tag tag-success text-success">Đang hoạt động</span>';
         }
 
-        if($this->status == 2) {
+        if($this->status == Constants::STATUS_DELETED) {
             return '<span class="tag tag-success text-danger">Đã xoá</span>';
         }
     }

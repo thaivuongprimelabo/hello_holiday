@@ -1,9 +1,17 @@
 <div class="form-group">
     <label for="exampleInputEmail1">{{ $label }}</label>
-    <select class="form-control select2" name="{{ $name }}">
+    <select class="form-control select2" name="{{ $name }}" id="field_{{ $name }}">
         <option value="">---</option>
         @foreach($options as $option)
-        <option value="{{ $option->id }}" {{ $item->$name === $option->id ? 'selected' : '' }}>{{ $option->name }}</option>
+        @if(isset($option->id))
+        <option value="{{ $option->id }}" {{ $item->$name == $option->id ? 'selected' : '' }}>{{ $option->name }}</option>
+        @elseif(isset($option->matp))
+        <option value="{{ $option->matp }}" {{ $item->$name == $option->matp ? 'selected' : '' }}>{{ $option->name }}</option>
+        @elseif(isset($option->maqh))
+        <option value="{{ $option->maqh }}" {{ $item->$name == $option->maqh ? 'selected' : '' }}>{{ $option->name }}</option>
+        @elseif(isset($option->xaid))
+        <option value="{{ $option->xaid }}" {{ $item->$name == $option->xaid ? 'selected' : '' }}>{{ $option->name }}</option>
+        @endif
         @endforeach
     </select>
     @error($name)<span class="text-danger">{{ $message }}</span>@enderror
