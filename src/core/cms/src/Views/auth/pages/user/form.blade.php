@@ -25,36 +25,40 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tên gọi</label>
-                                <input type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" placeholder="Vui lòng nhập">
-                                @error('name')<span class="text-danger">{{ $message }}</span>@enderror
-                            </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}" placeholder="Vui lòng nhập" {{ $user->exists ? 'disabled' : '' }}>
-                                @error('email')<span class="text-danger">{{ $message }}</span>@enderror
-                            </div>
+                            @include('cms::auth.components.form.input', [
+                                'label' => 'Tên gọi', 
+                                'name' => 'name', 
+                                'item' => $user
+                            ])
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Mật khẩu</label>
-                                <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Vui lòng nhập">
-                                @error('password')<span class="text-danger">{{ $message }}</span>@enderror
-                            </div>
+                            @include('cms::auth.components.form.input', [
+                                'label' => 'Email', 
+                                'name' => 'email', 
+                                'item' => $user
+                            ])
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Xác nhận mật khẩu</label>
-                                <input type="password" class="form-control" name="password_confirmation" value="{{ old('conf_password') }}" placeholder="Vui lòng nhập">
-                                @error('password_confirmation')<span class="text-danger">{{ $message }}</span>@enderror
-                            </div>
+                            @include('cms::auth.components.form.input', [
+                                'label' => 'Mật khẩu', 
+                                'name' => 'password', 
+                                'item' => $user,
+                                'type' => 'password'
+                            ])
 
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="checkboxPrimary1" checked="{{ old('status', $user->status) }}" name="status">
-                                    <label for="checkboxPrimary1">Đang hoạt động</label>
-                                </div>
-                            </div>
+                            @include('cms::auth.components.form.input', [
+                                'label' => 'Xác nhận mật khẩu', 
+                                'name' => 'password_confirmation', 
+                                'item' => $user,
+                                'type' => 'password'
+                            ])
+
+                            @include('cms::auth.components.form.checkbox', [
+                                'label' => 'Đang hoạt động', 
+                                'name' => 'status', 
+                                'item' => $user,
+                                'checked' => true
+                            ])
+
                         </div>
 
                         <div class="col-md-6">

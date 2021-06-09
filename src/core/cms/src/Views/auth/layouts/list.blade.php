@@ -102,11 +102,4 @@
 </style>
 @endsection
 @section('scripts')
-@if (session('success'))
-<script>
-  $(function() {
-    toastr.success("{{ session('success') }}")
-  });
-</script>
-@endif
 @endsection

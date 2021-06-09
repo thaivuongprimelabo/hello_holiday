@@ -51,6 +51,61 @@ $(function() {
         $('#upload-avatar-file').click();
     })
 
+    $('#upload-image-btn').click(function(e) {
+        let uploadField = document.createElement('input');
+        uploadField.setAttribute("type", "file");
+        uploadField.setAttribute("multiple", true);
+        uploadField.setAttribute("name", "upload_file[]");
+        uploadField.setAttribute("class", "upload-image-file");
+        uploadField.click();
+        $('#submit-form').append(uploadField);
+    })
+
+    $('#submit-form').on('change', '.upload-image-file', function(e) {
+        for(let i = 0; i < $(this).get(0).files.length; i++) {
+            let image_object_url = URL.createObjectURL($(this).get(0).files[i]);
+            let clone = $(".clone")
+            .clone()
+            .removeClass('clone')
+            .attr('data-image-name', $(this).get(0).files[i].name)
+            .show();
+
+            $('input[value="' + $(this).get(0).files[i].name + '"]').remove();
+
+            clone.find('img').attr('src', image_object_url);
+            $('#selected_images').append(clone);
+        }
+    })
+
+    $('#submit-form').on('click', '.remove-image-btn', function(e) {
+        let image_id = $(this).attr('data-image-id');
+        if(image_id !== undefined) {
+
+            let deletedField = document.createElement('input');
+            deletedField.setAttribute("type", "hidden");
+            deletedField.setAttribute("name", "delete_image_ids[]");
+            deletedField.setAttribute("value", image_id);
+
+            $('#submit-form').append(deletedField);
+            
+
+        } else {
+
+            let image_name = $(this).parent().attr('data-image-name');
+            
+            let deletedField = document.createElement('input');
+            deletedField.setAttribute("type", "hidden");
+            deletedField.setAttribute("name", "delete_image_ids[]");
+            deletedField.setAttribute("value", image_name);
+
+            $('#submit-form').append(deletedField);
+
+        }
+
+        $(this).parent().remove();
+        
+    })
+
     $('#upload-avatar-file').change(function(e) {
         let image_object_url = URL.createObjectURL($(this).get(0).files[0]);
         $("#preview").attr('src', image_object_url);

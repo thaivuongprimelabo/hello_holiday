@@ -37,12 +37,18 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-              <a href="javascript:void(0)" id="search-btn" class="btn btn-warning">
-                <i class="fas fa-search"></i>
-                Tìm kiếm
-              </a>
+
+                <div class="col-2">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <div class="row">
+                            <a href="javascript:void(0)" id="search-btn" class="btn btn-warning">
+                                <i class="fas fa-search"></i>
+                                Tìm kiếm
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         

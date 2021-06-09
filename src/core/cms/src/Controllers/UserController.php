@@ -28,7 +28,7 @@ class UserController extends AppController
             
             $user->status   = !is_null($request->status) ? 1 : 0;
 
-            $user->avatar   = $this->uploadFile->upload($this->uploadSetting);
+            $user->avatar   = $this->uploadFile->upload($this->uploadSetting)->first();
             
             $user->save();
 

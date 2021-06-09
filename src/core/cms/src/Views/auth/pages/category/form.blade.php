@@ -25,25 +25,18 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tên gọi</label>
-                                <input type="text" class="form-control" name="name" value="{{ old('name', $category->name) }}" placeholder="Vui lòng nhập">
-                                @error('name')<span class="text-danger">{{ $message }}</span>@enderror
-                            </div>
+                            @include('cms::auth.components.form.input', [
+                                'label' => 'Tên loại sản phẩm', 
+                                'name' => 'name', 
+                                'item' => $category
+                            ])
 
-                            <!-- <div class="form-group">
-                                <label for="exampleInputEmail1">Loại cha</label>
-                                <select class="form-control select2">
-                                </select>
-                                @error('parent_id')<span class="text-danger">{{ $message }}</span>@enderror
-                            </div> -->
-
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="checkboxPrimary1" {{ old('status', $category->status) ? 'checked' : '' }} name="status">
-                                    <label for="checkboxPrimary1">Đang hoạt động</label>
-                                </div>
-                            </div>
+                            @include('cms::auth.components.form.checkbox', [
+                                'label' => 'Đang hoạt động', 
+                                'name' => 'status', 
+                                'item' => $category,
+                                'checked' => true
+                            ])
                         </div>
                     </div>
 

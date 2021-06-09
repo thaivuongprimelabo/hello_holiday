@@ -58,11 +58,45 @@
 <!-- date-range-picker -->
 <script src="{{ asset('cms/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <script src="{{ asset('cms/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
+<!-- CK Editor -->
+<script src="{{ asset('cms/plugins/ckeditor/ckeditor.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('cms/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('cms/custom.js') }}"></script>
 @yield('scripts')
+@if (session('success'))
+<script>
+  $(function() {
+    toastr.success("{{ session('success') }}")
+  });
+</script>
+@endif
+
+@if (session('error'))
+<script>
+  $(function() {
+    toastr.error("{{ session('error') }}")
+  });
+</script>
+@endif
+
+@if (isset($errors) && $errors->any())
+    @php 
+        $errorMsg = '';
+    @endphp
+    @foreach ($errors->all() as $error)
+        @php
+            $errorMsg .= $error . '<br/>';
+        @endphp
+    @endforeach
+
+    <script>
+        $(function() {
+            toastr.error("{!! $errorMsg !!}")
+        });
+    </script>
+@endif
+
 <script>
   $(function () {
     $('.select2').select2();
@@ -70,8 +104,34 @@
     $('#date_from_se, #date_to_se').datetimepicker({
         format: 'yyyy/MM/DD'
     });
-  });
 
+    if($('.ckeditor-full').length) {
+        $('.ckeditor-full').each(function(e){
+            if(!this.id) return;
+            CKEDITOR.replace( this.id, {
+                filebrowserBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:files') }}',
+                filebrowserImageBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:images') }}',
+                filebrowserFlashBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:flash') }}',
+                filebrowserUploadUrl : '{{ asset('cms/plugins/kcfinder/upload.php?opener:ckeditor&type:files') }}',
+                filebrowserImageUploadUrl : '{{ asset('cms/plugins/kcfinder/upload.php?opener:ckeditor&type:images') }}',
+                filebrowserFlashUploadUrl : '{{ asset('cms/plugins/kcfinder/upload.php?opener:ckeditor&type:flash') }}',
+                height: 500, 
+                customConfig: '{{ asset('cms/plugins/ckeditor/editor.full.js') }}' 
+            });
+        });
+    }
+
+    if($('.ckeditor-small').length) {
+        $('.ckeditor-small').each(function(e){
+            if(!this.id) return;
+            CKEDITOR.replace( this.id, {
+                height: 200, 
+                customConfig: '{{ asset('cms/plugins/ckeditor/editor.small.js') }}' 
+            });
+        });
+    }
+    
+  });
   
 </script>
 </body>

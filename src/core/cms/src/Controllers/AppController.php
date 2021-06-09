@@ -8,54 +8,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Cms\Helpers\UploadFile;
+use Cms\Constants;
 
 class AppController extends Controller
 {
     protected $uploadFile = null;
     protected $uploadSetting = null;
 
-    const STATUS_ACTIVE = 1;
-    const STATUS_UNACTIVE = 0;
-    const STATUS_DELETED = 2;
-
-    static $modelList = [
-        'auth/category' => '\Cms\Models\Category',
-        'auth/vendor' => '\Cms\Models\Vendor',
-        'auth/user' => '\Cms\Models\User',
-    ];
-
-    static $viewList = [
-        'auth/category' => 'cms::auth.pages.category',
-        'auth/vendor' => 'cms::auth.pages.vendor',
-        'auth/user' => 'cms::auth.pages.user',
-    ];
-
-    static $uploadSettingList = [
-        'auth/user' => [
-            'dir' => 'user',
-        ],
-        'auth/vendor' => [
-            'dir' => 'vendor'
-        ],
-    ];
-
     public function __construct(UploadFile $uploadFile) {
         $this->uploadFile = $uploadFile;
-        if(isset(self::$uploadSettingList[request()->route()->getPrefix()])) {
-            $this->uploadSetting = self::$uploadSettingList[request()->route()->getPrefix()];
+        if(isset(Constants::$uploadSettingList[request()->route()->getPrefix()])) {
+            $this->uploadSetting = Constants::$uploadSettingList[request()->route()->getPrefix()];
         }
     }
 
     private function getModel() {
         $prefix = request()->route()->getPrefix();
-        $className = self::$modelList[$prefix];
+        $className = Constants::$modelList[$prefix];
         $model = app($className);
         return $model;
     }
 
     private function getView() {
         $prefix = request()->route()->getPrefix();
-        $view = self::$viewList[$prefix];
+        $view = Constants::$viewList[$prefix];
         return $view;
     }
 

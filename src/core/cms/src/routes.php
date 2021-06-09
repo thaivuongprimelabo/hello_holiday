@@ -7,6 +7,12 @@ use Cms\Controllers\CmsController;
 use Cms\Controllers\UserController;
 use Cms\Controllers\CategoryController;
 use Cms\Controllers\VendorController;
+use Cms\Controllers\ProductController;
+use Cms\Controllers\BannerController;
+
+Route::get('/',  function() {
+
+})->name('home');
 
 Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], function () {
     Route::match(['get', 'post'], '/login',  [LoginController::class, 'index'])->name('login');
@@ -45,11 +51,20 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
 
         // Product
         Route::group(['prefix' => 'product', 'as' => 'product.'], function() {
-            Route::get('/',  [VendorController::class, 'index'])->name('list');
-            Route::get('/search',  [VendorController::class, 'search'])->name('search');
-            Route::match(['get', 'post'], '/create',  [VendorController::class, 'save'])->name('create');
-            Route::match(['get', 'post'], '/edit/{vendor}',  [VendorController::class, 'save'])->name('edit');
-            Route::post('/remove}',  [VendorController::class, 'remove'])->name('remove');
+            Route::get('/',  [ProductController::class, 'index'])->name('list');
+            Route::get('/search',  [ProductController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create',  [ProductController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{product}',  [ProductController::class, 'save'])->name('edit');
+            Route::post('/remove}',  [ProductController::class, 'remove'])->name('remove');
+        });
+
+        // Banners
+        Route::group(['prefix' => 'banner', 'as' => 'banner.'], function() {
+            Route::get('/',  [BannerController::class, 'index'])->name('list');
+            Route::get('/search',  [BannerController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create',  [BannerController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{banner}',  [BannerController::class, 'save'])->name('edit');
+            Route::post('/remove}',  [BannerController::class, 'remove'])->name('remove');
         });
         
     });

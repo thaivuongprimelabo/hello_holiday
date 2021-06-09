@@ -40,5 +40,10 @@ return [
         'list' => 'Danh sách sản phẩm',
         'create' => 'Đăng ký sản phẩm',
         'edit' => 'Chỉnh sửa sản phẩm'
-    ]
+    ],
+    'banner' => [
+        'list' => 'Danh sách banner',
+        'create' => 'Đăng ký banner',
+        'edit' => 'Chỉnh sửa banner'
+    ],
 ];
