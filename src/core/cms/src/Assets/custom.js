@@ -47,15 +47,42 @@ $(function() {
         $('.primary-id').not(this).prop('checked', this.checked);
     })
 
-    $('#upload-avatar-btn').click(function() {
-        $('#upload-avatar-file').click();
+    $('.upload-btn').click(function() {
+        const parent = $(this).parent().parent();
+        const id = parent.attr('id');
+        const field_upload= parent.find('input[type="file"]');
+
+        if(!field_upload.length) {
+            let uploadField = document.createElement('input');
+            uploadField.setAttribute("type", "file");
+            uploadField.setAttribute("name", "upload_file[" + id + "][]");
+            uploadField.setAttribute("class", "upload_file");
+            uploadField.setAttribute("style", "display: none");
+            uploadField.click();
+            $(parent).append(uploadField);
+        } else {
+            field_upload.click();
+        }
+        
     })
 
-    $('#upload-image-btn').click(function(e) {
+    $('#submit-form').on('change', '.upload_file', function(e) {
+        const parent = $(this).parent();
+        const image_object_url = URL.createObjectURL($(this).get(0).files[0]);
+        const img = parent.find('img.preview');
+        img.attr('src', image_object_url);
+        img.show();
+    })
+
+    $('.upload-mutiple-btn').click(function(e) {
+
+        const parent = $(this).parent().parent();
+        const id = parent.attr('id');
+
         let uploadField = document.createElement('input');
         uploadField.setAttribute("type", "file");
         uploadField.setAttribute("multiple", true);
-        uploadField.setAttribute("name", "upload_file[]");
+        uploadField.setAttribute("name", "upload_file[" + id + "][]");
         uploadField.setAttribute("class", "upload-image-file");
         uploadField.click();
         $('#submit-form').append(uploadField);
@@ -106,18 +133,6 @@ $(function() {
         
     })
 
-    $('#upload-avatar-file').change(function(e) {
-        let image_object_url = URL.createObjectURL($(this).get(0).files[0]);
-        $("#preview").attr('src', image_object_url);
-    })
-
-    $('#remove-avatar-btn').click(function(e) {
-        let default_image = $(this).attr('data-default-image');
-        $('#upload-avatar-file').val('');
-        $('#current-avatar').val(null);
-        $("#preview").attr('src', default_image);
-    })
-
     $('#remove-btn').click(function(e) {
         let hasChecked = $('.primary-id:checked').length;
         if(!hasChecked) {
@@ -135,35 +150,6 @@ $(function() {
         }
 
         let url = $('#remove_url').val();
-
-        $.post({
-            url: url,
-            data: { ids: ids }, 
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        }).then(function() {
-            $.searchList();
-        })
-    });
-
-    $('#restore-btn').click(function(e) {
-        let hasChecked = $('.primary-id:checked').length;
-        if(!hasChecked) {
-            return false;
-        }
-
-        let ids = [];
-        $('.primary-id:checked').each(function() {
-            ids.push($(this).val());
-        });
-
-        if(!$('#restore_url').length) {
-            alert('Server not found!');
-            return false;
-        }
-
-        let url = $('#restore_url').val();
 
         $.post({
             url: url,

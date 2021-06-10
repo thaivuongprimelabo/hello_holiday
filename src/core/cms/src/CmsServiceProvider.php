@@ -52,18 +52,18 @@ class CmsServiceProvider extends ServiceProvider
         
         $env = config('app.env');
         if($env == 'local') {
-            // Artisan::call('vendor:publish', [
-            //     '--tag' => ['public_custom_js'], 
-            //     '--force' => true,
-            // ]);
+            Artisan::call('vendor:publish', [
+                '--tag' => ['public_custom_js'], 
+                '--force' => true,
+            ]);
 
-            // DB::listen(function($query) {
-            //     \Log::info(
-            //         $query->sql,
-            //         $query->bindings,
-            //         $query->time
-            //     );
-            // });
+            DB::listen(function($query) {
+                \Log::info(
+                    $query->sql,
+                    $query->bindings,
+                    $query->time
+                );
+            });
         }
 
         $router = $this->app->make(Router::class);

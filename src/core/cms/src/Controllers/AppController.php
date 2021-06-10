@@ -20,6 +20,7 @@ class AppController extends Controller
         if(isset(Constants::$uploadSettingList[request()->route()->getPrefix()])) {
             $this->uploadSetting = Constants::$uploadSettingList[request()->route()->getPrefix()];
         }
+
     }
 
     private function getModel() {
@@ -58,6 +59,20 @@ class AppController extends Controller
 
         if(isset($searchRequest['date_to_se']) && !is_null($searchRequest['date_to_se'])) {
             $query->where('created_at', '<=', Carbon::parse($searchRequest['date_to_se'] . ' 23:59:00')->format('Y-m-d H:i:s'));
+        }
+
+        if(isset($searchRequest['customer_info_se']) && !is_null($searchRequest['customer_info_se'])) {
+            $query->where('customer_name', 'LIKE', '%' . $searchRequest['customer_info_se'] . '%')
+                ->orWhere('customer_phone', 'LIKE', '%' . $searchRequest['customer_info_se'] . '%')
+                ->orWhere('customer_address', 'LIKE', '%' . $searchRequest['customer_info_se'] . '%')
+                ->orWhere('customer_email', 'LIKE', '%' . $searchRequest['customer_info_se'] . '%');
+        }
+
+        if(isset($searchRequest['user_info_se']) && !is_null($searchRequest['user_info_se'])) {
+            $query->where('name', 'LIKE', '%' . $searchRequest['user_info_se'] . '%')
+                ->orWhere('phone', 'LIKE', '%' . $searchRequest['user_info_se'] . '%')
+                ->orWhere('address', 'LIKE', '%' . $searchRequest['user_info_se'] . '%')
+                ->orWhere('email', 'LIKE', '%' . $searchRequest['user_info_se'] . '%');
         }
 
         $searchList = $query->orderBy('created_at', 'desc')->paginate(6);

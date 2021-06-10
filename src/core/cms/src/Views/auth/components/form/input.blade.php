@@ -5,7 +5,7 @@
         class="form-control" id="field_{{ $name }}" 
         name="{{ $name }}" 
         {{ isset($disabled) ? 'disabled' : ''}} 
-        value="{{ old($name, $item->$name) }}" 
+        value="{{ old($name, optional($item ?? '')->$name) }}" 
         placeholder="{{ $label }}"
     />
     @error($name)<span class="text-danger">{{ $message }}</span>@enderror

@@ -10,6 +10,9 @@ use Cms\Controllers\VendorController;
 use Cms\Controllers\ProductController;
 use Cms\Controllers\BannerController;
 use Cms\Controllers\OrderController;
+use Cms\Controllers\PostController;
+use Cms\Controllers\PageController;
+use Cms\Controllers\ConfigController;
 
 Route::get('/',  function() {
 
@@ -72,11 +75,30 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
         Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
             Route::get('/',  [OrderController::class, 'index'])->name('list');
             Route::get('/search',  [OrderController::class, 'search'])->name('search');
-            // Route::match(['get', 'post'], '/create',  [OrderController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{order}',  [OrderController::class, 'save'])->name('edit');
             Route::post('/remove}',  [OrderController::class, 'remove'])->name('remove');
         });
-        
+
+        // Post
+        Route::group(['prefix' => 'post', 'as' => 'post.'], function() {
+            Route::get('/',  [PostController::class, 'index'])->name('list');
+            Route::get('/search',  [PostController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create',  [PostController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{post}',  [PostController::class, 'save'])->name('edit');
+            Route::post('/remove}',  [PostController::class, 'remove'])->name('remove');
+        });
+
+        // Page
+        Route::group(['prefix' => 'page', 'as' => 'page.'], function() {
+            Route::get('/',  [PageController::class, 'index'])->name('list');
+            Route::get('/search',  [PageController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/edit/{page}',  [PageController::class, 'save'])->name('edit');
+        });
+
+        // Config
+        Route::group(['prefix' => 'config', 'as' => 'config.'], function() {
+            Route::match(['get', 'post'], '/edit',  [ConfigController::class, 'save'])->name('edit');
+        });
     });
 });
 

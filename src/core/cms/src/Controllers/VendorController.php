@@ -17,7 +17,12 @@ class VendorController extends AppController
 
             $vendor->name     = $request->name;
             $vendor->name_url = Str::of($request->name)->slug('-');
-            $vendor->logo     = $this->uploadFile->upload($this->uploadSetting)->first();
+            
+            $resultUpload = $this->uploadFile->upload($this->uploadSetting)->first();
+            if(!empty($resultUpload)) {
+                $vendor->logo = $resultUpload;
+            }
+
             $vendor->status   = !is_null($request->status) ? 1 : 0;
             $vendor->save();
 

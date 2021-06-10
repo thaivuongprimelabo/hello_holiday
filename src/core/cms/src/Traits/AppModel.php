@@ -26,6 +26,10 @@ trait AppModel {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d-m-Y H:i:s');
     }
 
+    public function getUpdatedAt() {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->updated_at)->format('d-m-Y H:i:s');
+    }
+
     public function getStatusText() {
 
         if($this->status == Constants::STATUS_UNACTIVE) {
@@ -69,6 +73,38 @@ trait AppModel {
         $file = public_path($this->avatar);
         if (!is_null($this->avatar) && !empty($this->avatar) && file_exists($file)) {
             return asset($this->avatar);
+        }
+        return $this->getDefaultImage();
+    }
+
+    public function getPhoto() {
+        $file = public_path($this->photo);
+        if (!is_null($this->photo) && !empty($this->photo) && file_exists($file)) {
+            return asset($this->photo);
+        }
+        return $this->getDefaultImage();
+    }
+
+    public function getWebLogo() {
+        $file = public_path($this->web_logo);
+        if (!is_null($this->web_logo) && !empty($this->web_logo) && file_exists($file)) {
+            return asset($this->web_logo);
+        }
+        return $this->getDefaultImage();
+    }
+
+    public function getWebIcon() {
+        $file = public_path($this->web_ico);
+        if (!is_null($this->web_ico) && !empty($this->web_ico) && file_exists($file)) {
+            return asset($this->web_ico);
+        }
+        return $this->getDefaultImage();
+    }
+
+    public function getWebBanner() {
+        $file = public_path($this->web_banner);
+        if (!is_null($this->web_banner) && !empty($this->web_banner) && file_exists($file)) {
+            return asset($this->web_banner);
         }
         return $this->getDefaultImage();
     }

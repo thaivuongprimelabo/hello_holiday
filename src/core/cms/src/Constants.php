@@ -27,6 +27,11 @@ class Constants {
         ['id' => self::PAYMENT_METHOD_BANK, 'name' => 'Chuyển khoản ngân hàng'],
     ];
 
+    public static $statusList = [
+        ['id' => self::STATUS_ACTIVE, 'name' => 'Đang hoạt động'],
+        ['id' => self::STATUS_UNACTIVE, 'name' => 'Tạm dừng'],
+    ];
+
     public static $modelList = [
         'auth/category' => '\Cms\Models\Category',
         'auth/vendor' => '\Cms\Models\Vendor',
@@ -34,6 +39,8 @@ class Constants {
         'auth/product' => '\Cms\Models\Product',
         'auth/banner' => '\Cms\Models\Banner',
         'auth/order' => '\Cms\Models\Order',
+        'auth/post' => '\Cms\Models\Post',
+        'auth/page' => '\Cms\Models\Page',
     ];
 
     public static $viewList = [
@@ -43,23 +50,10 @@ class Constants {
         'auth/product' => 'cms::auth.pages.product',
         'auth/banner' => 'cms::auth.pages.banner',
         'auth/order' => 'cms::auth.pages.order',
+        'auth/post' => 'cms::auth.pages.post',
+        'auth/page' => 'cms::auth.pages.page',
     ];
 
-    public static $uploadSettingList = [
-        'auth/user' => [
-            'dir' => 'user'
-        ],
-        'auth/vendor' => [
-            'dir' => 'vendor',
-            'resize' => ['180x180']
-        ],
-        'auth/product' => [
-            'dir' => 'product',
-            'resize' => ['50x50', '160x160']
-        ],
-        'auth/banner' => [
-            'dir' => 'banner'
-        ],
-    ];
+    public static $uploadSettingList = [];
 
 }

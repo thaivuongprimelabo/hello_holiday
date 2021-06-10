@@ -81,9 +81,9 @@
 
                         <div class="col-md-6">
 
-                            <div class="form-group">
+                            <div class="form-group" id="image_product">
                                 <div class="row">
-                                    <button type="button" id="upload-image-btn" class="btn btn-sm btn-primary mb-2 ml-2"><i class="fa fa-upload"></i> Chọn hình sản phẩm</button>
+                                    <button type="button" class="btn btn-sm btn-primary mb-2 ml-2 upload-mutiple-btn"><i class="fa fa-upload"></i> Chọn hình sản phẩm</button>
                                     
                                 </div>
                                 <div id="selected_images" class="row">

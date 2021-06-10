@@ -5,18 +5,21 @@
     <div class="row">
         <div class="col-md-10 offset-md-1">
             <div class="row">
-                <div class="col-3">
-                    @include('cms::auth.components.form.input', [
-                        'label' => 'Thông tin tài khoản', 
-                        'name' => 'user_info_se', 
-                    ])
+                <div class="col-2">
+                    <div class="form-group">
+                        <label>Tựa đề:</label>
+                        <input type="text" name="name_se" class="form-control" placeholder="Lọc theo tựa đề" />
+                    </div>
                 </div>
                 <div class="col-3">
-                    @include('cms::auth.components.form.select', [
-                        'label' => 'Trạng thái', 
-                        'name' => 'status_se', 
-                        'options' => json_decode(json_encode(\Cms\Constants::$statusList), FALSE)
-                    ])
+                    <div class="form-group">
+                        <label>Trạng thái:</label>
+                        <select class="select2"  name="status_se" style="width: 100%;">
+                            <option value="">Lọc theo trạng thái</option>
+                            <option value="0">Tạm dừng</option>
+                            <option value="1">Đang hoạt động</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-2">
                     <div class="form-group">
@@ -55,18 +58,19 @@
 </div><!-- /.container-fluid -->
 @endsection
 @section('search')
-<table class="table table-hover text-nowrap">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>
         <input type="checkbox" id="check-all" />
       </th>
       <th>ID</th>
-      <th>Tên gọi</th>
-      <th>Ảnh đại diện</th>
+      <th>Tựa đề</th>
+      <th>Slug</th>
+      <th>Hình ảnh</th>
+      <th>Mô tả ngắn</th>
       <th>Ngày tạo</th>
       <th>Trạng thái</th>
-      <th>Email</th>
       <th></th>
     </tr>
   </thead>

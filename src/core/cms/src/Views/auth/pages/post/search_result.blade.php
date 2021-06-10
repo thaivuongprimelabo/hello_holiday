@@ -7,11 +7,12 @@
     <td>{{ $data->getKey() }}</td>
     <td>{{ $data->name }}</td>
     <td>{{ $data->name_url }}</td>
-    <td><img src="{{ $data->getLogo() }}" class="img-thumbnail" style="width:100px" /></td>
+    <td><img src="{{ $data->getPhoto() }}" class="img-thumbnail" style="width:100px" /></td>
+    <td>{!! $data->description !!}</td>
     <td>{{ $data->getCreatedAt() }}</td>
     <td>{!! $data->getStatusText() !!}</td>
     <td>
-        <a href="{{ route('auth.vendor.edit', ['vendor' => $data->getKey()]) }}"><i class="fas fa-edit"></i></a>
+        <a href="{{ route('auth.post.edit', ['post' => $data->getKey()]) }}"><i class="fas fa-edit"></i></a>
     </td>
 </tr>
 @endforeach

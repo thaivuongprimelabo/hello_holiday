@@ -10,7 +10,7 @@
             <div class="card card-default">
                 <div class="card-header">
                     <h3 class="card-title">
-                        <a href="{{ route('auth.user.list') }}" class="btn btn-default">
+                        <a href="{{ route('auth.post.list') }}" class="btn btn-default">
                             <i class="fa fa-chevron-left"></i>
                             Quay lại
                         </a>
@@ -27,61 +27,52 @@
                         <div class="col-md-6">
 
                             @include('cms::auth.components.form.input', [
-                                'label' => 'Tên gọi', 
+                                'label' => 'Tựa đề', 
                                 'name' => 'name', 
-                                'item' => $user
+                                'item' => $post
                             ])
 
                             @include('cms::auth.components.form.input', [
-                                'label' => 'Email', 
-                                'name' => 'email', 
-                                'item' => $user
-                            ])
-
-                            @include('cms::auth.components.form.input', [
-                                'label' => 'Phone', 
-                                'name' => 'phone', 
-                                'item' => $user
-                            ])
-
-                            @include('cms::auth.components.form.input', [
-                                'label' => 'Address', 
-                                'name' => 'address', 
-                                'item' => $user
-                            ])
-
-                            @include('cms::auth.components.form.input', [
-                                'label' => 'Mật khẩu', 
-                                'name' => 'password',
-                                'type' => 'password'
-                            ])
-
-                            @include('cms::auth.components.form.input', [
-                                'label' => 'Xác nhận mật khẩu', 
-                                'name' => 'password_confirmation',
-                                'type' => 'password'
+                                'label' => 'Tác giả', 
+                                'name' => 'author_name', 
+                                'item' => $post
                             ])
 
                             @include('cms::auth.components.form.checkbox', [
                                 'label' => 'Đang hoạt động', 
                                 'name' => 'status', 
-                                'item' => $user,
+                                'item' => $post,
                                 'checked' => true
                             ])
-
                         </div>
 
                         <div class="col-md-6">
+
                             @include('cms::auth.components.form.upload', [
-                                'label' => 'Ảnh đại diện',
-                                'name' => 'avatar',
-                                'item' => $user,
-                                'image' => $user->getAvatar(),
-                                'style' => 'width:150px'
+                                'label' => 'Hình bài viết',
+                                'name' => 'photo',
+                                'item' => $post,
+                                'image' => $post->getPhoto()
                             ])
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @include('cms::auth.components.form.editor', [
+                                'label' => 'Mô tả', 
+                                'name' => 'description', 
+                                'item' => $post,
+                                'small' => true
+                            ])
 
+                            @include('cms::auth.components.form.editor', [
+                                'label' => 'Nội dung', 
+                                'name' => 'content', 
+                                'item' => $post
+                            ])
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

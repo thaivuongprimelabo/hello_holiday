@@ -4,6 +4,7 @@ namespace Cms\Helpers;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Carbon;
 
 class UploadFile {
 
@@ -15,44 +16,53 @@ class UploadFile {
     protected $resizeHeight = null;
     protected $output = [];
 
+    static $resize = [
+        'image_product' => [
+            'small' => ['width' => 50, 'height' => 50],
+            'medium' => ['width' => 160, 'height' => 160],
+        ]
+    ];
+
+    public function __construct()
+    {
+        $this->output = [];
+    }
+
     public function upload($params = []) {
         try {
             if(request()->has($this->fieldName)) {
-                $file = request()->file($this->fieldName);
+                $files = request()->file($this->fieldName);
                 $imageDeleted = request()->input($this->deleteImageName, []);
 
-                $arrFiles = [];
-                if(!is_array($file)) {
-                    $arrFiles[] = $file;
-                } else {
-                    $arrFiles = $file;
-                }
+                foreach($files as $folder=>$file) {
 
-                foreach($arrFiles as $key=>$f) {
-                    $originName = $f->getClientOriginalName();
+                    if(is_array($file)) {
+                        foreach($file as $index=>$myFile) {
+                            $originName = $myFile->getClientOriginalName();
                     
-                    if(in_array($originName, $imageDeleted)) {
-                        continue;
+                            if(in_array($originName, $imageDeleted)) {
+                                continue;
+                            }
+
+                            $filename = $myFile->hashName();
+                    
+                            $uploadDir   = $this->uploadDir . '/' . $folder;
+
+                            $resizeResult = $this->resize($myFile, $folder);
+
+                            $uploadPath = public_path($uploadDir);
+                            if(!File::exists($uploadPath)) {
+                                File::makeDirectory($uploadPath, 0755, true, true);
+                            }
+
+                            $myFile->move($uploadPath, $filename);
+
+                            $this->output[$index]['image'] = $uploadDir . '/' . $filename;
+                            $this->output[$index]['resize'] = $resizeResult;
+                        }
+
+                        return $this;
                     }
-
-                    $filename = $f->hashName();
-            
-                    $uploadDir   = $this->uploadDir;
-                    if(isset($params['dir'])) {
-                        $uploadDir = $uploadDir . '/' . $params['dir'];
-                    }
-
-                    $resizeResult = $this->resize($params, $f);
-
-                    $uploadPath = public_path($uploadDir);
-                    if(!File::exists($uploadPath)) {
-                        File::makeDirectory($uploadPath, 0755, true, true);
-                    }
-
-                    $f->move($uploadPath, $filename);
-
-                    $this->output[$key]['image'] = $uploadDir . '/' . $filename;
-                    $this->output[$key]['resize'] = $resizeResult;
                 }
             }
 
@@ -64,22 +74,21 @@ class UploadFile {
         }
     }
 
-    private function resize($params, $image) {
+    public function resize($image, $folder) {
 
         $output = [];
 
-        if(isset($params['resize'])) {
+        if(isset(self::$resize[$folder])) {
 
             $uploadDir = $this->uploadDir;
-            if(isset($params['dir'])) {
-                $uploadDir = $uploadDir . '/' . $params['dir'];
+            if(!is_numeric($folder)) {
+                $uploadDir = $uploadDir . '/' . $folder;
             }
 
-            $resizeList = $params['resize'];
+            $resizeList = self::$resize[$folder];
             foreach($resizeList as $resize) {
-                $demension = explode('x', $resize);
-                $resizeWith = $demension[0];
-                $resizeHeight = $demension[1];
+                $resizeWith = $resize['width'];
+                $resizeHeight = $resize['height'];
 
                 $resizeSaveDir = $uploadDir . '/' . $resizeWith . 'x' . $resizeHeight;
                 $resizeDir = public_path($resizeSaveDir);
@@ -102,7 +111,8 @@ class UploadFile {
     }
 
     public function first() {
-        return count($this->output) ? $this->output[0]['image'] : '';
+        $first = array_key_first($this->output);
+        return count($this->output) ? $this->output[$first]['image'] : '';
     }
 
     public function all() {

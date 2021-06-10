@@ -51,4 +51,16 @@ return [
         'create' => 'Đăng ký đơn hàng',
         'edit' => 'Chỉnh sửa đơn hàng'
     ],
+    'post' => [
+        'list' => 'Danh sách bài viết',
+        'create' => 'Đăng ký bài viết',
+        'edit' => 'Chỉnh sửa bài viết'
+    ],
+    'page' => [
+        'list' => 'Danh sách trang',
+        'edit' => 'Chỉnh sửa trang'
+    ],
+    'config' => [
+        'edit' => 'Cài đặt'
+    ]
 ];

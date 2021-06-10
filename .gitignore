@@ -3,4 +3,4 @@
 .git
 supervisord.pid
 xdebug.log
-./src/public/cms/upload
+src/public/cms/upload

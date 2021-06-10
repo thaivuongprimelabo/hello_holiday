@@ -33,7 +33,7 @@ class VendorRequest extends FormRequest
         $rules = [
             //
             'name' => 'required',
-            'upload_file' => 'max:500|mimes:png,jpg,jpeg'
+            'upload_file.logo.*' => 'max:500|mimes:png,jpg,jpeg'
         ];
 
         return $rules;

@@ -4,7 +4,7 @@ namespace Cms\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BannerRequest extends FormRequest
+class PostRequest extends FormRequest
 {
 
     protected function getRedirectUrl()
@@ -32,8 +32,8 @@ class BannerRequest extends FormRequest
     {
         $rules = [
             //
-            'link' => 'url',
-            'upload_file.banner.*' => 'max:500|mimes:png,jpg,jpeg'
+            'name' => 'required',
+            'upload_file.photo.*' => 'max:200|mimes:png,jpg,jpeg'
         ];
 
         return $rules;

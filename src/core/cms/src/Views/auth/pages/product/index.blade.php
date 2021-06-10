@@ -66,6 +66,7 @@
             <th>
                 <input type="checkbox" id="check-all" />
             </th>
+            <th></th>
             <th>ID</th>
             <th>Tên gọi</th>
             <th>Slug</th>

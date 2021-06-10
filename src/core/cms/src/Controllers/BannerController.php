@@ -18,7 +18,12 @@ class BannerController extends AppController
             $banner->description   = $request->input('description');
             $banner->link          = $request->input('link');
             $banner->pos           = $request->input('pos', 'center');
-            $banner->banner        = $this->uploadFile->upload($this->uploadSetting)->first();
+
+            $resultUpload = $this->uploadFile->upload($this->uploadSetting)->first();
+            if(!empty($resultUpload)) {
+                $banner->banner = $resultUpload;
+            }
+
             $banner->status        = !is_null($request->status) ? 1 : 0;
             $banner->save();
 
@@ -31,7 +36,7 @@ class BannerController extends AppController
             return redirect()->route('auth.banner.list')->with('success', $message);
         }
 
-        $banner->link = route('home');
+        $banner->link = !empty($banner->link) ? $banner->link : route('home');
 
         return view('cms::auth.pages.banner.form', compact('banner'));
     }

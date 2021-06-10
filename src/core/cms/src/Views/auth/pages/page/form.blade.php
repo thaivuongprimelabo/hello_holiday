@@ -5,12 +5,12 @@
     </section>
 
     <div class="container-fluid">
-        <form action="?" method="post" id="submit-form" enctype="multipart/form-data">
+        <form action="?" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card card-default">
                 <div class="card-header">
                     <h3 class="card-title">
-                        <a href="{{ route('auth.banner.list') }}" class="btn btn-default">
+                        <a href="{{ route('auth.page.list') }}" class="btn btn-default">
                             <i class="fa fa-chevron-left"></i>
                             Quay lại
                         </a>
@@ -27,29 +27,26 @@
                         <div class="col-md-6">
 
                             @include('cms::auth.components.form.input', [
-                                'label' => 'Link bài viết', 
-                                'name' => 'link', 
-                                'item' => $banner
-                            ])
-
-                            @include('cms::auth.components.form.checkbox', [
-                                'label' => 'Đang hoạt động', 
-                                'name' => 'status', 
-                                'item' => $banner,
-                                'checked' => true
+                                'label' => 'Tựa đề', 
+                                'name' => 'name', 
+                                'item' => $page
                             ])
                         </div>
 
                         <div class="col-md-6">
-                            @include('cms::auth.components.form.upload', [
-                                'label' => 'Banner',
-                                'name' => 'banner',
-                                'item' => $banner,
-                                'image' => $banner->getBanner()
-                            ])
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
 
+                            @include('cms::auth.components.form.editor', [
+                                'label' => 'Nội dung', 
+                                'name' => 'content', 
+                                'item' => $page
+                            ])
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

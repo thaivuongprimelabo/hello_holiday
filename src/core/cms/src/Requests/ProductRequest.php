@@ -37,6 +37,7 @@ class ProductRequest extends FormRequest
             'vendor_id' => 'required',
             'seo_keywords' => 'max:300',
             'seo_description' => 'max:300',
+            'upload_file.image_product.*' => 'max:200|mimes:png,jpg,jpeg'
         ];
 
         return $rules;

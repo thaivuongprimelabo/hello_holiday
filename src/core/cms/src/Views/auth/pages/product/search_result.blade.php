@@ -4,6 +4,9 @@
     <td>
         <input type="checkbox" class="primary-id" value="{{ $data->getKey() }}" />
     </td>
+    <td>
+        <a href="{{ route('auth.product.edit', ['product' => $data->getKey()]) }}"><i class="fas fa-edit"></i></a>
+    </td>
     <td>{{ $data->getKey() }}</td>
     <td>{{ $data->getName() }}</td>
     <td>{{ $data->name_url }}</td>

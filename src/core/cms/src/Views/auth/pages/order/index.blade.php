@@ -5,21 +5,18 @@
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="row">
-                    <div class="col-2">
-                        <div class="form-group">
-                            <label>Tên khách hàng:</label>
-                            <input type="text" name="name_se" class="form-control" placeholder="Lọc theo tên" />
-                        </div>
+                    <div class="col-3">
+                        @include('cms::auth.components.form.input', [
+                            'label' => 'Thông tin khách hàng', 
+                            'name' => 'customer_info_se', 
+                        ])
                     </div>
                     <div class="col-3">
-                        <div class="form-group">
-                            <label>Trạng thái:</label>
-                            <select class="select2" name="status_se" style="width: 100%;">
-                                <option value="">Lọc theo trạng thái</option>
-                                <option value="0">Tạm dừng</option>
-                                <option value="1">Đang hoạt động</option>
-                            </select>
-                        </div>
+                        @include('cms::auth.components.form.select', [
+                            'label' => 'Trạng thái', 
+                            'name' => 'status_se', 
+                            'options' => json_decode(json_encode(\Cms\Constants::$orderStatusList), FALSE)
+                        ])
                     </div>
                     <div class="col-2">
                         <div class="form-group">

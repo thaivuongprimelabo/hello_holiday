@@ -5,7 +5,7 @@
     </section>
 
     <div class="container-fluid">
-        <form action="?" method="post" enctype="multipart/form-data">
+        <form action="?" method="post" id="submit-form" enctype="multipart/form-data">
             @csrf
             <div class="card card-default">
                 <div class="card-header">
@@ -41,17 +41,12 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Logo</label>
-                                <br/>
-                                <button type="button" id="upload-avatar-btn" class="btn btn-primary mb-2"><i class="fa fa-upload"></i> Tải lên</button>
-                                <button type="button" id="remove-avatar-btn" class="btn btn-danger mb-2" data-default-image="{{ $vendor->getDefaultImage() }}"><i class="fa fa-trash"></i> Xóa</button><br/>
-                                <input type="file" name="upload_file" id="upload-avatar-file" style="display:none" />
-                                <img src="{{ $vendor->getLogo() }}" id="preview" class="img-thumbnail" style="width:150px" />
-                                <input type="hidden" id="current-avatar" name="current_avatar" value="{{ $vendor->avatar }}" />
-                                <br/>
-                                @error('upload_file')<span class="text-danger">{{ $message }}</span>@enderror
-                            </div>
+                            @include('cms::auth.components.form.upload', [
+                                'label' => 'Logo',
+                                'name' => 'logo',
+                                'item' => $vendor,
+                                'image' => $vendor->getLogo()
+                            ])
                         </div>
                     </div>
 
