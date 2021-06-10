@@ -14,10 +14,6 @@ use Cms\Controllers\PostController;
 use Cms\Controllers\PageController;
 use Cms\Controllers\ConfigController;
 
-Route::get('/',  function() {
-
-})->name('home');
-
 Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], function () {
     Route::match(['get', 'post'], '/login',  [LoginController::class, 'index'])->name('login');
     Route::match(['get', 'post'], '/logout',  [LoginController::class, 'logout'])->name('logout');

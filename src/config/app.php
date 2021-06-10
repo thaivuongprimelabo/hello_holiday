@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Cms\CmsServiceProvider::class,
+        Web\WebServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class
 
     ],

@@ -43,7 +43,6 @@ class CmsServiceProvider extends ServiceProvider
         ], 'seeder');
 
         //
-        $this->app->make('Cms\Controllers\CmsController'); 
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
         $this->loadRoutesFrom(__DIR__ . '/routes_api.php');
         $this->loadViewsFrom(__DIR__.'/Views', 'cms');
