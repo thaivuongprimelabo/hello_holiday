@@ -1,11 +1,7 @@
 <?php
 namespace Web;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Cms\Middlewares\AuthCms;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
 
 class WebServiceProvider extends ServiceProvider
 {
@@ -26,6 +22,6 @@ class WebServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
-        
+
     }
 }

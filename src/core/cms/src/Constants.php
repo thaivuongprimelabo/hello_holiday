@@ -1,7 +1,8 @@
 <?php
 namespace Cms;
 
-class Constants {
+class Constants
+{
 
     public const STATUS_ACTIVE = 1;
     public const STATUS_UNACTIVE = 0;

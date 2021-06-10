@@ -2,9 +2,8 @@
 
 namespace Cms\Middlewares;
 
-use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Http\Request;
 
 class AuthCms extends Middleware
 {
@@ -16,7 +15,7 @@ class AuthCms extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+        if (!$request->expectsJson()) {
             return route('auth.login');
         }
     }

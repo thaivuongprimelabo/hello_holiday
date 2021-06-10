@@ -1,36 +1,35 @@
 <?php
 
 namespace Cms\Controllers;
-use App\Http\Controllers\Controller;
+
+use Cms\Controllers\AppController;
 use Cms\Models\Post;
 use Cms\Requests\PostRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use Cms\Controllers\AppController;
 
 class PostController extends AppController
 {
-    public function save(PostRequest $request, Post $post) {
-        if($request->isMethod('post')) {
+    public function save(PostRequest $request, Post $post)
+    {
+        if ($request->isMethod('post')) {
 
-            $post->name            = $request->input('name');
-            $post->name_url        = Str::of($request->input('name'))->slug('-');
-            $post->description     = $request->input('description');
-            $post->content         = $request->input('content');
-            $post->author_name     = $request->input('author_name', 'Administrator');
-            
+            $post->name = $request->input('name');
+            $post->name_url = Str::of($request->input('name'))->slug('-');
+            $post->description = $request->input('description');
+            $post->content = $request->input('content');
+            $post->author_name = $request->input('author_name', 'Administrator');
+
             $resultUpload = $this->uploadFile->upload($this->uploadSetting)->first();
-            if(!empty($resultUpload)) {
+            if (!empty($resultUpload)) {
                 $post->photo = $resultUpload;
             }
 
-            $post->seo_keywords    = $request->input('seo_keywords');
+            $post->seo_keywords = $request->input('seo_keywords');
             $post->seo_description = $request->input('seo_description');
-            $post->status          = !is_null($request->status) ? 1 : 0;
-            $post->save();
+            $post->status = !is_null($request->status) ? 1 : 0;
+            $post->save();
 
-            if($post->exists) {
+            if ($post->exists) {
                 $message = trans('cms::auth.message.update_success');
             } else {
                 $message = trans('cms::auth.message.create_success');

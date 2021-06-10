@@ -134,8 +134,13 @@ $(function() {
     })
 
     $('#remove-btn').click(function(e) {
+
         let hasChecked = $('.primary-id:checked').length;
         if(!hasChecked) {
+            return false;
+        }
+
+        if(!confirm('Are you sure want to delete?')) {
             return false;
         }
 

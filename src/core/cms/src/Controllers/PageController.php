@@ -1,25 +1,24 @@
 <?php
 
 namespace Cms\Controllers;
-use App\Http\Controllers\Controller;
+
+use Cms\Controllers\AppController;
 use Cms\Models\Page;
 use Cms\Requests\PageRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use Cms\Controllers\AppController;
 
 class PageController extends AppController
 {
-    public function save(PageRequest $request, Page $page) {
-        if($request->isMethod('post')) {
+    public function save(PageRequest $request, Page $page)
+    {
+        if ($request->isMethod('post')) {
 
-            $page->name            = $request->input('name');
-            $page->name_url        = Str::of($request->input('name'))->slug('-');
-            $page->content         = $request->input('content');
-            $page->save();
+            $page->name = $request->input('name');
+            $page->name_url = Str::of($request->input('name'))->slug('-');
+            $page->content = $request->input('content');
+            $page->save();
 
-            if($page->exists) {
+            if ($page->exists) {
                 $message = trans('cms::auth.message.update_success');
             } else {
                 $message = trans('cms::auth.message.create_success');
