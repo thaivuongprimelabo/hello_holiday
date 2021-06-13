@@ -5,7 +5,9 @@
         <input type="checkbox" class="primary-id" value="{{ $data->getKey() }}" />
     </td>
     <td>
-        <a href="{{ route('auth.product.edit', ['product' => $data->getKey()]) }}"><i class="fas fa-edit"></i></a>
+        @include('cms::auth.components.form.link', [
+            'link' => route('auth.product.edit', ['product' => $data->getKey()])
+        ])
     </td>
     <td>{{ $data->getKey() }}</td>
     <td>{{ $data->getName() }}</td>
@@ -22,7 +24,9 @@
     <td>{{ $data->getCreatedAt() }}</td>
     <td>{!! $data->getStatusText() !!}</td>
     <td>
-        <a href="{{ route('auth.product.edit', ['product' => $data->getKey()]) }}"><i class="fas fa-edit"></i></a>
+        @include('cms::auth.components.form.link', [
+            'link' => route('auth.product.edit', ['product' => $data->getKey()])
+        ])
     </td>
 </tr>
 @endforeach

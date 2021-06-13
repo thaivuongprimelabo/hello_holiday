@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="exampleInputEmail1">{{ $label }}</label>
-    <select class="form-control select2" name="{{ $name }}" id="field_{{ $name }}">
+    <select class="form-control form-control-sm select2" name="{{ $name }}" id="field_{{ $name }}">
         <option value="">{{ isset($empty) ? $empty : '---' }}</option>
         @foreach($options as $option)
             @if(isset($option->id))

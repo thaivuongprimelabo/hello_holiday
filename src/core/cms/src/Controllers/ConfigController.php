@@ -21,45 +21,24 @@ class ConfigController extends AppController
             $webConfig->web_title = $request->input('web_title');
             $webConfig->web_description = $request->input('web_description');
             $webConfig->web_keywords = $request->input('web_keywords');
-            // $webConfig->web_logo            = $this->uploadFile->upload(['dir' => 'web_logo'])->first();
-            // $webConfig->web_ico             = $this->uploadFile->upload(['dir' => 'web_ico'])->first();
-            // $webConfig->web_banner          = $this->uploadFile->upload(['dir' => 'web_banner'])->first();
             $webConfig->facebook_fanpage = $request->input('facebook_fanpage');
             $webConfig->youtube_channel = $request->input('youtube_channel');
             $webConfig->zalo_page = $request->input('zalo_page');
             $webConfig->shopee_page = $request->input('shopee_page');
 
-            if ($request->has('upload_file')) {
+            $webConfig->company_name = $request->input('company_name');
+            $webConfig->company_address = $request->input('company_address');
+            $webConfig->company_phone = $request->input('company_phone');
+            $webConfig->company_tax = $request->input('company_tax');
+            $webConfig->company_email = $request->input('company_email');
+            
+            $web_logo   = $this->uploadFile->resize('120x120', 'web_logo')->first();
+            $web_ico    = $this->uploadFile->resize('40x40', 'web_ico')->first();
+            $web_banner = $this->uploadFile->resize('725x320', 'web_banner')->first();
 
-                $demension = [
-                    'web_logo' => ['width' => 120, 'height' => 120],
-                    'web_ico' => ['width' => 40, 'height' => 40],
-                    'web_banner' => ['width' => 725, 'height' => 320],
-                ];
-
-                $files = $request->file('upload_file');
-
-                foreach ($files as $key => $file) {
-                    $originName = $file->getClientOriginalName();
-                    $filename = $file->hashName();
-
-                    $tmpPath = '/cms/upload/' . $key;
-                    $uploadPath = public_path($tmpPath);
-                    if (!File::exists($uploadPath)) {
-                        File::makeDirectory($uploadPath, 0755, true, true);
-                    }
-
-                    $img = Image::make($file->path());
-                    $resizeWidth = $demension[$key]['width'];
-                    $resizeHeight = $demension[$key]['height'];
-                    $img->resize($resizeWidth, $resizeHeight, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->save($uploadPath . '/' . $file->hashName());
-
-                    $webConfig->$key = $tmpPath . '/' . $file->hashName();
-
-                }
-            }
+            $webConfig->web_logo    = !empty($web_logo) ? $web_logo : $webConfig->web_logo;
+            $webConfig->web_ico     = !empty($web_ico) ? $web_ico : $webConfig->web_ico;
+            $webConfig->web_banner  = !empty($web_banner) ? $web_banner : $webConfig->web_banner;
 
             $webConfig->save();
 

@@ -7,54 +7,48 @@
   $remove_route = str_replace('list', 'remove', $current);
   $restore_route = str_replace('list', 'restore', $current);
 @endphp
-<section class="content">
-  <section class="content-header">
+@hasSection('search_condition')
     @yield('search_condition')
-  </section>
-</section>
+@else
+    @include('cms::auth.components.search_condition')
+@endif
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title" id="pagination">
-            
-          </h3>
-          <div class="card-tools">
-            <!-- <div class="justify-content-end"> -->
-              <div class="row justify-content-end mr-2">
+            <div class="mailbox-controls">
+                <!-- Check all button -->
+                </button>
+                <div class="btn-group">
+                  <button type="button" id="remove-btn" class="btn btn-default btn-sm">
+                    <i class="far fa-trash-alt"></i>
+                    Xoá
+                  </button>
+                </div>
+                <!-- /.btn-group -->
+                <button type="button" id="reload" class="btn btn-default btn-sm">
+                  <i class="fas fa-sync-alt"></i>
+                  Tải lại
+                </button>
                 @if(Route::has($create_route))
-                <a href="javascript:void(0)" id="create-btn" class="btn btn-primary">
+                <a href="javascript:void(0)" id="create-btn" class="btn btn-default btn-sm">
                   <i class="fas fa-plus"></i>
                   Đăng ký mới
                 </a>
                 @endif
-                &nbsp;&nbsp;&nbsp;
-                @if(Route::has($remove_route))
-                <a href="javascript:void(0)" id="remove-btn" class="btn btn-danger">
-                  <i class="fas fa-trash"></i>
-                  Xóa
-                </a>
-                @endif
-                &nbsp;&nbsp;&nbsp;
-                @if(Route::has($restore_route))
-                <a href="javascript:void(0)" id="restore-btn" class="btn btn-success">
-                  <i class="fas fa-trash-restore"></i>
-                  Khôi phục
-                </a>
-                @endif
-              </div>
-            <!-- </div> -->
-          </div>
+
+                <div class="float-right">
+                    <span id="total-record" class="text-sm"></span>&nbsp;&nbsp;&nbsp;
+                    <div class="float-right" id="pagination"></div>
+                </div>
+            </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
-          @yield('search')
+            @yield('search')
         </div>
         <!-- /.card-body -->
-        <div class="card-footer">
-          <h3 id="total-record" class="card-title"></h3>
-        </div>
       </div>
       <!-- /.card -->
     </div>

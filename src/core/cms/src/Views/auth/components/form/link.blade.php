@@ -1,0 +1,1 @@
+<a href="{{ $link }}" class="btn btn-default btn-sm"><i class="fas fa-edit"></i></a>

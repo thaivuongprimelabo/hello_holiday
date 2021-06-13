@@ -44,8 +44,8 @@ class ProductController extends AppController
                         $imagesProduct = new ImageProduct();
 
                         $imagesProduct->image = $result['image'];
-                        $imagesProduct->small = $result['resize'][0];
-                        $imagesProduct->medium = $result['resize'][1];
+                        $imagesProduct->small = $result['small'];
+                        $imagesProduct->medium = $result['medium'];
                         $imagesProduct->is_main = 0;
 
                         $product->imagesProduct()->save($imagesProduct);

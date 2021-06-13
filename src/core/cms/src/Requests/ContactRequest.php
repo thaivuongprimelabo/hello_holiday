@@ -4,13 +4,13 @@ namespace Cms\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ConfigRequest extends FormRequest
+class ContactRequest extends FormRequest
 {
 
     protected function getRedirectUrl()
     {
         $url = $this->redirector->getUrlGenerator();
-        return $url->current(); 
+        return $url->current();
     }
 
     /**
@@ -32,16 +32,14 @@ class ConfigRequest extends FormRequest
     {
         $rules = [
             //
-            'web_title' => 'required',
-            'upload_file.web_logo.*' => 'max:200|mimes:png,jpg,jpeg',
-            'upload_file.web_ico.*' => 'max:200|mimes:png,jpg,jpeg',
-            'upload_file.web_banner.*' => 'max:500|mimes:png,jpg,jpeg'
+            'reply_content' => 'required'
         ];
 
         return $rules;
     }
 
-    public function validator($factory) {
+    public function validator($factory)
+    {
         if ($this->isReading() || request()->has('action')) {
             return $factory->make(
                 $this->validationData(), [],

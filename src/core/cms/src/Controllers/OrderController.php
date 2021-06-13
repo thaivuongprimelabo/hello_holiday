@@ -44,4 +44,9 @@ class OrderController extends AppController
 
         return view('cms::auth.pages.order.form', compact('order', 'cities', 'districts', 'blocks'));
     }
+
+    public function print(Request $request, Order $order)
+    {
+        return view('cms::auth.pages.order.print', compact('order'));
+    }
 }

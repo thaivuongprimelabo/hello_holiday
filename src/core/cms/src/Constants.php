@@ -13,6 +13,9 @@ class Constants
     public const ORDER_STATUS_FINISH = 2;
     public const ORDER_STATUS_CANCEL = 3;
 
+    public const CONTACT_NEW = 0;
+    public const CONTACT_REPLIED = 1;
+
     public const PAYMENT_METHOD_CASH = 'cash';
     public const PAYMENT_METHOD_BANK = 'banking';
 
@@ -31,28 +34,6 @@ class Constants
     public static $statusList = [
         ['id' => self::STATUS_ACTIVE, 'name' => 'Đang hoạt động'],
         ['id' => self::STATUS_UNACTIVE, 'name' => 'Tạm dừng'],
-    ];
-
-    public static $modelList = [
-        'auth/category' => '\Cms\Models\Category',
-        'auth/vendor' => '\Cms\Models\Vendor',
-        'auth/user' => '\Cms\Models\User',
-        'auth/product' => '\Cms\Models\Product',
-        'auth/banner' => '\Cms\Models\Banner',
-        'auth/order' => '\Cms\Models\Order',
-        'auth/post' => '\Cms\Models\Post',
-        'auth/page' => '\Cms\Models\Page',
-    ];
-
-    public static $viewList = [
-        'auth/category' => 'cms::auth.pages.category',
-        'auth/vendor' => 'cms::auth.pages.vendor',
-        'auth/user' => 'cms::auth.pages.user',
-        'auth/product' => 'cms::auth.pages.product',
-        'auth/banner' => 'cms::auth.pages.banner',
-        'auth/order' => 'cms::auth.pages.order',
-        'auth/post' => 'cms::auth.pages.post',
-        'auth/page' => 'cms::auth.pages.page',
     ];
 
     public static $uploadSettingList = [];

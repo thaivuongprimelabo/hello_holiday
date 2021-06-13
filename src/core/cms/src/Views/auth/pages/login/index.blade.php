@@ -18,7 +18,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>Admin</b>Panel</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -46,7 +46,7 @@
         </div>
         <div class="form-group">
           <div class="input-group">
-            <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid': '' }}" placeholder="Password">
+            <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid': '' }}" placeholder="Mật khẩu">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -57,11 +57,17 @@
         </div>
         <div class="row">
           <div class="col-6">
-            
+            <a href="/" class="btn btn-default btn-sm btn-block">
+                <i class="fas fa-home"></i>&nbsp;
+                Trang chủ
+            </a>
           </div>
           <!-- /.col -->
           <div class="col-6">
-            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+            <button type="submit" class="btn btn-primary btn-sm btn-block">
+                Đăng nhập&nbsp;
+                <i class="fas fa-sign-in-alt"></i>
+            </button>
           </div>
           <!-- /.col -->
         </div>

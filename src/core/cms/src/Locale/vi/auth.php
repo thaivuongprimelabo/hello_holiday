@@ -62,5 +62,9 @@ return [
     ],
     'config' => [
         'edit' => 'Cài đặt'
-    ]
+    ],
+    'contact' => [
+        'list' => 'Liên hệ',
+        'edit' => 'Trả lời'
+    ],
 ];

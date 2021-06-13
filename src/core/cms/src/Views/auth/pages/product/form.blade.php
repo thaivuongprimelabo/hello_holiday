@@ -8,20 +8,7 @@
         <form action="?" id="submit-form" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <a href="{{ route('auth.product.list') }}" class="btn btn-default">
-                            <i class="fa fa-chevron-left"></i>
-                            Quay lại
-                        </a>
-                    </h3>
-                    <div class="card-tools">
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-save"></i>
-                            Lưu
-                        </button>
-                    </div>
-                </div>
+                @include('cms::auth.components.form_button', ['route' => 'auth.product.list'])
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">

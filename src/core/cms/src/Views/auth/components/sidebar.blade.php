@@ -67,6 +67,9 @@
             <i class="nav-icon fas fa-file"></i>
               <p>
                 Đơn hàng
+                @if($countNewOrders)
+                <span class="badge-danger badge right">{{ $countNewOrders }}</span>
+                @endif
               </p>
             </a>
           </li>
@@ -107,6 +110,9 @@
             <i class="nav-icon fas fa-envelope"></i>
               <p>
                 Liên hệ
+                @if($countNewContacts)
+                <span class="badge-danger badge right">{{ $countNewContacts }}</span>
+                @endif
               </p>
             </a>
           </li>
@@ -116,24 +122,6 @@
             <i class="nav-icon fas fa-user"></i>
               <p>
                 Tài khoản
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="{{ route('auth.config.edit') }}" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>
-                Cài đặt
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="{{ route('auth.logout') }}" class="nav-link">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>
-                Thoát
               </p>
             </a>
           </li>

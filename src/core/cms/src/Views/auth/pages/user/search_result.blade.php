@@ -11,7 +11,9 @@
     <td>{!! $data->getStatusText() !!}</td>
     <td>{{ $data->email }}</td>
     <td>
-        <a href="{{ route('auth.user.edit', ['user' => $data->getKey()]) }}"><i class="fas fa-edit"></i></a>
+        @include('cms::auth.components.form.link', [
+            'link' => route('auth.user.edit', ['user' => $data->getKey()])
+        ])
     </td>
 </tr>
 @endforeach

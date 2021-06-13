@@ -1,25 +1,27 @@
 @extends('cms::auth.layouts.main')
 @section('content')
-<section class="content">
-    <section class="content-header">
-    </section>
-
+<section class="content pt-2">
     <div class="container-fluid">
         <form action="?" method="post" id="submit-form" enctype="multipart/form-data">
             @csrf
             <div class="card card-default">
                 <div class="card-header">
                     <h3 class="card-title">
-                        <a href="{{ route('auth.order.list') }}" class="btn btn-default">
-                            <i class="fa fa-chevron-left"></i>
-                            Quay lại
-                        </a>
+                        @include('cms::auth.components.form.button_back', [
+                            'route' => 'auth.order.list'
+                        ])
                     </h3>
                     <div class="card-tools">
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-save"></i>
-                            Lưu
-                        </button>
+
+                        <a href="{{ route('auth.order.print', ['order' => $order->getKey()]) }}" target="_blank" class="btn btn-warning btn-sm">
+                            <i class="fas fa-print"></i>
+                            In hoá đơn
+                        </a>
+                        @include('cms::auth.components.form.button', [
+                            'type' => 'submit',
+                            'icon' => 'fas fa-save',
+                            'label' => 'Lưu',
+                        ])
                     </div>
                 </div>
                 <div class="card-body">

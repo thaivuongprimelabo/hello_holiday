@@ -40,6 +40,36 @@
                             ])
 
                             @include('cms::auth.components.form.input', [
+                                'label' => 'Company name', 
+                                'name' => 'company_name', 
+                                'item' => $webConfig
+                            ])
+
+                            @include('cms::auth.components.form.input', [
+                                'label' => 'Company address', 
+                                'name' => 'company_address', 
+                                'item' => $webConfig
+                            ])
+
+                            @include('cms::auth.components.form.input', [
+                                'label' => 'Company phone', 
+                                'name' => 'company_phone', 
+                                'item' => $webConfig
+                            ])
+
+                            @include('cms::auth.components.form.input', [
+                                'label' => 'Company email', 
+                                'name' => 'company_email', 
+                                'item' => $webConfig
+                            ])
+
+                            @include('cms::auth.components.form.input', [
+                                'label' => 'Company tax', 
+                                'name' => 'company_tax', 
+                                'item' => $webConfig
+                            ])
+
+                            @include('cms::auth.components.form.input', [
                                 'label' => 'Facebook', 
                                 'name' => 'facebook_fanpage', 
                                 'item' => $webConfig,

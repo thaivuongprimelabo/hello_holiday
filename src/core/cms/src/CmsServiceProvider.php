@@ -49,10 +49,10 @@ class CmsServiceProvider extends ServiceProvider
 
         $env = config('app.env');
         if ($env == 'local') {
-            // Artisan::call('vendor:publish', [
-            //     '--tag' => ['public_custom_js'],
-            //     '--force' => true,
-            // ]);
+            \Artisan::call('vendor:publish', [
+                '--tag' => ['public_custom_js'],
+                '--force' => true,
+            ]);
 
             // DB::listen(function ($query) {
             //     \Log::info(

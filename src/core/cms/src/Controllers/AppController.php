@@ -5,11 +5,15 @@ namespace Cms\Controllers;
 use App\Http\Controllers\Controller;
 use Cms\Constants;
 use Cms\Helpers\UploadFile;
+use Cms\Models\Contact;
 use Cms\Models\ImageProduct;
+use Cms\Models\Order;
 use Cms\Models\Product;
+use Cms\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\View;
 
 class AppController extends Controller
 {
@@ -23,20 +27,32 @@ class AppController extends Controller
             $this->uploadSetting = Constants::$uploadSettingList[request()->route()->getPrefix()];
         }
 
+        $this->shareData();
+    }
+
+    public function shareData()
+    {
+        $countNewOrders = Order::query()->where('status', Constants::ORDER_STATUS_NEW)->count();
+        $countNewContacts = Contact::query()->where('status', Constants::CONTACT_NEW)->count();
+        $config = Config::first();
+        View::share(compact('countNewOrders', 'countNewContacts', 'config'));
+
     }
 
     private function getModel()
     {
         $prefix = request()->route()->getPrefix();
-        $className = Constants::$modelList[$prefix];
-        $model = app($className);
+        $names = explode('/', $prefix);
+        $class = 'Cms\\Models\\' . ucfirst(end($names));
+        $model = app($class);
         return $model;
     }
 
     private function getView()
     {
         $prefix = request()->route()->getPrefix();
-        $view = Constants::$viewList[$prefix];
+        $names = explode('/', $prefix);
+        $view = 'cms::auth.pages.' . end($names);
         return $view;
     }
 
@@ -47,7 +63,8 @@ class AppController extends Controller
 
     public function search(Request $request)
     {
-        $query = $this->getModel()->query();
+        $model = $this->getModel();
+        $query = $model->query();
         $view = $this->getView();
         $searchRequest = $request->all();
 
@@ -79,6 +96,10 @@ class AppController extends Controller
                 ->orWhere('phone', 'LIKE', '%' . $searchRequest['user_info_se'] . '%')
                 ->orWhere('address', 'LIKE', '%' . $searchRequest['user_info_se'] . '%')
                 ->orWhere('email', 'LIKE', '%' . $searchRequest['user_info_se'] . '%');
+        }
+
+        if ($model instanceof \Cms\Models\User) {
+            $query = $query->showByRole();
         }
 
         $searchList = $query->orderBy('created_at', 'desc')->paginate(6);
@@ -113,8 +134,8 @@ class AppController extends Controller
             }
 
             ImageProduct::query()->whereIn('product_id', $ids)->delete();
-            $model->query()->whereIn('id', $ids)->delete();
         }
+        $model->query()->whereIn('id', $ids)->delete();
 
         $message = trans('cms::auth.message.remove_success');
 

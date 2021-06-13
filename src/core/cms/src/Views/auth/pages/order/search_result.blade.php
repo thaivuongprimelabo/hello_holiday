@@ -15,7 +15,9 @@
     <td>{{ $data->getCreatedAt() }}</td>
     <td>{!! $data->getOrderStatusText() !!}</td>
     <td>
-        <a href="{{ route('auth.order.edit', ['order' => $data->getKey()]) }}"><i class="fas fa-edit"></i></a>
+        @include('cms::auth.components.form.link', [
+            'link' => route('auth.order.edit', ['order' => $data->getKey()])
+        ])
     </td>
 </tr>
 @endforeach

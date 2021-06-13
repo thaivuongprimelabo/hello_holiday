@@ -2,7 +2,7 @@
     <label for="exampleInputEmail1">{{ $label }}</label>
     <input 
         type="{{ isset($type) ? $type : 'text' }}" 
-        class="form-control" id="field_{{ $name }}" 
+        class="form-control form-control-sm" id="field_{{ $name }}" 
         name="{{ $name }}" 
         {{ isset($disabled) ? 'disabled' : ''}} 
         value="{{ old($name, optional($item ?? '')->$name) }}" 

@@ -12,7 +12,9 @@
     <td>{{ $data->getCreatedAt() }}</td>
     <td>{!! $data->getStatusText() !!}</td>
     <td>
-        <a href="{{ route('auth.post.edit', ['post' => $data->getKey()]) }}"><i class="fas fa-edit"></i></a>
+        @include('cms::auth.components.form.link', [
+            'link' => route('auth.post.edit', ['post' => $data->getKey()])
+        ])
     </td>
 </tr>
 @endforeach

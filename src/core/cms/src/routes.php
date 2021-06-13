@@ -9,6 +9,7 @@ use Cms\Controllers\PostController;
 use Cms\Controllers\ProductController;
 use Cms\Controllers\UserController;
 use Cms\Controllers\VendorController;
+use Cms\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], function () {
@@ -75,7 +76,9 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/', [OrderController::class, 'index'])->name('list');
             Route::get('/search', [OrderController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/edit/{order}', [OrderController::class, 'save'])->name('edit');
-            Route::post('/remove}', [OrderController::class, 'remove'])->name('remove');
+            Route::post('/remove', [OrderController::class, 'remove'])->name('remove');
+            Route::get('/print/{order}', [OrderController::class, 'print'])->name('print');
+
         });
 
         // Post
@@ -94,9 +97,17 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::match(['get', 'post'], '/edit/{page}', [PageController::class, 'save'])->name('edit');
         });
 
+        // Contact
+        Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
+            Route::get('/', [ContactController::class, 'index'])->name('list');
+            Route::get('/search', [ContactController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/edit/{contact}', [ContactController::class, 'save'])->name('edit');
+        });
+
         // Config
         Route::group(['prefix' => 'config', 'as' => 'config.'], function () {
             Route::match(['get', 'post'], '/edit', [ConfigController::class, 'save'])->name('edit');
         });
+
     });
 });

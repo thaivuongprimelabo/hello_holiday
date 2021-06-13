@@ -26,6 +26,10 @@ $(function() {
     
     $.searchList();
 
+    $(document).on("click", "#reload", function() {
+        $.searchList();
+    });
+
     $(document).on('click', '.page-link', function() {
         let page = $(this).attr('data-page');
         $.params['page'] = page;
@@ -140,7 +144,7 @@ $(function() {
             return false;
         }
 
-        if(!confirm('Are you sure want to delete?')) {
+        if (!confirm("Are you sure want to delete " + hasChecked + " items?")) {
             return false;
         }
 
