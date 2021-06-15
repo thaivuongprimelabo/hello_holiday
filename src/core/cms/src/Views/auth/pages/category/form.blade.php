@@ -1,11 +1,8 @@
 @extends('cms::auth.layouts.main')
 @section('content')
-<section class="content">
-    <section class="content-header">
-    </section>
-
+<section class="content pt-2">
     <div class="container-fluid">
-        <form action="?" method="post" enctype="multipart/form-data">
+        <form id="submit-form" action="?" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card card-default">
                 @include('cms::auth.components.form_button', ['route' => 'auth.category.list'])

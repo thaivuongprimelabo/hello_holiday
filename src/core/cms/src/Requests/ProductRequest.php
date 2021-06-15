@@ -3,10 +3,13 @@
 namespace Cms\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\MessageBag;
+
 
 class ProductRequest extends FormRequest
 {
-
     protected function getRedirectUrl()
     {
         $url = $this->redirector->getUrlGenerator();
@@ -32,7 +35,7 @@ class ProductRequest extends FormRequest
     {
         $rules = [
             //
-            'name' => 'required',
+            'name' => 'required|max:200',
             'category_id' => 'required',
             'vendor_id' => 'required',
             'seo_keywords' => 'max:300',
@@ -41,6 +44,25 @@ class ProductRequest extends FormRequest
         ];
 
         return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Vui lòng nhập :attribute',
+            'max' => 'Tối đã :max ký tự'
+        ];
+    }
+
+    public function attributes()
+    {
+        $attributes = [
+            'name' => 'tên sản phẩm',
+            'category_id' => 'loại sản phẩm',
+            'vendor_id' => 'nhà cung cấp',
+        ];
+
+        return $attributes;
     }
 
     public function validator($factory) {

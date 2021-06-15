@@ -1,3 +1,6 @@
+const ERROR_UPLOAD_SIZE = 'Tập tin được chọn có kích thước không hợp lệ.';
+const ERROR_UPLOAD_TYPE = "Vui lòng chọn hình ảnh (jpg, jpeg, png, gif).";
+
 $(function() {
     $.extend({
         url: window.location.href + '/search',
@@ -72,7 +75,20 @@ $(function() {
 
     $('#submit-form').on('change', '.upload_file', function(e) {
         const parent = $(this).parent();
-        const image_object_url = URL.createObjectURL($(this).get(0).files[0]);
+        const maxFileSize = Number(parent.attr("max-upload"));
+        const file = $(this).get(0).files[0];
+
+        if(file.size > maxFileSize) {
+            toastr.error(ERROR_UPLOAD_SIZE);
+            return false;
+        }
+
+        if(!file.type.match('image.*')) {
+            toastr.error(ERROR_UPLOAD_TYPE);
+            return false;
+        }
+
+        const image_object_url = URL.createObjectURL(file);
         const img = parent.find('img.preview');
         img.attr('src', image_object_url);
         img.show();
@@ -83,18 +99,31 @@ $(function() {
         const parent = $(this).parent().parent();
         const id = parent.attr('id');
 
-        let uploadField = document.createElement('input');
+        const uploadField = document.createElement('input');
         uploadField.setAttribute("type", "file");
         uploadField.setAttribute("multiple", true);
         uploadField.setAttribute("name", "upload_file[" + id + "][]");
         uploadField.setAttribute("class", "upload-image-file");
+        uploadField.setAttribute("max-upload", parent.attr('max-upload'));
         uploadField.click();
         $('#submit-form').append(uploadField);
     })
 
     $('#submit-form').on('change', '.upload-image-file', function(e) {
+        const maxFileSize = Number($(this).attr('max-upload'));
         for(let i = 0; i < $(this).get(0).files.length; i++) {
-            let image_object_url = URL.createObjectURL($(this).get(0).files[i]);
+            let file = $(this).get(0).files[i];
+            if(file.size > maxFileSize) {
+                toastr.error(ERROR_UPLOAD_SIZE);
+                continue;
+            }
+
+            if(!file.type.match('image.*')) {
+                toastr.error(ERROR_UPLOAD_TYPE);
+                continue;
+            }
+
+            let image_object_url = URL.createObjectURL(file);
             let clone = $(".clone")
             .clone()
             .removeClass('clone')
@@ -204,4 +233,62 @@ $(function() {
             $('#field_customer_block').append(options);
         })
     })
+
+    // Jquery Validation
+    if ($("#submit-form").length) {
+        $("#submit-form").validate({
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: 200,
+                },
+                vendor_id: {
+                    required: true,
+                },
+                category_id: {
+                    required: true,
+                },
+                seo_keywords: {
+                    maxlength: 300,
+                },
+                seo_description: {
+                    maxlength: 300,
+                },
+            },
+            messages: {
+                name: {
+                    required: "Vui lòng nhập",
+                    maxlength: "Tối đa 200 ký tự",
+                },
+                category_id: {
+                    required: "Vui lòng chọn",
+                },
+                vendor_id: {
+                    required: "Vui lòng chọn",
+                },
+                seo_keywords: {
+                    maxlength: "Tối đa 300 ký tự",
+                },
+                seo_description: {
+                    maxlength: "Tối đa 300 ký tự",
+                },
+            },
+            errorElement: "span",
+            errorPlacement: function (error, element) {
+                error.addClass("invalid-feedback");
+                element.closest(".form-group").append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass("is-invalid");
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass("is-invalid");
+            },
+            submitHandler: function (form) {
+                $("#submit-form").attr("disabled", "disabled");
+                form.submit();
+            },
+        });
+    }
+        
 })

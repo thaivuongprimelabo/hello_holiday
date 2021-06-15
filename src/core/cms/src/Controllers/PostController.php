@@ -14,7 +14,7 @@ class PostController extends AppController
         if ($request->isMethod('post')) {
 
             $post->name = $request->input('name');
-            $post->name_url = Str::of($request->input('name'))->slug('-');
+            $post->name_url = Str::of($request->input('name'))->slug('-') . '.' . time();
             $post->description = $request->input('description');
             $post->content = $request->input('content');
             $post->author_name = $request->input('author_name', 'Administrator');

@@ -1,8 +1,6 @@
 @extends('cms::auth.layouts.main')
 @section('content')
-<section class="content">
-    <section class="content-header">
-    </section>
+<section class="content pt-2">
 
     <div class="container-fluid">
         <form action="?" method="post" id="submit-form" enctype="multipart/form-data">

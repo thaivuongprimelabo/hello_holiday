@@ -15,7 +15,7 @@ class VendorController extends AppController
         if ($request->isMethod('post')) {
 
             $vendor->name = $request->name;
-            $vendor->name_url = Str::of($request->name)->slug('-');
+            $vendor->name_url = Str::of($request->name)->slug('-') . '.' . time();
 
             $resultUpload = $this->uploadFile->upload($this->uploadSetting)->first();
             if (!empty($resultUpload)) {

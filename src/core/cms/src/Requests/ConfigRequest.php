@@ -3,6 +3,7 @@
 namespace Cms\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Cms\Constants;
 
 class ConfigRequest extends FormRequest
 {
@@ -32,13 +33,30 @@ class ConfigRequest extends FormRequest
     {
         $rules = [
             //
-            'web_title' => 'required',
-            'upload_file.web_logo.*' => 'max:200|mimes:png,jpg,jpeg',
-            'upload_file.web_ico.*' => 'max:200|mimes:png,jpg,jpeg',
-            'upload_file.web_banner.*' => 'max:500|mimes:png,jpg,jpeg'
+            'web_title' => 'required|max:200',
+            'upload_file.web_logo.*' => 'max:' . Constants::MAX_UPLOAD_WEB_LOGO . '|mimes:png,jpg,jpeg',
+            'upload_file.web_ico.*' => 'max:' . Constants::MAX_UPLOAD_PRODUCT . '|mimes:png,jpg,jpeg',
+            'upload_file.web_banner.*' => 'max:' . Constants::MAX_UPLOAD_PHOTO . '|mimes:png,jpg,jpeg'
         ];
 
         return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Vui lòng nhập :attribute',
+            'max' => 'Tối đã :max ký tự'
+        ];
+    }
+
+    public function attributes()
+    {
+        $attributes = [
+            'web_title' => 'Web title',
+        ];
+
+        return $attributes;
     }
 
     public function validator($factory) {

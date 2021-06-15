@@ -20,7 +20,7 @@ class ProductController extends AppController
 
             // Create product
             $product->name = $request->input('name');
-            $product->name_url = Str::of($request->name)->slug('-');
+            $product->name_url = Str::of($request->name)->slug('-') . '.' . time();
             $product->price = $request->input('price', 'Liên hệ');
             $product->category_id = $request->input('category_id', 0);
             $product->vendor_id = $request->input('vendor_id', 0);

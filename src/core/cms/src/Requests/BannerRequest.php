@@ -33,7 +33,7 @@ class BannerRequest extends FormRequest
         $rules = [
             //
             'link' => 'url',
-            'upload_file.banner.*' => 'max:500|mimes:png,jpg,jpeg'
+            'upload_file.banner.*' => 'max:' . \Cms\Constants::MAX_UPLOAD_BANNER . '|mimes:png,jpg,jpeg'
         ];
 
         return $rules;

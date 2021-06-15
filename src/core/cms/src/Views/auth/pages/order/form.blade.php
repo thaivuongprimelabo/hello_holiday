@@ -31,72 +31,80 @@
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Tên khách hàng', 
                                 'name' => 'customer_name', 
-                                'item' => $order
+                                'item' => $order,
+                                'disabled' => true,
                             ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Địa chỉ', 
                                 'name' => 'customer_address', 
-                                'item' => $order
+                                'item' => $order,
+                                'disabled' => true,
                             ])
 
                             @include('cms::auth.components.form.select', [
                                 'label' => 'Tỉnh/thành', 
                                 'name' => 'customer_province', 
                                 'item' => $order,
-                                'options' => $cities
+                                'options' => $cities,
+                                'disabled' => true,
                             ])
 
                             @include('cms::auth.components.form.select', [
                                 'label' => 'Quận/huyện', 
                                 'name' => 'customer_district', 
                                 'item' => $order,
-                                'options' => $districts
+                                'options' => $districts,
+                                'disabled' => true,
                             ])
 
                             @include('cms::auth.components.form.select', [
                                 'label' => 'Phường/xã', 
                                 'name' => 'customer_block', 
                                 'item' => $order,
-                                'options' => $blocks
+                                'options' => $blocks,
+                                'disabled' => true,
                             ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Số ĐT', 
                                 'name' => 'customer_phone', 
-                                'item' => $order
+                                'item' => $order,
+                                'disabled' => true,
                             ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Email', 
                                 'name' => 'customer_email', 
                                 'item' => $order,
+                                'disabled' => true,
                             ])
 
                             @include('cms::auth.components.form.textarea', [
                                 'label' => 'Note', 
                                 'name' => 'customer_note', 
                                 'item' => $order,
+                                'disabled' => true,
                             ])
 
                             @include('cms::auth.components.form.select', [
                                 'label' => 'Phương thức thanh toán', 
                                 'name' => 'payment_method', 
                                 'item' => $order,
+                                'disabled' => true,
                                 'options' => json_decode(json_encode(\Cms\Constants::$paymentMethodList), FALSE)
-                            ])
-
-                            @include('cms::auth.components.form.select', [
-                                'label' => 'Trạng thái', 
-                                'name' => 'status', 
-                                'item' => $order,
-                                'options' => json_decode(json_encode(\Cms\Constants::$orderStatusList), FALSE)
                             ])
 
 
                         </div>
 
                         <div class="col-md-6">
+                            @include('cms::auth.components.form.select', [
+                                'label' => 'Trạng thái', 
+                                'name' => 'status', 
+                                'item' => $order,
+                                'options' => json_decode(json_encode(\Cms\Constants::$orderStatusList), FALSE)
+                            ])
                             <div class="form-group">
                                 <label>Chi tiết đơn hàng</label>
                                 <table class="table table-bordered">

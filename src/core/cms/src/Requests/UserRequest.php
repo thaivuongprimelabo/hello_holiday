@@ -36,7 +36,7 @@ class UserRequest extends FormRequest
             'email' => 'required|email',
             'password' => 'required|min:8|max:32|confirmed',
             'password_confirmation' => 'required|min:8|max:32',
-            'upload_file.avatar.*' => 'max:200|mimes:png,jpg,jpeg'
+            'upload_file.avatar.*' => 'max:' . \Cms\Constants::MAX_UPLOAD_AVATAR . '|mimes:png,jpg,jpeg'
         ];
 
         $user = $this->route('user');

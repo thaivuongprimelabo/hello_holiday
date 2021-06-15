@@ -49,7 +49,7 @@ return [
     'order' => [
         'list' => 'Danh sách đơn hàng',
         'create' => 'Đăng ký đơn hàng',
-        'edit' => 'Chỉnh sửa đơn hàng'
+        'edit' => 'Thông tin đơn hàng'
     ],
     'post' => [
         'list' => 'Danh sách bài viết',

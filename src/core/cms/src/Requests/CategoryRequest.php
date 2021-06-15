@@ -32,10 +32,27 @@ class CategoryRequest extends FormRequest
     {
         $rules = [
             //
-            'name' => 'required',
+            'name' => 'required|max:200',
         ];
 
         return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Vui lòng nhập :attribute',
+            'max' => 'Tối đã :max ký tự'
+        ];
+    }
+
+    public function attributes()
+    {
+        $attributes = [
+            'name' => 'tên loại sản phẩm',
+        ];
+
+        return $attributes;
     }
 
     public function validator($factory) {

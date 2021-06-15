@@ -18,11 +18,13 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('auth.config.edit') }}" role="button">
                 <i class="nav-icon fas fa-cog"></i>
+                Cài đặt
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('auth.logout') }}" role="button">
                 <i class="fas fa-sign-out-alt"></i>
+                Thoát
             </a>
         </li>
     </ul>

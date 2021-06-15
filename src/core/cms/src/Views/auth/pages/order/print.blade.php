@@ -200,7 +200,7 @@
             position: absolute;
             font-weight:bold;
             top: -5px;
-            right:10px;
+            left:430px;
         }
 
         .customer-email {

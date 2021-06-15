@@ -15,7 +15,7 @@ class CategoryController extends AppController
         if ($request->isMethod('post')) {
 
             $category->name = $request->name;
-            $category->name_url = Str::of($request->name)->slug('-');
+            $category->name_url = Str::of($request->name)->slug('-') . '.' . time();
             $category->parent_id = $request->has('parent_id') ? $request->parent_id : 0;
             $category->parent_parent_id = $request->has('parent_parent_id') ? $request->parent_parent_id : 0;
             $category->status = !is_null($request->status) ? 1 : 0;

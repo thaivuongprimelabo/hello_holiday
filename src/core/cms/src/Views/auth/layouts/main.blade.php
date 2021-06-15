@@ -60,6 +60,8 @@
 <script src="{{ asset('cms/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- CK Editor -->
 <script src="{{ asset('cms/plugins/ckeditor/ckeditor.js') }}"></script>
+<!-- jquery-validation -->
+<script src="{{ asset('cms/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('cms/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('cms/custom.js') }}"></script>
