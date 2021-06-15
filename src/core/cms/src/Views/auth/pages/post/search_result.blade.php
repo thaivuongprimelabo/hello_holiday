@@ -6,11 +6,11 @@
     </td>
     <td>{{ $data->getKey() }}</td>
     <td>{{ $data->name }}</td>
-    <td>{{ $data->name_url }}</td>
     <td><img src="{{ $data->getPhoto() }}" class="img-thumbnail" style="width:100px" /></td>
-    <td>{!! $data->description !!}</td>
-    <td>{{ $data->getCreatedAt() }}</td>
+    <td>{!! \Str::limit($data->description, 30) !!}</td>
     <td>{!! $data->getStatusText() !!}</td>
+    <td>{{ $data->getCreatedAt() }}</td>
+    <td>{{ $data->getUpdatedAt() }}</td>
     <td>
         @include('cms::auth.components.form.link', [
             'link' => route('auth.post.edit', ['post' => $data->getKey()])

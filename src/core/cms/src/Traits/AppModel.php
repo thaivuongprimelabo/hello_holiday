@@ -15,7 +15,7 @@ trait AppModel {
     }
 
     public function getPrice() {
-        return $this->price ? number_format($this->price, 0, '', '.') : 'Liên hệ';
+        return !is_null($this->price) && $this->price ? number_format($this->price, 0, '', '.') : 'Liên hệ';
     }
 
     public function getCost() {

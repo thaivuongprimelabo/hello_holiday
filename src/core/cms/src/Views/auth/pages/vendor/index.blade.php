@@ -8,10 +8,10 @@
       </th>
       <th>ID</th>
       <th>Tên gọi</th>
-      <th>Slug</th>
       <th>Logo</th>
-      <th>Ngày tạo</th>
       <th>Trạng thái</th>
+      <th>Ngày tạo</th>
+      <th>Ngày cập nhật</th>
       <th></th>
     </tr>
   </thead>

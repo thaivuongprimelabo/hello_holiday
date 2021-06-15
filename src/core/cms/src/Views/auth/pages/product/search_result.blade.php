@@ -11,7 +11,6 @@
     </td>
     <td>{{ $data->getKey() }}</td>
     <td>{{ $data->getName() }}</td>
-    <td>{{ $data->name_url }}</td>
     <td>
         @if(!is_null($data->imagesProduct()->first()))
         <img src="{{ $data->imagesProduct()->first()->getSmallImage() }}" class="img-thumbnail" />
@@ -21,8 +20,9 @@
     <td>{{ $data->discount }}</td>
     <td>{{ $data->category->getName() }}</td>
     <td>{{ $data->vendor->getName() }}</td>
-    <td>{{ $data->getCreatedAt() }}</td>
     <td>{!! $data->getStatusText() !!}</td>
+    <td>{{ $data->getCreatedAt() }}</td>
+    <td>{{ $data->getUpdatedAt() }}</td>
     <td>
         @include('cms::auth.components.form.link', [
             'link' => route('auth.product.edit', ['product' => $data->getKey()])

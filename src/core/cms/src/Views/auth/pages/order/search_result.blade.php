@@ -12,8 +12,9 @@
         <b>E-mail:</b> {{ $data->customer_email }}<br/>
     </td>
     <td>{{ $data->getTotal() }}</td>
-    <td>{{ $data->getCreatedAt() }}</td>
     <td>{!! $data->getOrderStatusText() !!}</td>
+    <td>{{ $data->getCreatedAt() }}</td>
+    <td>{{ $data->getUpdatedAt() }}</td>
     <td>
         @include('cms::auth.components.form.link', [
             'link' => route('auth.order.edit', ['order' => $data->getKey()])

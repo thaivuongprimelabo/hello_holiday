@@ -48,11 +48,6 @@
 @endsection
 @section('search')
 <table class="table table-hover">
-    <colgroup> 
-        <col span="1" style="width: 2%;">
-        <col span="1" style="width: 2%;">
-        <col span="1" style="width: 40%;">
-    </colgroup>
     <thead>
         <tr>
             <th>
@@ -61,8 +56,9 @@
             <th>ID</th>
             <th>Thông tin khách hàng</th>
             <th>Tổng tiền (vnđ)</th>
-            <th>Ngày đặt hàng</th>
             <th>Trạng thái</th>
+            <th>Ngày đặt hàng</th>
+            <th>Ngày cập nhật</th>
             <th></th>
         </tr>
     </thead>

@@ -56,9 +56,10 @@
       <th>ID</th>
       <th>Tên gọi</th>
       <th>Ảnh đại diện</th>
-      <th>Ngày tạo</th>
-      <th>Trạng thái</th>
       <th>Email</th>
+      <th>Trạng thái</th>
+      <th>Ngày tạo</th>
+      <th>Ngày cập nhật</th>
       <th></th>
     </tr>
   </thead>

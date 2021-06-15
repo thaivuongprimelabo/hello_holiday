@@ -39,15 +39,16 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>
-        <input type="checkbox" id="check-all" />
-      </th>
-      <th>ID</th>
-      <th>Thông tin người gửi</th>
-      <th>Tựa đề</th>
-      <th>Ngày gửi</th>
-      <th>Trạng thái</th>
-      <th></th>
+        <th>
+            <input type="checkbox" id="check-all" />
+        </th>
+        <th>ID</th>
+        <th>Thông tin người gửi</th>
+        <th>Tựa đề</th>
+        <th>Trạng thái</th>
+        <th>Ngày gửi</th>
+        <th>Ngày cập nhật</th>
+        <th></th>
     </tr>
   </thead>
   <tbody id="search-result">

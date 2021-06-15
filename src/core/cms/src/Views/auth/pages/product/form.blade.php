@@ -32,7 +32,8 @@
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Giá bán (vnđ)',
                                 'name' => 'price',
-                                'item' => $product
+                                'item' => $product,
+                                'type' => 'number'
                             ])
 
                             @include('cms::auth.components.form.input', [

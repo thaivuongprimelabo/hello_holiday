@@ -8,11 +8,11 @@
       </th>
       <th>ID</th>
       <th>Tựa đề</th>
-      <th>Slug</th>
       <th>Hình ảnh</th>
       <th>Mô tả ngắn</th>
-      <th>Ngày tạo</th>
       <th>Trạng thái</th>
+      <th>Ngày tạo</th>
+      <th>Ngày cập nhật</th>
       <th></th>
     </tr>
   </thead>
