@@ -28,28 +28,6 @@ class Constants
     public const MAX_UPLOAD_WEB_ICO = 200;
     public const MAX_UPLOAD_WEB_BANNER = 500;
 
-    public static $maxUpload = [
-        'logo'          => self::MAX_UPLOAD_LOGO,
-        'banner'        => self::MAX_UPLOAD_BANNER,
-        'image_product' => self::MAX_UPLOAD_PRODUCT,
-        'photo'         => self::MAX_UPLOAD_PHOTO,
-        'avatar'        => self::MAX_UPLOAD_AVATAR,
-        'web_logo'      => self::MAX_UPLOAD_WEB_LOGO,
-        'web_ico'       => self::MAX_UPLOAD_WEB_ICO,
-        'web_banner'    => self::MAX_UPLOAD_WEB_BANNER,
-    ];
-
-    public static $maxUploadText = [
-        'logo'          => '200 KB',
-        'banner'        => '500 KB',
-        'image_product' => '500 KB',
-        'photo'         => '200 KB',
-        'avatar'        => '200 KB',
-        'web_logo'      => '200 KB',
-        'web_ico'       => '200 KB',
-        'web_banner'    => '500 KB',
-    ];
-
     public static $orderStatusList = [
         ['id' => self::ORDER_STATUS_NEW, 'name' => 'ĐH mới'],
         ['id' => self::ORDER_STATUS_DELIVERY, 'name' => 'Đang giao hàng'],
@@ -68,5 +46,41 @@ class Constants
     ];
 
     public static $uploadSettingList = [];
+
+    public static function formatMemory($memory, $number = false)
+    {
+        if(!$number) {
+            if ($memory >= 1024 * 1024 * 1024) {
+                return sprintf('%.1f GB', $memory / 1024 / 1024 / 1024);
+            }
+            
+            if ($memory >= 1024 * 1024) {
+                return sprintf('%.1f MB', $memory / 1024 / 1024);
+            }
+            
+            if ($memory >= 1024) {
+                return sprintf('%d KB', $memory / 1024);
+            }
+            
+            return sprintf('%d B', $memory);
+            
+        } else {
+            if ($memory >= 1024 * 1024 * 1024) {
+                return sprintf('%.1f', $memory / 1024 / 1024 / 1024);
+            }
+            
+            if ($memory >= 1024 * 1024) {
+                return sprintf('%.1f', $memory / 1024 / 1024);
+            }
+            
+            if ($memory >= 1024) {
+                return sprintf('%d', $memory / 1024);
+            }
+            
+            return sprintf('%d', $memory);
+        }
+        
+        
+    }
 
 }

@@ -36,7 +36,8 @@
                                 'label' => 'Hình bài viết',
                                 'name' => 'photo',
                                 'item' => $post,
-                                'image' => $post->getPhoto()
+                                'image' => $post->getPhoto(),
+                                'style' => 'width: 260px; height:150px'
                             ])
                         </div>
                     </div>

@@ -19,7 +19,7 @@ class PostController extends AppController
             $post->content = $request->input('content');
             $post->author_name = $request->input('author_name', 'Administrator');
 
-            $resultUpload = $this->uploadFile->upload($this->uploadSetting)->first();
+            $resultUpload = $this->uploadFile->upload()->first();
             if (!empty($resultUpload)) {
                 $post->photo = $resultUpload;
             }

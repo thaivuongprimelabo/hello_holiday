@@ -17,7 +17,7 @@ class BannerController extends AppController
             $banner->link = $request->input('link');
             $banner->pos = $request->input('pos', 'center');
 
-            $resultUpload = $this->uploadFile->upload($this->uploadSetting)->first();
+            $resultUpload = $this->uploadFile->upload()->first();
             if (!empty($resultUpload)) {
                 $banner->banner = $resultUpload;
             }

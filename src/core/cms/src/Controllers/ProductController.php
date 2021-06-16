@@ -38,7 +38,7 @@ class ProductController extends AppController
             if ($product->exists) {
 
                 // Image Products
-                $resultUpload = $this->uploadFile->upload($this->uploadSetting)->all();
+                $resultUpload = $this->uploadFile->upload()->all();
                 if (count($resultUpload)) {
                     foreach ($resultUpload as $result) {
                         $imagesProduct = new ImageProduct();

@@ -67,8 +67,8 @@
             <i class="nav-icon fas fa-file"></i>
               <p>
                 Đơn hàng
-                @if($countNewOrders)
-                <span class="badge-danger badge right">{{ $countNewOrders }}</span>
+                @if(session()->has('countNewOrders') && session('countNewOrders'))
+                <span class="badge-danger badge right">{{ session('countNewOrders') }}</span>
                 @endif
               </p>
             </a>
@@ -110,8 +110,8 @@
             <i class="nav-icon fas fa-envelope"></i>
               <p>
                 Liên hệ
-                @if($countNewContacts)
-                <span class="badge-danger badge right">{{ $countNewContacts }}</span>
+                @if(session()->has('countNewContacts') && session('countNewContacts'))
+                <span class="badge-danger badge right">{{ session('countNewContacts') }}</span>
                 @endif
               </p>
             </a>

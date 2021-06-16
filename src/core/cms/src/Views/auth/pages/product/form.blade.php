@@ -66,10 +66,10 @@
 
                         <div class="col-md-6">
 
-                            <div class="form-group" id="image_product"  max-upload="{{ (\Cms\Constants::MAX_UPLOAD_PRODUCT * 1024) }}">
+                            <div class="form-group" id="image_product"  max-upload="{{ (session('config')->max_upload_list['image_product']) }}">
                                 <div class="row">
                                     <button type="button" class="btn btn-sm btn-primary mb-2 ml-2 upload-mutiple-btn"><i class="fa fa-upload"></i> Chọn hình sản phẩm</button>
-                                    <span style="font-weight:initial">(Tối đa: {{ \Cms\Constants::$maxUploadText['image_product'] }}. Định dạng: *.jpg, *.png, *.jpeg)</span>
+                                    <span style="font-weight:initial">(Tối đa: {{ \Cms\Constants::formatMemory(session('config')->max_upload_list['image_product']) }}. Định dạng: *.jpg, *.png, *.jpeg)</span>
                                 </div>
                                 <div id="selected_images" class="row">
                                     <div class="col-md-3 mb-2 clone" style="position: relative; display: none">

@@ -116,6 +116,20 @@
                                 'image' => $webConfig->getWebBanner(),
                                 'style' => 'width: 100%; height:250px'
                             ])
+                            
+                            @if(Auth::user()->role_id == 0)
+                            @include('cms::auth.components.form.textarea', [
+                                'label' => 'Max upload', 
+                                'name' => 'max_upload', 
+                                'item' => $webConfig,
+                            ])
+
+                            @include('cms::auth.components.form.textarea', [
+                                'label' => 'Resize image', 
+                                'name' => 'resize_image', 
+                                'item' => $webConfig,
+                            ])
+                            @endif
                         </div>
                     </div>
 

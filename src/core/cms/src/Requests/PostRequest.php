@@ -33,7 +33,7 @@ class PostRequest extends FormRequest
         $rules = [
             //
             'name' => 'required',
-            'upload_file.photo.*' => 'max:' . \Cms\Constants::MAX_UPLOAD_PHOTO . '|mimes:png,jpg,jpeg'
+            'upload_file.photo.*' => 'max:' . \Cms\Constants::formatMemory(session('config')->max_upload_list['photo']) . '|mimes:png,jpg,jpeg'
         ];
 
         return $rules;

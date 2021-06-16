@@ -56,17 +56,16 @@
           @error('password')<span class="text-danger">{{ $message }}</span>@enderror
         </div>
         <div class="row">
-          <div class="col-6">
-            <a href="/" class="btn btn-default btn-sm btn-block">
+          <div class="col-8">
+            <a href="/" >
                 <i class="fas fa-home"></i>&nbsp;
                 Trang chủ
             </a>
           </div>
           <!-- /.col -->
-          <div class="col-6">
+          <div class="col-4">
             <button type="submit" class="btn btn-primary btn-sm btn-block">
-                Đăng nhập&nbsp;
-                <i class="fas fa-sign-in-alt"></i>
+                Đăng nhập
             </button>
           </div>
           <!-- /.col -->

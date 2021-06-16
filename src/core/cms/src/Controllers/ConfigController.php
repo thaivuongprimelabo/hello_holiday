@@ -13,8 +13,7 @@ class ConfigController extends AppController
 
     public function save(ConfigRequest $request)
     {
-
-        $webConfig = Config::query()->first();
+        $webConfig = session('config');
 
         if ($request->isMethod('post')) {
 
@@ -39,6 +38,9 @@ class ConfigController extends AppController
             $webConfig->web_logo    = !empty($web_logo) ? $web_logo : $webConfig->web_logo;
             $webConfig->web_ico     = !empty($web_ico) ? $web_ico : $webConfig->web_ico;
             $webConfig->web_banner  = !empty($web_banner) ? $web_banner : $webConfig->web_banner;
+
+            $webConfig->max_upload = $request->input('max_upload');
+            $webConfig->resize_image = $request->input('resize_image');
 
             $webConfig->save();
 

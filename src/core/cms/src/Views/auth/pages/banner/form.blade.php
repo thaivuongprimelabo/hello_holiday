@@ -30,7 +30,8 @@
                                 'label' => 'Banner',
                                 'name' => 'banner',
                                 'item' => $banner,
-                                'image' => $banner->getBanner()
+                                'image' => $banner->getBanner(),
+                                'style' => 'width: 100%; height:250px'
                             ])
                         </div>
                     </div>

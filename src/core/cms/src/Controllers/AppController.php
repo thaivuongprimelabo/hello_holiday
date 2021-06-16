@@ -18,25 +18,24 @@ use Illuminate\Support\Facades\View;
 class AppController extends Controller
 {
     protected $uploadFile = null;
-    protected $uploadSetting = null;
+    public $config = null;
 
     public function __construct(UploadFile $uploadFile)
     {
         $this->uploadFile = $uploadFile;
-        if (isset(Constants::$uploadSettingList[request()->route()->getPrefix()])) {
-            $this->uploadSetting = Constants::$uploadSettingList[request()->route()->getPrefix()];
-        }
-
-        $this->shareData();
+        $this->saveSession();
     }
 
-    public function shareData()
+    public function saveSession()
     {
         $countNewOrders = Order::query()->where('status', Constants::ORDER_STATUS_NEW)->count();
         $countNewContacts = Contact::query()->where('status', Constants::CONTACT_NEW)->count();
         $config = Config::first();
-        View::share(compact('countNewOrders', 'countNewContacts', 'config'));
-
+        session([
+            'countNewOrders' =>  $countNewOrders,
+            'countNewContacts' => $countNewContacts,
+            'config' => $config
+        ]);
     }
 
     private function getModel()

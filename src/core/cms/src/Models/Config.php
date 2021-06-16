@@ -11,4 +11,10 @@ class Config extends Model
     use HasFactory, AppModel;
 
     protected $table = 'config';
+
+    public function getMaxUploadListAttribute()
+    {
+        $result = json_decode($this->max_upload, true);
+        return $result;
+    }
 }
