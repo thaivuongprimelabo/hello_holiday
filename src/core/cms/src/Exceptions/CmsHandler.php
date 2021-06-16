@@ -42,6 +42,7 @@ class CmsHandler extends ExceptionHandler
             } catch(\Exception $e) {
                 \Log::info($e);
             }
+            abort(404);
 
         });
     }

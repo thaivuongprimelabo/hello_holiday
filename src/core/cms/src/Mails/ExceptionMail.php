@@ -11,6 +11,10 @@ class ExceptionMail extends Mailable
 
     public $exception;
 
+    public $from = [
+        ['name' => 'Administrator', 'address' => 'thaivuong1503@gmail.com']
+    ];
+
     /**
      * Create a new message instance.
      *
@@ -28,7 +32,7 @@ class ExceptionMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Exception: ' . $this->exception->getMessage())
+        return $this->subject(config('app.url') . ': ' . $this->exception->getMessage())
             ->view('cms::auth.mail.exception');
     }
 }
