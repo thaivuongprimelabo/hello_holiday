@@ -60,6 +60,7 @@
       <th>Trạng thái</th>
       <th>Ngày tạo</th>
       <th>Ngày cập nhật</th>
+      <th>Đăng nhập gần nhất</th>
       <th></th>
     </tr>
   </thead>

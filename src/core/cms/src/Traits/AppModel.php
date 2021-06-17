@@ -30,6 +30,13 @@ trait AppModel {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->updated_at)->format('d-m-Y H:i:s');
     }
 
+    public function getLastLogin() {
+        if (is_null($this->last_login)) {
+            return '';
+        }
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->last_login)->format('d-m-Y H:i:s');
+    }
+
     public function getStatusText() {
 
         if($this->status == Constants::STATUS_UNACTIVE) {

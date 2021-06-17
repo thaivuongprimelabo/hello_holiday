@@ -63,5 +63,10 @@ class CmsServiceProvider extends ServiceProvider
             \Cms\Exceptions\CmsHandler::class
         );
 
+        $this->app->bind(
+            \App\Providers\EventServiceProvider::class,
+            \Cms\EventServiceProvider::class
+        );
+
     }
 }

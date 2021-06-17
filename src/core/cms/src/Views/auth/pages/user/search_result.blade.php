@@ -11,6 +11,7 @@
     <td>{!! $data->getStatusText() !!}</td>
     <td>{{ $data->getCreatedAt() }}</td>
     <td>{{ $data->getUpdatedAt() }}</td>
+    <td>{{ $data->getLastLogin() }}</td>
     <td>
         @include('cms::auth.components.form.link', [
             'link' => route('auth.user.edit', ['user' => $data->getKey()])
