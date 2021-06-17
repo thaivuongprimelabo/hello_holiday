@@ -13,8 +13,8 @@ class ConfigController extends AppController
 
     public function save(ConfigRequest $request)
     {
-        $webConfig = session('config');
-
+        $webConfig = $request->session()->get('config');
+        
         if ($request->isMethod('post')) {
 
             $webConfig->web_title = $request->input('web_title');

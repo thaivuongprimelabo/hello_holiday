@@ -5,11 +5,11 @@ namespace Cms\Controllers;
 use App\Http\Controllers\Controller;
 use Cms\Constants;
 use Cms\Helpers\UploadFile;
+use Cms\Models\Config;
 use Cms\Models\Contact;
 use Cms\Models\ImageProduct;
 use Cms\Models\Order;
 use Cms\Models\Product;
-use Cms\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
@@ -23,19 +23,44 @@ class AppController extends Controller
     public function __construct(UploadFile $uploadFile)
     {
         $this->uploadFile = $uploadFile;
-        $this->saveSession();
+
+        $this->middleware(function ($request, $next) {
+            $this->saveSession();
+            return $next($request);
+        });
+
     }
 
     public function saveSession()
     {
         $countNewOrders = Order::query()->where('status', Constants::ORDER_STATUS_NEW)->count();
         $countNewContacts = Contact::query()->where('status', Constants::CONTACT_NEW)->count();
-        $config = Config::first();
-        session([
-            'countNewOrders' =>  $countNewOrders,
-            'countNewContacts' => $countNewContacts,
-            'config' => $config
-        ]);
+        $config = Config::query()->first();
+
+        if (!is_null(session('countNewOrders'))) {
+            if (session('countNewOrders') != $countNewOrders) {
+                session(['countNewOrders' => $countNewOrders]);
+            }
+        } else {
+            session(['countNewOrders' => $countNewOrders]);
+
+        }
+
+        if (!is_null(session('countNewContacts'))) {
+            if (session('countNewContacts') != $countNewContacts) {
+                session(['countNewContacts' => $countNewContacts]);
+            }
+        } else {
+            session(['countNewContacts' => $countNewContacts]);
+        }
+
+        if (!is_null(session('config'))) {
+            if (session('config') != $config) {
+                session(['config' => $config]);
+            }
+        } else {
+            session(['config' => $config]);
+        }
     }
 
     private function getModel()
