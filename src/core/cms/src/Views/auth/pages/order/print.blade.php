@@ -214,13 +214,12 @@
 <body onload="window.print();">
     <div id="page" class="page">
         <div class="header">
-            <!-- <div class="logo"><img src="{{ $config->getWebLogo() }}"/></div> -->
             <div class="company">
-                <span class="company_name">{{ $config->company_name }}</span>
-                <span><b>Địa chỉ:</b> {{ $config->company_address }}</span>
-                <span><b>Số ĐT:</b> {{ $config->company_phone }}</span>
-                <span><b>E-mail:</b> {{ $config->company_email }}</span>
-                <span><b>MST:</b> {{ $config->company_tax }}</span>
+                <span class="company_name">{{ session('config')->company_name }}</span>
+                <span><b>Địa chỉ:</b> {{ session('config')->company_address }}</span>
+                <span><b>Số ĐT:</b> {{ session('config')->company_phone }}</span>
+                <span><b>E-mail:</b> {{ session('config')->company_email }}</span>
+                <span><b>MST:</b> {{ session('config')->company_tax }}</span>
             </div>
             <div class="invoice">
                 <span class="invoice-title">HÓA ĐƠN BÁN HÀNG</span>

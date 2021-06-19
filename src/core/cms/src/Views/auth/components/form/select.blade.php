@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="exampleInputEmail1">{{ $label }}</label>
-    <select class="form-control form-control-sm" name="{{ $name }}" id="field_{{ $name }}" {{ isset($disabled) ? 'disabled' : ''}}>
+    <select class="form-control form-control-sm" name="{{ $name }}" id="field_{{ $name }}" {{ isset($disabled) && $disabled ? 'disabled' : ''}}>
         <option value="">{{ isset($empty) ? $empty : '---' }}</option>
         @foreach($options as $option)
             @if(isset($option->id))

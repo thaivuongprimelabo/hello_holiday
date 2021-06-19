@@ -6,6 +6,6 @@
         name="{{ $name }}"
         rows="{{ isset($rows) ? $rows : 6 }}" 
         placeholder="{{ $label }}" 
-        {{ isset($disabled) ? 'disabled' : ''}}>{{ old($name, $item->$name) }}</textarea>
+        {{ isset($disabled) && $disabled ? 'disabled' : ''}}>{{ old($name, $item->$name) }}</textarea>
     @error($name)<span class="text-danger">{{ $message }}</span>@enderror
 </div>

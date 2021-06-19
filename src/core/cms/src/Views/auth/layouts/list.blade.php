@@ -18,14 +18,14 @@
       <div class="card">
         <div class="card-header">
             <div class="mailbox-controls">
-                <!-- Check all button -->
-                </button>
+                @if(Route::has($remove_route))
                 <div class="btn-group">
                   <button type="button" id="remove-btn" class="btn btn-default btn-sm">
                     <i class="far fa-trash-alt"></i>
                     Xoá
                   </button>
                 </div>
+                @endif
                 <!-- /.btn-group -->
                 <button type="button" id="reload" class="btn btn-default btn-sm">
                   <i class="fas fa-sync-alt"></i>
@@ -54,7 +54,7 @@
     </div>
   </div>
 </div>
-<div id="page-overlay"><i id="loading-spin" class="fas fa-sync fa-spin"></i></div>
+
 @php
 
 @endphp
@@ -70,30 +70,6 @@
 @if(Route::has($restore_route))
 <input type="hidden" id="restore_url" value="{{ route($restore_route) }}" />
 @endif
-@endsection
-@section('styles')
-<style>
-  #page-overlay {
-    position: fixed; /* Sit on top of the page content */
-    display: none; /* Hidden by default */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 100%; /* Full height (cover the whole page) */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
-  }
-  #loading-spin{
-    position: absolute;
-    top: 50%;
-    left: 60%;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-  }
-</style>
 @endsection
 @section('scripts')
 @endsection

@@ -37,13 +37,15 @@ class CmsHandler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
-            try {
-                \Mail::to('thaivuong1503@gmail.com')->send(new ExceptionMail($e));
-            } catch(\Exception $e) {
-                \Log::info($e);
-            }
-            abort(404);
+            if (!config('app.debug')) {
+                try {
+                    \Mail::to('thaivuong1503@gmail.com')->send(new ExceptionMail($e));
+                } catch (\Exception $e) {
+                    \Log::info($e);
+                }
 
+                abort(404);
+            }
         });
     }
 }

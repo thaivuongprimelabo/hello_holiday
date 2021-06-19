@@ -12,11 +12,12 @@
                         ])
                     </h3>
                     <div class="card-tools">
-
+                        @if($order->exists)
                         <a href="{{ route('auth.order.print', ['order' => $order->getKey()]) }}" target="_blank" class="btn btn-warning btn-sm">
                             <i class="fas fa-print"></i>
                             In hoá đơn
                         </a>
+                        @endif
                         @include('cms::auth.components.form.button', [
                             'type' => 'submit',
                             'icon' => 'fas fa-save',
@@ -32,14 +33,14 @@
                                 'label' => 'Tên khách hàng', 
                                 'name' => 'customer_name', 
                                 'item' => $order,
-                                'disabled' => true,
+                                'disabled' => $order->exists,
                             ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Địa chỉ', 
                                 'name' => 'customer_address', 
                                 'item' => $order,
-                                'disabled' => true,
+                                'disabled' => $order->exists,
                             ])
 
                             @include('cms::auth.components.form.select', [
@@ -47,7 +48,7 @@
                                 'name' => 'customer_province', 
                                 'item' => $order,
                                 'options' => $cities,
-                                'disabled' => true,
+                                'disabled' => $order->exists,
                             ])
 
                             @include('cms::auth.components.form.select', [
@@ -55,7 +56,7 @@
                                 'name' => 'customer_district', 
                                 'item' => $order,
                                 'options' => $districts,
-                                'disabled' => true,
+                                'disabled' => $order->exists,
                             ])
 
                             @include('cms::auth.components.form.select', [
@@ -63,35 +64,35 @@
                                 'name' => 'customer_block', 
                                 'item' => $order,
                                 'options' => $blocks,
-                                'disabled' => true,
+                                'disabled' => $order->exists,
                             ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Số ĐT', 
                                 'name' => 'customer_phone', 
                                 'item' => $order,
-                                'disabled' => true,
+                                'disabled' => $order->exists,
                             ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Email', 
                                 'name' => 'customer_email', 
                                 'item' => $order,
-                                'disabled' => true,
+                                'disabled' => $order->exists,
                             ])
 
                             @include('cms::auth.components.form.textarea', [
                                 'label' => 'Note', 
                                 'name' => 'customer_note', 
                                 'item' => $order,
-                                'disabled' => true,
+                                'disabled' => $order->exists,
                             ])
 
                             @include('cms::auth.components.form.select', [
                                 'label' => 'Phương thức thanh toán', 
                                 'name' => 'payment_method', 
                                 'item' => $order,
-                                'disabled' => true,
+                                'disabled' => $order->exists,
                                 'options' => json_decode(json_encode(\Cms\Constants::$paymentMethodList), FALSE)
                             ])
 
@@ -107,12 +108,13 @@
                             ])
                             <div class="form-group">
                                 <label>Chi tiết đơn hàng</label>
-                                <table class="table table-bordered">
-                                    <colgroup> 
-                                        <col span="1" style="width: 15%;">
-                                        <col span="1" style="width: 20%;">
-                                        <col span="1" style="width: 5%;">
-                                    </colgroup>
+                                @if(!$order->exists)
+                                <button type="button" id="select_products" class="btn btn-sm btn-primary mb-2" style="float:right">
+                                    <i class="fas fa-plus"></i>
+                                    Chọn sản phẩm
+                                </button>
+                                @endif
+                                <table id="order_products" class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Mã SP</th>
@@ -136,11 +138,11 @@
                                     <tfoot>
                                         <tr>
                                             <td colspan="4" align="right"><b>Tạm tính (vnđ)</b></td>
-                                            <td>{{ $order->getSubtotal() }}</td>
+                                            <td id="subtotal">{{ $order->getSubtotal() }}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="4" align="right"><b>Thành tiền (vnđ)</b></td>
-                                            <td>{{ $order->getTotal() }}</td>
+                                            <td id="total">{{ $order->getTotal() }}</td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -153,5 +155,47 @@
             </div>
         </form>
     </div>
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tìm kiếm sản phẩm</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group input-group-sm mb-2">
+                    <input type="text" class="form-control" id="product_info_se" placeholder="Nhập thông tin sản phẩm">
+                    <span class="input-group-append">
+                        <button type="button" id="search_select_products" class="btn btn-primary btn-flat">Tìm kiếm</button>
+                    </span>
+                </div>
+                
+                    
+                <table id="select_products_list" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <th>Mã SP</th>
+                            <th>Tên SP</th>
+                            <th>Giá bán (vnđ)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+              <button type="button" id="select_products_btn" class="btn btn-primary">Chọn</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 </section>
 @endsection

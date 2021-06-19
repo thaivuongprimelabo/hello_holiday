@@ -4,7 +4,7 @@
         type="{{ isset($type) ? $type : 'text' }}" 
         class="form-control form-control-sm" id="field_{{ $name }}" 
         name="{{ $name }}" 
-        {{ isset($disabled) ? 'disabled' : ''}} 
+        {{ isset($disabled) && $disabled ? 'disabled' : ''}} 
         value="{{ old($name, optional($item ?? '')->$name) }}" 
         placeholder="{{ $label }}"
     />

@@ -4,6 +4,12 @@ const ERROR_UPLOAD_TYPE = "Vui lòng chọn hình ảnh (jpg, jpeg, png, gif).";
 $(function() {
     $.extend({
         url: window.location.href + '/search',
+        searchProductList: [],
+        orderProductList: {
+            details: [],
+            subtotal: 0,
+            total: 0
+        },
         params: {},
         searchList: function(url) {
             let _url = url ? url : $.url;
@@ -24,6 +30,90 @@ $(function() {
                     $('#page-overlay').hide();
                 })
             }
+        },
+        calculateOrderProducts: function(params) {
+            params = params || {};
+            $("#order_products").find('tbody').html("");
+            $("#subtotal").html("0");
+            $("#total").html("0");
+
+            $.orderProductList.subtotal = 0;
+            $.orderProductList.total = 0;
+
+            if (params.hasOwnProperty("remove")) {
+                const index = $.orderProductList.details.findIndex(
+                    (item) => item.id == params.id
+                );
+                $.orderProductList.details.splice(index, 1);
+            }
+
+            if ($.orderProductList.details.length) {
+                let subtotal = 0;
+                let order_product_row = "";
+                for (let item of $.orderProductList.details) {
+
+                    item.qty = item.hasOwnProperty('qty') ? item.qty : 1;
+
+                    if (params.hasOwnProperty('id') && params.update_qty && params.id == item.id) {
+                        item.qty = Number(params.value);
+                    }
+
+                    if (params.hasOwnProperty('id') && params.update_price && params.id == item.id) {
+                        item.price = params.value;
+                    }
+                    
+                    item.cost = Number(item.qty * item.price);
+                    subtotal += Number(item.cost);
+
+                    order_product_row += "<tr>";
+                    order_product_row += "<td>" + item.id + "<br/><a href='javascript:void(0)' data-id='" + item.id + "' class='remove-order-product'>Xoá</a></td>";
+                    order_product_row += "<td>" + item.name + "</td>";
+                    order_product_row +=
+                        "<td><input type='number' class='qty-order-product' data-id='" + item.id + "' value='" +
+                        item.qty +
+                        "' style='width:80px' /></td>";
+                    order_product_row +=
+                        "<td><input type='number' class='price-order-product'  data-id='" + item.id + "' value='" +
+                        item.price +
+                        "' style='width:80px' /></td>";
+                    order_product_row += "<td>" + $.formatCurrency(item.cost, '.', '.') + "</td>";
+                    order_product_row += "</tr>";
+                }
+
+                $.orderProductList.subtotal = subtotal;
+                $.orderProductList.total = subtotal;
+
+                $("#order_products").find('tbody').append(order_product_row);
+                $("#subtotal").html($.formatCurrency($.orderProductList.subtotal, '.', '.'));
+                $("#total").html($.formatCurrency($.orderProductList.total, '.', '.'));
+
+                let dataField = document.createElement("input");
+                dataField.setAttribute('type', 'hidden');
+                dataField.setAttribute("name", "order_details");
+                dataField.setAttribute('value', JSON.stringify($.orderProductList));
+                $('#submit-form').append(dataField);
+
+                
+            }
+
+            setTimeout(function() {
+                $("#page-overlay").hide();
+            }, 100)
+        },
+        formatCurrency: function (nStr, decSeperate, groupSeperate) {
+            if(nStr == null) {
+                return '0 ' + Constants.CURRENCY;
+            }
+            nStr = Math.round(Number(nStr));
+            nStr += '';
+            x = nStr.split(decSeperate);
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + groupSeperate + '$2');
+            }
+            return x1 + x2 + '₫';
         }
     })
     
@@ -234,6 +324,82 @@ $(function() {
         })
     })
 
+    $('#search_select_products').click(function() {
+        const keyword = $("#product_info_se").val();
+        $.get({
+            url: "/api/select-products?keyword=" + keyword,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        }).then(function (res) {
+            $.searchProductList = res;
+            let row = "";
+            for (const item of $.searchProductList) {
+                row += "<tr>";
+                row += '<td><input type="checkbox" class="product-row" value="' + item.id + '" /></td>';
+                row += "<td>" + item.id + "</td>";
+                row += "<td>" + item.name + "</td>";
+                row += "<td>" + item.price + "</td>";
+                row += "</tr>";
+            }
+            $("#select_products_list tbody").html("");
+            $("#select_products_list tbody").append(row);
+        });
+    });
+
+    $("#select_products_btn").click(function() {
+        let hasChecked = $(".product-row:checked").length;
+        if (!hasChecked) {
+            alert('Vui lòng chọn sản phẩm');
+            return false;
+        }
+
+        $(".product-row:checked").each(function (item) {
+            let id = $(this).val();
+            let select = $.searchProductList.find(function (item) {
+                return item.id == id;
+            });
+
+            $.orderProductList.details.push(select);
+        });
+
+        $.calculateOrderProducts();
+
+        $("#modal-default").modal('hide');
+        
+    });
+
+    $("#select_products").click(function() {
+        $("#select_products_list tbody").html("");
+        $("#modal-default").modal();
+    })
+
+    $("#order_products").on("click", ".remove-order-product", function () {
+        const id = $(this).attr("data-id");
+        $.calculateOrderProducts({ id: id, remove: true });
+    });
+
+    $(document).on("blur", ".qty-order-product, .price-order-product", function (e) {
+        $("#page-overlay").show();
+        let id = $(this).attr("data-id");
+        let value = $(this).val();
+        let params = {
+            id: id,
+            value: value,
+        };
+
+        if ($(this).attr("class") == "qty-order-product") {
+            params.update_qty = true;
+        }
+
+        if ($(this).attr("class") == "price-order-product") {
+            params.update_price = true;
+        }
+
+        $.calculateOrderProducts(params);
+        
+    });
+
     // Jquery Validation
     if ($("#submit-form").length) {
         $("#submit-form").validate({
@@ -241,6 +407,33 @@ $(function() {
                 name: {
                     required: true,
                     maxlength: 200,
+                },
+                customer_name: {
+                    required: true,
+                    maxlength: 200,
+                },
+                customer_address: {
+                    required: true,
+                    maxlength: 200,
+                },
+                customer_phone: {
+                    required: true,
+                    maxlength: 200,
+                },
+                customer_province: {
+                    required: true,
+                },
+                customer_district: {
+                    required: true,
+                },
+                customer_block: {
+                    required: true,
+                },
+                payment_method: {
+                    required: true,
+                },
+                status: {
+                    required: true,
                 },
                 vendor_id: {
                     required: true,
@@ -271,6 +464,33 @@ $(function() {
                 },
                 seo_description: {
                     maxlength: "Tối đa 300 ký tự",
+                },
+                customer_name: {
+                    required: "Vui lòng nhập",
+                    maxlength: "Tối đa 200 ký tự",
+                },
+                customer_address: {
+                    required: "Vui lòng nhập",
+                    maxlength: "Tối đa 200 ký tự",
+                },
+                customer_phone: {
+                    required: "Vui lòng nhập",
+                    maxlength: "Tối đa 200 ký tự",
+                },
+                customer_province: {
+                    required: "Vui lòng chọn",
+                },
+                customer_district: {
+                    required: "Vui lòng chọn",
+                },
+                customer_block: {
+                    required: "Vui lòng chọn",
+                },
+                payment_method: {
+                    required: "Vui lòng chọn",
+                },
+                status: {
+                    required: "Vui lòng chọn",
                 },
             },
             errorElement: "span",
