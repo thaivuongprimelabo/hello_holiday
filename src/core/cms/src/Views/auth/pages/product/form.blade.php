@@ -1,4 +1,4 @@
-@extends('cms::auth.layouts.main')
+@extends('cms::auth.layouts.form')
 @section('content')
 <section class="content pt-2">
     <div class="container-fluid">
@@ -15,18 +15,23 @@
                                 'item' => $product
                             ])
 
+                            @php
+                                $field = null;
+                                if ($product->exists) {
+                                    if (!is_null($product->category_id)) {
+                                        $field = 'category_id';
+                                    } else {
+                                        $field = 'category_parent_id';
+                                    }
+                                }
+                            @endphp
+                            
                             @include('cms::auth.components.form.select', [
                                 'label' => 'Loại sản phẩm',
                                 'name' => 'category_id',
                                 'item' => $product,
-                                'options' => $categories
-                            ])
-
-                            @include('cms::auth.components.form.select', [
-                                'label' => 'Nhà cung cấp',
-                                'name' => 'vendor_id',
-                                'item' => $product,
-                                'options' => $vendors
+                                'options' => $categories,
+                                'field' => $field
                             ])
 
                             @include('cms::auth.components.form.input', [

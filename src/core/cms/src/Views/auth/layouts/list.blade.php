@@ -1,4 +1,4 @@
-@extends('cms::auth.layouts.main')
+@extends('cms::auth.layouts.form')
 @section('content')
 @php
   $current = request()->route()->getName();
@@ -72,4 +72,5 @@
 @endif
 @endsection
 @section('scripts')
+<script type="text/javascript" src="{{ asset('cms/list.js') }}"></script>
 @endsection

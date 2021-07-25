@@ -1,4 +1,4 @@
-@extends('cms::auth.layouts.main')
+@extends('cms::auth.layouts.form')
 @section('content')
 <section class="content pt-2">
     <div class="container-fluid">
@@ -155,47 +155,13 @@
             </div>
         </form>
     </div>
-    <div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Tìm kiếm sản phẩm</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="input-group input-group-sm mb-2">
-                    <input type="text" class="form-control" id="product_info_se" placeholder="Nhập thông tin sản phẩm">
-                    <span class="input-group-append">
-                        <button type="button" id="search_select_products" class="btn btn-primary btn-flat">Tìm kiếm</button>
-                    </span>
-                </div>
-                
-                    
-                <table id="select_products_list" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <td></td>
-                            <th>Mã SP</th>
-                            <th>Tên SP</th>
-                            <th>Giá bán (vnđ)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-              <button type="button" id="select_products_btn" class="btn btn-primary">Chọn</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
 </section>
+@endsection
+@section('scripts')
+<script src="{{ asset('cms/modal.js') }}"></script>
+<script>
+    $(function () {
+        $.initSelectProducts('#select_products');
+    });
+</script>
 @endsection

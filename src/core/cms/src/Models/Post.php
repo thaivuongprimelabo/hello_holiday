@@ -9,4 +9,15 @@ use Cms\Traits\AppModel;
 class Post extends Model
 {
     use HasFactory, AppModel;
+
+    public function getLink()
+    {
+        return route('post.detail', ['slug' => $this->name_url]);
+    }
+
+    public function getDescription()
+    {
+        return ($this->description);
+    }
+
 }

@@ -15,9 +15,8 @@ class CategoryController extends AppController
         if ($request->isMethod('post')) {
 
             $category->name = $request->name;
-            $category->name_url = Str::of($request->name)->slug('-') . '.' . time();
-            $category->parent_id = $request->has('parent_id') ? $request->parent_id : 0;
-            $category->parent_parent_id = $request->has('parent_parent_id') ? $request->parent_parent_id : 0;
+            $category->name_url = Str::of($request->name)->slug('-');
+            $category->parent_id = $request->has('parent_id') ? $request->parent_id : null;
             $category->status = !is_null($request->status) ? 1 : 0;
             $category->save();
 
@@ -29,7 +28,9 @@ class CategoryController extends AppController
 
             return redirect()->route('auth.category.list')->with('success', $message);
         }
-        return view('cms::auth.pages.category.form', compact('category'));
+
+        $parentCategories = Category::query()->where('parent_id', null)->get();
+        return view('cms::auth.pages.category.form', compact('category', 'parentCategories'));
     }
 
 }

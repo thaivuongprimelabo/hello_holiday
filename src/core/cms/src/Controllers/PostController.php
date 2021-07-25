@@ -14,18 +14,19 @@ class PostController extends AppController
         if ($request->isMethod('post')) {
 
             $post->name = $request->input('name');
-            $post->name_url = Str::of($request->input('name'))->slug('-') . '.' . time();
+            $post->name_url = Str::of($request->input('name'))->slug('-');
             $post->description = $request->input('description');
             $post->content = $request->input('content');
-            $post->author_name = $request->input('author_name', 'Administrator');
+            $post->author_name = is_null($request->input('author_name')) ? 'Administrator' : $request->input('author_name');
 
-            $resultUpload = $this->uploadFile->upload()->first();
+            $resultUpload = $this->uploadFile->singleUpload('photo');
+
             if (!empty($resultUpload)) {
                 $post->photo = $resultUpload;
             }
 
-            $post->seo_keywords = $request->input('seo_keywords');
-            $post->seo_description = $request->input('seo_description');
+            $post->seo_keywords = $request->has('seo_keywords') ? $request->input('seo_keywords') : $request->input('name');
+            $post->seo_description = $request->has('seo_description') ? $request->input('seo_description') : $request->input('name');
             $post->status = !is_null($request->status) ? 1 : 0;
             $post->save();
 

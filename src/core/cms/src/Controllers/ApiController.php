@@ -3,6 +3,7 @@
 namespace Cms\Controllers;
 
 use App\Http\Controllers\Controller;
+use Cms\Models\City;
 use Cms\Models\Block;
 use Cms\Models\District;
 use Cms\Models\Product;
@@ -16,6 +17,12 @@ class ApiController extends Controller
     public function index(Request $request)
     {
         return response()->json(['name' => 'Abigail', 'state' => 'CA'], 200);
+    }
+
+    public function getCities(Request $request)
+    {
+        $cities = City::query()->get();
+        return response()->json($cities, 200);
     }
 
     public function getDistricts(Request $request)
@@ -36,14 +43,20 @@ class ApiController extends Controller
     {
         $keyword = $request->query('keyword');
         $ids = explode(',', $keyword);
-        $products = Product::query()
+        $searchList = Product::query()
                 ->active()
                 ->select('id', 'name', 'price')
                 ->where(function($query) use ($ids, $keyword) {
                     $query->orWhere('name', 'LIKE', '%' . $keyword . '%');
                     $query->orWhereIn('id', $ids);
-                })->get();
+                })->paginate(5);
+
+        $result = [
+            'searchList' => $searchList,
+            'pagination' => $searchList->links('cms::auth.components.pagination')->render(),
+            'total' => 'Tổng cộng: ' . $searchList->total(),
+        ];
                 
-        return response()->json($products, 200);
+        return response()->json($result, 200);
     }
 }

@@ -2,26 +2,40 @@
 
 namespace Cms\Models;
 
+use Cms\Models\Category;
+use Cms\Models\ChildCategory;
+use Cms\Models\ImageProduct;
+use Cms\Models\Vendor;
+use Cms\Traits\AppModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cms\Traits\AppModel;
-use Cms\Models\ImageProduct;
-use Cms\Models\Category;
-use Cms\Models\Vendor;
 
 class Product extends Model
 {
     use HasFactory, AppModel;
 
-    public function imagesProduct() {
+    public function imagesProduct()
+    {
         return $this->hasMany(ImageProduct::class);
     }
 
-    public function category() {
-        return $this->belongsTo(Category::class);
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_parent_id', 'id');
     }
-    
-    public function vendor() {
+
+    public function childCategory()
+    {
+        return $this->belongsTo(ChildCategory::class, 'category_id', 'id');
+    }
+
+    public function vendor()
+    {
         return $this->belongsTo(Vendor::class);
+    }
+
+    public function getLink()
+    {
+        return route('product.detail', ['slug' => $this->name_url]);
     }
 }

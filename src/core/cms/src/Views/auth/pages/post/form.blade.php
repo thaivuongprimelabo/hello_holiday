@@ -1,4 +1,4 @@
-@extends('cms::auth.layouts.main')
+@extends('cms::auth.layouts.form')
 @section('content')
 <section class="content pt-2">
     <div class="container-fluid">
@@ -37,7 +37,7 @@
                                 'name' => 'photo',
                                 'item' => $post,
                                 'image' => $post->getPhoto(),
-                                'style' => 'width: 260px; height:150px'
+                                'style' => 'width: 260px;'
                             ])
                         </div>
                     </div>

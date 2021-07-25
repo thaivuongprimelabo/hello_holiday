@@ -18,8 +18,8 @@
     </td>
     <td>{{ $data->getPrice() }}</td>
     <td>{{ $data->discount }}</td>
-    <td>{{ $data->category->getName() }}</td>
-    <td>{{ $data->vendor->getName() }}</td>
+    <td>{{ optional($data->category)->getName() }}</td>
+    <td>{{ optional($data->vendor)->getName() }}</td>
     <td>{!! $data->getStatusText() !!}</td>
     <td>{{ $data->getCreatedAt() }}</td>
     <td>{{ $data->getUpdatedAt() }}</td>

@@ -1,4 +1,4 @@
-@extends('cms::auth.layouts.main')
+@extends('cms::auth.layouts.form')
 @section('content')
 <section class="content pt-2">
     <div class="container-fluid">
@@ -9,6 +9,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
+
+                            @include('cms::auth.components.form.select', [
+                                'label' => 'Loại sản phẩm cha', 
+                                'name' => 'parent_id', 
+                                'item' => $category,
+                                'options' => $parentCategories
+                            ])
+
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Tên loại sản phẩm', 
                                 'name' => 'name', 

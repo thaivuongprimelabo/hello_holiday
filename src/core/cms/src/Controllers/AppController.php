@@ -125,6 +125,10 @@ class AppController extends Controller
         if ($model instanceof \Cms\Models\User) {
             $query = $query->showByRole();
         }
+        
+        if ($model instanceof \Cms\Models\Banner) {
+            $query = $query->where('pos', 'slider');
+        }
 
         $searchList = $query->orderBy('created_at', 'desc')->paginate(6);
         return [

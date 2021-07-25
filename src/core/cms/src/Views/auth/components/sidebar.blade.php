@@ -56,7 +56,7 @@
             <a href="{{ route('auth.vendor.list') }}" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
               <p>
-                Nhà cung cấp
+                Đối tác
               </p>
             </a>
           </li>
@@ -79,7 +79,17 @@
             <a href="{{ route('auth.banner.list') }}" class="nav-link">
             <i class="nav-icon fas fa-image"></i>
               <p>
-                Banner
+                Slider
+              </p>
+            </a>
+          </li>
+          @endif
+          @if(Route::has('auth.banner.center'))
+          <li class="nav-item">
+            <a href="{{ route('auth.banner.center') }}" class="nav-link">
+            <i class="nav-icon fas fa-image"></i>
+              <p>
+                Banner giữa
               </p>
             </a>
           </li>
@@ -125,7 +135,7 @@
               </p>
             </a>
           </li>
-          
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

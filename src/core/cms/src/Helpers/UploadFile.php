@@ -8,7 +8,7 @@ use Intervention\Image\Facades\Image;
 class UploadFile
 {
 
-    protected $uploadDir = '/cms/upload';
+    protected $uploadDir = '/upload';
     protected $fieldName = 'upload_file';
     protected $deleteImageName = 'delete_image_ids';
     protected $resizeDir = null;
@@ -18,19 +18,16 @@ class UploadFile
     protected $resizeOutput = [];
 
     static $resize = [
-        'image_product' => ['width_small' => '50x50', 'width_medium' => '150x150'],
-        'web_logo'      => ['width_small' => '120x120'],
-        'web_ico'       => ['width_small' => '40x40'],
-        'web_banner'    => ['width_small' => '725x320'],
+        'image_product' => ['width_small' => '80x80', 'width_medium' => '200x200'],
     ];
 
     public function upload($params = [])
     {
-
         $this->output = [];
 
         try {
             if (request()->has($this->fieldName)) {
+                
                 $fileRequest = request()->file($this->fieldName);
                 $imageDeleted = request()->input($this->deleteImageName, []);
 
@@ -112,46 +109,59 @@ class UploadFile
         }
     }
 
+    public function singleUpload($folder)
+    {
+        try {
+            $file = $this->fieldName  . '.' . $folder . '.0';
+            if (request()->has($file)) {
+                $file = request()->file($file);
+                $filename = $file->hashName();
+                $uploadDir = $this->uploadDir . '/' . $folder;
+                $pathinfo = $file->move(public_path($uploadDir), $filename);
+                $pathName = str_replace(public_path(), '', $pathinfo->getPathName());
+                return $pathName;
+            }
+        } catch(\Exception $e) {
+            Log::info($e);
+        }
+        
+        return '';
+    }
+
     public function resize($widthHeight, $folder)
     {
-        $this->output = [];
 
         try {
-            if (request()->has($this->fieldName)) {
-                $fileRequest = request()->file($this->fieldName);
-                $files = $fileRequest[$folder];
+            $file = $this->fieldName  . '.' . $folder . '.0';;
+            if (request()->has($file)) {
+                $file = request()->file($file);
 
-                foreach ($files as $index => $file) {
-                    $filename = $file->hashName();
+                $filename = $file->hashName();
 
-                    $uploadDir = $this->uploadDir . '/' . $folder;
-                    
-                    // Resize image
-                    $dir = $uploadDir . '/' . $widthHeight;
+                $uploadDir = $this->uploadDir . '/' . $folder;
+                
+                // Resize image
+                $dir = $uploadDir . '/' . $widthHeight;
 
-                    if (!File::exists(public_path($dir))) {
-                        File::makeDirectory(public_path($dir), 0755, true, true);
-                    }
+                if (!File::exists(public_path($dir))) {
+                    File::makeDirectory(public_path($dir), 0755, true, true);
+                }
 
-                    $img = Image::make($file->path());
-                    $demension = explode('x', $widthHeight);
-                    $dirSave = $dir . '/' . $filename;
+                $img = Image::make($file->path());
+                $demension = explode('x', $widthHeight);
+                $dirSave = $dir . '/' . $filename;
 
-                    $img->resize($demension[0], $demension[1], function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->save(public_path($dirSave));
+                $img->resize($demension[0], $demension[1], function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path($dirSave));
 
-                    $this->output[$folder][$index]['image'] = $dirSave;
-
-                } 
+                return $dirSave;
             }
-
-            return $this;
 
         } catch (\Exception $e) {
             Log::info($e);
-            return $this;
         }
+        return '';
     }
 
     public function first($folder = '')

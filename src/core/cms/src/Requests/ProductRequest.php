@@ -36,8 +36,6 @@ class ProductRequest extends FormRequest
         $rules = [
             //
             'name' => 'required|max:200',
-            'category_id' => 'required',
-            'vendor_id' => 'required',
             'seo_keywords' => 'max:300',
             'seo_description' => 'max:300',
             'upload_file.image_product.*' => 'max:200|mimes:png,jpg,jpeg'
@@ -50,6 +48,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'required' => 'Vui lòng nhập :attribute',
+            'unique' => ':attribute đã được sử dụng',
             'max' => 'Tối đã :max ký tự'
         ];
     }
@@ -57,9 +56,9 @@ class ProductRequest extends FormRequest
     public function attributes()
     {
         $attributes = [
-            'name' => 'tên sản phẩm',
-            'category_id' => 'loại sản phẩm',
-            'vendor_id' => 'nhà cung cấp',
+            'name' => 'Tên sản phẩm',
+            'category_id' => 'Loại sản phẩm',
+            'vendor_id' => 'Nhà cung cấp',
         ];
 
         return $attributes;

@@ -29,7 +29,8 @@ class UserController extends AppController
             $user->address = $request->input('address');
             $user->status = !is_null($request->input('status')) ? 1 : 0;
 
-            $resultUpload = $this->uploadFile->upload()->first();
+            $resultUpload = $this->uploadFile->singleUpload('avatar');
+
             if (!empty($resultUpload)) {
                 $user->avatar = $resultUpload;
             }

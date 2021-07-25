@@ -71,6 +71,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::match(['get', 'post'], '/create', [BannerController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{banner}', [BannerController::class, 'save'])->name('edit');
             Route::post('/remove}', [BannerController::class, 'remove'])->name('remove');
+            Route::match(['get', 'post'], '/center', [BannerController::class, 'center'])->name('center');
         });
 
         // Orders
