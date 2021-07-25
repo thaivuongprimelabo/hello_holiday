@@ -137,13 +137,13 @@
                                     <div class="group">
 
                                         <div class="adr-oms radio select-method">
-                                            <input type="radio" id="payment-method-cash_method" name="payment_method"
+                                            <input type="radio" id="payment-method-cash" name="payment_method"
                                                 value="cash" checked="">
                                             <label for="payment-method-cash">
                                                 <div class="adr-oms payment-method">
                                                     <div class="thumbnail">
                                                         <img alt="Chuyển khoản"
-                                                            src="{{ asset('web/theme/default/image/payment/bank_transfer.png') }}">
+                                                            src="{{ asset('web/theme/default/image/payment/cod.png') }}">
                                                     </div>
                                                     <div class="description">
                                                         <div class="title">Thanh toán khi nhận hàng</div>
@@ -155,7 +155,7 @@
                                         </div>
 
                                         <div class="adr-oms radio select-method">
-                                            <input type="radio" id="payment-method-bank_transfer" name="payment_method"
+                                            <input type="radio" id="payment-method-banking" name="payment_method"
                                                 value="banking">
                                             <label for="payment-method-banking">
                                                 <div class="adr-oms payment-method">
