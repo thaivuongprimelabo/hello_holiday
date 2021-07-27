@@ -55,13 +55,13 @@
                             ])
 
                             @include('cms::auth.components.form.input', [
-                                'label' => 'SEO Keywords',
+                                'label' => 'Meta Keywords',
                                 'name' => 'seo_keywords',
                                 'item' => $product
                             ])
 
                             @include('cms::auth.components.form.textarea', [
-                                'label' => 'SEO Description',
+                                'label' => 'Meta Description',
                                 'name' => 'seo_description',
                                 'item' => $product
                             ])
