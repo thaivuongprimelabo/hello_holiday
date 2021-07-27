@@ -148,7 +148,6 @@
                                                     <div class="description">
                                                         <div class="title">Thanh toán khi nhận hàng</div>
                                                         <div class="subtitle">Khách hàng thanh toán bằng tiền mặt khi nhận hàng</div>
-                                                        <div class="tkz-selection-info"></div>
                                                     </div>
                                                 </div>
                                             </label>
@@ -168,7 +167,9 @@
                                                         <div class="subtitle">Sử dụng thẻ ATM hoặc dịch vụ Internet
                                                             Banking để tiến hành chuyển
                                                             khoản cho chúng tôi</div>
-                                                        <div class="tkz-selection-info"></div>
+                                                        <div class="tkz-selection-info" style="display: none;">
+                                                            {!! $config->bank_info !!}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </label>
@@ -271,4 +272,14 @@
 @endsection
 @section('scripts')
 <script type="text/javascript" src="{{ asset('web/theme/checkout.js?t=' . time()) }}"></script>
+<script>
+    $(document).ready(function() {
+        $('input[name="payment_method"]').click(function() {
+            $('.tkz-selection-info').hide();
+            if ($(this).val() === 'banking') {
+                $('.tkz-selection-info').show();
+            }
+        })
+    });
+</script>
 @endsection

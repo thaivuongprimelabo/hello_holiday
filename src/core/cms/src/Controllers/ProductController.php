@@ -76,7 +76,7 @@ class ProductController extends AppController
             return redirect()->route('auth.product.list')->with('success', $message);
         }
 
-        $categories = Category::query()->active()->get();
+        $categories = Category::query()->with('childCategories')->active()->where('parent_id', null)->get();
         $vendors = Vendor::query()->active()->get();
         return view('cms::auth.pages.product.form', compact('product', 'categories', 'vendors'));
     }

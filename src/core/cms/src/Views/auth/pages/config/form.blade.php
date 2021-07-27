@@ -65,14 +65,21 @@
                                     ])
 
                                     @include('cms::auth.components.form.editor', [
-                                        'label' => 'Shop footer', 
+                                        'label' => 'Web footer', 
                                         'name' => 'footer', 
                                         'item' => $webConfig,
                                         'small' => true
                                     ])
 
+                                    @include('cms::auth.components.form.editor', [
+                                        'label' => 'Bank info', 
+                                        'name' => 'bank_info', 
+                                        'item' => $webConfig,
+                                        'small' => true
+                                    ])
+
                                     @include('cms::auth.components.form.input', [
-                                        'label' => 'Shop Lat Long', 
+                                        'label' => 'Web Lat Long', 
                                         'name' => 'latlong', 
                                         'item' => $webConfig,
                                         'small' => true

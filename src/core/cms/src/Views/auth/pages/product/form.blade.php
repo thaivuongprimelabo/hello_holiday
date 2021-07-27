@@ -26,13 +26,19 @@
                                 }
                             @endphp
                             
-                            @include('cms::auth.components.form.select', [
-                                'label' => 'Loại sản phẩm',
-                                'name' => 'category_id',
-                                'item' => $product,
-                                'options' => $categories,
-                                'field' => $field
-                            ])
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Loại sản phẩm</label>
+                                <select class="form-control form-control-sm" name="category_id" id="field_category_id">
+                                    <option value="">---</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{ $category->getKey() }}">{{ $category->getName() }}</option>
+                                    @foreach($category->childCategories as $childCategory)
+                                    <option value="{{ $childCategory->getKey() }}">&nbsp;&nbsp;&nbsp;|--{{ $childCategory->getName() }}</option>
+                                    @endforeach
+                                    @endforeach
+                                </select>
+                                @error('category_id')<span class="text-danger">{{ $message }}</span>@enderror
+                            </div>
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Giá bán (vnđ)',

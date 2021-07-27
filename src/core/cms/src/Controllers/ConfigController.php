@@ -30,7 +30,7 @@ class ConfigController extends AppController
             $webConfig->company_phone = $request->input('company_phone');
             $webConfig->company_tax = $request->input('company_tax');
             $webConfig->company_email = $request->input('company_email');
-
+            $webConfig->bank_info = $request->input('bank_info');
             
             $web_logo   = $this->uploadFile->singleUpload('web_logo');
             $web_ico    = $this->uploadFile->resize('40x40', 'web_ico');
