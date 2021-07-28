@@ -10453,6 +10453,14 @@ body.common-home .vertical-menu > ul {
     height: 37px
 }
 
+.main-menu .navbar-nav > li:hover {
+    border-radius: 0px !important;
+}
+
+.main-menu .navbar-nav > li.active {
+    background: var(--main_color);
+}
+
 .main-menu .navbar-nav > li a {
     padding: 0 10px;
     color: #fff !important;

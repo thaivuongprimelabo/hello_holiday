@@ -22,6 +22,7 @@
                 <li class="level0 level-top parent level_ico">
                     <a href="{{ route('contact.index') }}">{{ trans('web::label.contact') }}</a>
                 </li>
+                @if(isset($categories))
                 <li class="level0 level-top parent level_ico category-menu-mobile">
                     <a href="javascript:void(0)">
                         Danh mục sản phẩm
@@ -54,6 +55,7 @@
                         @endforeach
                     </ul>
                 </li>
+                @endif
                 
             </ul>
 

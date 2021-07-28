@@ -86,14 +86,17 @@
                 <nav class="navbar navbar-expand-lg main-menu d-none d-xl-block">
                     <div class="collapse show">
                         <ul class="navbar-nav mr-auto">
+                            @if(isset($categories))
                             <li class="menu-item category-item">
                                 <a href="index.html" target="_self"><i class="fa fa-bars mr-1" aria-hidden="true"></i>Danh mục sản phẩm</a>
                             </li>
-                            <li class="menu-item "><a href="/" target="_self">{{ trans('web::label.home') }}</a></li>
-                            <li class="menu-item "><a href="{{ route('page.about') }}" target="_self">{{ trans('web::label.about') }}</a></li>
-                            <li class="menu-item "><a href="{{ route('product.index') }}" target="_self">{{ trans('web::label.product') }}</a></li>
-                            <li class="menu-item "><a href="{{ route('post.index') }}" target="_self">{{ trans('web::label.news') }}</a></li>
-                            <li class="menu-item "><a href="{{ route('contact.index') }}" target="_self">{{ trans('web::label.contact') }}</a></li>
+                            @endif
+                            <li class="menu-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"><a href="/" target="_self">{{ trans('web::label.home') }}</a></li>
+                            
+                            <li class="menu-item {{ Route::currentRouteName() == 'page.about' ? 'active' : '' }}"><a href="{{ route('page.about') }}" target="_self">{{ trans('web::label.about') }}</a></li>
+                            <li class="menu-item {{ strpos(Route::currentRouteName(), 'product.') !== false ? 'active' : '' }}"><a href="{{ route('product.index') }}" target="_self">{{ trans('web::label.product') }}</a></li>
+                            <li class="menu-item {{ strpos(Route::currentRouteName(), 'post.') !== false ? 'active' : '' }}"><a href="{{ route('post.index') }}" target="_self">{{ trans('web::label.news') }}</a></li>
+                            <li class="menu-item {{ Route::currentRouteName() == 'page.contact' ? 'active' : '' }}"><a href="{{ route('contact.index') }}" target="_self">{{ trans('web::label.contact') }}</a></li>
 
                         </ul>
                     </div>
