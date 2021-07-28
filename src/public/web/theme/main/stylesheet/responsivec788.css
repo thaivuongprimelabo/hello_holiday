@@ -761,7 +761,7 @@
         position: fixed;
         z-index: 999999;
         top: 0 !important;
-        background-color: #F62D3E;
+        background-color: var(--mainmenu_color);
         overflow-x: hidden;
         -webkit-box-shadow: 0 2px 11px 1px rgba(168, 168, 168, 0.54);
         -moz-box-shadow: 0 2px 11px 1px rgba(168, 168, 168, 0.54);
@@ -845,7 +845,7 @@
         border-top: 0
     }
     .sidenav .content_memu_mb .link_list_mobile .ct-mobile .level0:last-child {
-        border-bottom: 0
+        border-bottom: solid 1px #FFFFFF;
     }
     .sidenav .content_memu_mb .link_list_mobile .ct-mobile .level0 .level1 {
         border-top: solid 1px #FFFFFF
@@ -959,4 +959,8 @@
     .awe-section-7 {
         margin-bottom: 30px !important
     }
+}
+
+.category-menu-mobile {
+    background: var(--main_color) !important;
 }

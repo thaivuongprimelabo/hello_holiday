@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('web/theme/main/stylesheet/owl.carousel.minc788.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('web/theme/main/stylesheet/basec788.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('web/theme/main/stylesheet/modulec788.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('web/theme/main/stylesheet/responsivec788.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/theme/main/stylesheet/responsivec788.css?t=' . time()) }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('web/theme/main/stylesheet/stylesheetc788.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('web/theme/main/stylesheet/stylec788.css?t=' . time()) }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('web/theme/main/stylesheet/elipsport_stylec788.css') }}" />
@@ -61,6 +61,8 @@
     src="{{ asset('web/theme/main/javascript/mainc788.js') }}"></script>
 <script type="text/javascript" 
     src="{{ asset('web/theme/cart.js?t=' . time()) }}"></script>
+<script type="text/javascript" 
+    src="{{ asset('web/theme/custom.js?t=' . time()) }}"></script>
 @yield('scripts')
 <script
 	src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9"></script>
