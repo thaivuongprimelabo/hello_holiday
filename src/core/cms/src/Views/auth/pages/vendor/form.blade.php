@@ -30,7 +30,8 @@
                                 'name' => 'logo',
                                 'item' => $vendor,
                                 'image' => $vendor->getLogo(),
-                                'style' => 'width:200px; height:120px'
+                                'style' => 'width:200px; height:120px',
+                                'demension' => '224x224',
                             ])
                         </div>
                     </div>
