@@ -41,7 +41,8 @@
                                 'name' => 'banner',
                                 'item' => $banner,
                                 'image' => $banner->getBanner(),
-                                'style' => 'width: 100%; height:225px'
+                                'style' => 'width: 100%; height:225px',
+                                'demension' => '1100x240'
                             ])
                         </div>
                     </div>

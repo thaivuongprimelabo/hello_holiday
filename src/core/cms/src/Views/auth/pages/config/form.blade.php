@@ -45,7 +45,8 @@
                                         'name' => 'web_logo',
                                         'item' => $webConfig,
                                         'image' => $webConfig->getWebLogo(),
-                                        'style' => 'width: 120px;'
+                                        'style' => 'width: 120px;',
+                                        'demension' => '270x100'
                                     ])
 
                                     @include('cms::auth.components.form.upload', [
@@ -53,7 +54,8 @@
                                         'name' => 'web_ico',
                                         'item' => $webConfig,
                                         'image' => $webConfig->getWebIcon(),
-                                        'style' => 'width: 40px;'
+                                        'style' => 'width: 40px;',
+                                        'demension' => '80x80'
                                     ])
 
                                     @include('cms::auth.components.form.upload', [
@@ -61,7 +63,8 @@
                                         'name' => 'web_banner',
                                         'item' => $webConfig,
                                         'image' => $webConfig->getWebBanner(),
-                                        'style' => 'width: auto;'
+                                        'style' => 'width: auto;',
+                                        'demension' => '800x354'
                                     ])
 
                                     @include('cms::auth.components.form.editor', [

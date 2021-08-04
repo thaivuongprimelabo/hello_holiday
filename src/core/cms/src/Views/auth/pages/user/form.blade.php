@@ -61,7 +61,8 @@
                                 'name' => 'avatar',
                                 'item' => $user,
                                 'image' => $user->getAvatar(),
-                                'style' => 'width:150px'
+                                'style' => 'width:150px',
+                                'demension' => '120x120'
                             ])
                         </div>
                     </div>
