@@ -37,7 +37,7 @@
                                 'name' => 'photo',
                                 'item' => $post,
                                 'image' => $post->getPhoto(),
-                                'style' => 'width: 260px;'
+                                'style' => 'width: 260px;',
                                 'demension' => '224x224'
                             ])
                         </div>
