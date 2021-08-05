@@ -7,7 +7,7 @@
             href="{{ $product->getLink() }}"
             title="{{ $product->getName() }}">
             <img src="{{ !is_null($product->imagesProduct()->first()) ? $product->imagesProduct()->first()->getMediumImage() : asset('cms/dist/img/boxed-bg.jpg') }}"
-                alt="{{ $product->getName() }}" />
+                alt="{{ $product->getName() }}" style="width:224px; height: 224px"  />
         </a>
         <div class="summary_grid hidden-xs hidden-sm hidden-md">
             <div class="rte description">
