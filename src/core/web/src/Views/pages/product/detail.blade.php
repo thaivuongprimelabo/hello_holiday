@@ -76,7 +76,7 @@
                             <div class="group-status">
                                 <span class="first_status">
                                     Tình trạng:
-                                    <span class="status_name availabel">Còn hàng</span>
+                                    <span class="status_name availabel">{{ $product->avail_flg ? trans('web::label.available') : trans('web::label.out_of_stock') }}</span>
                                 </span>
                             </div>
                             @if($product->discount)
@@ -103,6 +103,7 @@
                                 <div id="product">
                                     <form id="add-to-cart-form" class="form-inline margin-bottom-0">
                                         <div class="form-group form_button_details">
+                                            @if($product->avail_flg)
                                             <div class="form_hai ">
                                                 <div
                                                     class="custom input_number_product custom-btn-number form-control">
@@ -123,6 +124,7 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                            @endif
                                         </div>
                                     </form>
                                 </div>

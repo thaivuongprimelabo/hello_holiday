@@ -17,31 +17,23 @@ class ProductController extends AppController
     {
 
         if ($request->isMethod('post')) {
-
+            $params = $request->all();
             // Create product
             $product->name = $request->input('name');
             $product->name_url = Str::of($request->name)->slug('-') . time();
             $product->price = $request->input('price', 'Liên hệ');
             $product->category_id = $request->input('category_id', 0);
-            $category = Category::find($product->category_id);
-            if(is_null($category->parent_id)) {
-                $product->category_id = null;
-                $product->category_parent_id = $category->getKey();
-            } else {
-                $product->category_id = $category->getKey();
-                $product->category_parent_id = !is_null($category) ? $category->parent_id : null;
-            }
-            
             $product->vendor_id = $request->input('vendor_id', 0);
             $product->description = $request->input('description');
             $product->summary = $request->input('summary');
             $product->discount = $request->input('discount');
+            $product->avail_flg = $request->avail_flg == 'on' ? 1 : 0;
             $product->is_new = $request->input('is_new', 1);
             $product->is_popular = $request->input('is_popular', 1);
             $product->is_best_selling = $request->input('is_best_selling', 1);
             $product->seo_keywords = $request->has('seo_keywords') ? $request->input('seo_keywords') : $request->input('name');
             $product->seo_description = $request->has('seo_description') ? $request->input('seo_description') : $request->input('name');
-            $product->status = !is_null($request->status) ? 1 : 0;
+            $product->status = $request->status == 'on' ? 1 : 0;
             $product->save();
 
             if ($product->exists) {

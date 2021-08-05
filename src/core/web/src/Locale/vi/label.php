@@ -21,6 +21,8 @@ return [
     'buying_call' => 'Gọi mua hàng',
     'advise_call' => 'Gọi khiếu nại',
     'warranty_call' => 'Gọi bảo hành',
+    'out_of_stock' => 'Hết hàng',
+    'available' => 'Còn hàng',
     'button' => [
         'buy_now' => 'Mua ngay',
         'show' => 'Xem',

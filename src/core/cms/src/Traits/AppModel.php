@@ -78,6 +78,14 @@ trait AppModel
         }
     }
 
+    public function getProductImage()
+    {
+        if (!is_null($this->imagesProduct()->first())) {
+            return $this->imagesProduct()->first()->getMediumImage();
+        }
+        return $this->getDefaultImage();
+    }
+
     public function getMediumImage()
     {
         $file = public_path($this->medium);

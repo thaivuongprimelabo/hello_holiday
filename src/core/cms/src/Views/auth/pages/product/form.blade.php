@@ -31,9 +31,9 @@
                                 <select class="form-control form-control-sm" name="category_id" id="field_category_id">
                                     <option value="">---</option>
                                     @foreach($categories as $category)
-                                    <option value="{{ $category->getKey() }}" {{ $product->category_parent_id == $category->getKey() ? 'selected' : '' }}>{{ $category->getName() }}</option>
+                                    <option value="{{ $category->getKey() }}" {{ $product->category_id == $category->getKey() ? 'selected' : '' }}>{{ $category->getName() }}</option>
                                     @foreach($category->childCategories as $childCategory)
-                                    <option value="{{ $childCategory->getKey() }}" {{ $product->category_id == $category->getKey() ? 'selected' : '' }}>&nbsp;&nbsp;&nbsp;|--{{ $childCategory->getName() }}</option>
+                                    <option value="{{ $childCategory->getKey() }}" {{ $product->category_id == $childCategory->getKey() ? 'selected' : '' }}>&nbsp;&nbsp;&nbsp;|--{{ $childCategory->getName() }}</option>
                                     @endforeach
                                     @endforeach
                                 </select>
@@ -69,6 +69,13 @@
                             @include('cms::auth.components.form.checkbox', [
                                 'label' => 'Đang hoạt động',
                                 'name' => 'status',
+                                'item' => $product,
+                                'checked' => true
+                            ])
+
+                            @include('cms::auth.components.form.checkbox', [
+                                'label' => 'Còn hàng',
+                                'name' => 'avail_flg',
                                 'item' => $product,
                                 'checked' => true
                             ])

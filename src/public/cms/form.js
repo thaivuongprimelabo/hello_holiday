@@ -203,9 +203,6 @@ $(function () {
                 payment_method: {
                     required: true,
                 },
-                status: {
-                    required: true,
-                },
                 seo_keywords: {
                     maxlength: 300,
                 },

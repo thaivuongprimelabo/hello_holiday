@@ -6,7 +6,7 @@
         <a class="image_link display_flex"
             href="{{ $product->getLink() }}"
             title="{{ $product->getName() }}">
-            <img src="{{ !is_null($product->imagesProduct()->first()) ? $product->imagesProduct()->first()->getMediumImage() : asset('cms/dist/img/boxed-bg.jpg') }}"
+            <img src="{{ $product->getProductImage() }}"
                 alt="{{ $product->getName() }}" style="width:224px; height: 224px"  />
         </a>
         <div class="summary_grid hidden-xs hidden-sm hidden-md">
@@ -18,10 +18,12 @@
         <div class="product-action-grid clearfix">
             <form class="variants form-nut-grid">
                 <div>
+                    @if($product->avail_flg)
                     <button
                         class="btn-cart button_wh_40 left-to buy-now"
                         data-id="{{ $product->getKey() }}"
                         title="{{ trans('web::label.button.buy_now') }}" type="button">{{ trans('web::label.button.buy_now') }}</button>
+                    @endif
                     <a title="{{ trans('web::label.button.show') }}"
                         href="{{ $product->getLink() }}"
                         class="button_wh_40 btn_view right-to quick-view">{{ trans('web::label.button.show') }}</a>
@@ -35,6 +37,7 @@
                 <a href="{{ $product->getLink() }}"
                     title="{{ $product->getName() }}">{{ $product->getName() }}</a>
             </h4>
+            @if($product->avail_flg)
             <div class="price-box clearfix">
                 @if($product->discount)
                 <span class="price product-price">{{ $product->getDiscountPrice() }}</span>
@@ -44,6 +47,11 @@
                 <span class="price product-price">{{ $product->getPrice() }}</span>
                 @endif
             </div>
+            @else
+            <div class="price-box clearfix">
+                <span class="price product-price">{{ trans('web::label.out_of_stock') }}</span>
+            </div>
+            @endif
         </div>
     </div>
 </div>
