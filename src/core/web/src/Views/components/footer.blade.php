@@ -75,7 +75,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3 footer-block support">
                 <h4 data-toggle="collapse" href="#support-links-1" aria-expanded="true"
-                    aria-controls="collapseExample"> Chính sách ưu đãi {{ $config->web_title }}</h4>
+                    aria-controls="collapseExample"> Chính sách {{ $config->web_title }}</h4>
                 <div class="collapse dont-collapse-sm" aria-expanded="false" id="support-links-1">
                     <ul class="row small-gutter">
                     </ul>
