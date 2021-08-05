@@ -6,7 +6,7 @@
         <a class="image_link display_flex"
             href="{{ $product->getLink() }}"
             title="{{ $product->getName() }}">
-            <img src="{{ optional($product->imagesProduct()->first())->getMediumImage() }}"
+            <img src="{{ !is_null($product->imagesProduct()->first()) ? $product->imagesProduct()->first()->getMediumImage() : asset('cms/dist/img/boxed-bg.jpg') }}"
                 alt="{{ $product->getName() }}" />
         </a>
         <div class="summary_grid hidden-xs hidden-sm hidden-md">
