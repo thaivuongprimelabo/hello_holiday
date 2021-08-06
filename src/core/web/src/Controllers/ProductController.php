@@ -109,7 +109,7 @@ class ProductController extends AppController
                     $query = $query->where('category_id', $category->getKey());
                 } else {
                     $category = Category::query()->active()->where('name_url', $slug)->first();
-                    $query = $query->where('category_parent_id', $category->getKey());
+                    $query = $query->where('category_id', $category->getKey());
                 }
                 break;
 
