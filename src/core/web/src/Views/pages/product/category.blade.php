@@ -37,7 +37,11 @@
                             </div>
                         </div>
                     </section>
-                    <section id="product_list">
+                    <section>
+                        <div class="loader"></div>
+                        <section id="product_list">
+                            
+                        </section>
                     </section>
                 </div>
             </div>

@@ -103,7 +103,7 @@
                                 <div id="product">
                                     <form id="add-to-cart-form" class="form-inline margin-bottom-0">
                                         <div class="form-group form_button_details">
-                                            @if($product->avail_flg)
+                                            @if($product->avail_flg || $product->price > 0)
                                             <div class="form_hai ">
                                                 <div
                                                     class="custom input_number_product custom-btn-number form-control">
