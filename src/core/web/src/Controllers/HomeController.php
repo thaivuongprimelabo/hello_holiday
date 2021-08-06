@@ -22,7 +22,7 @@ class HomeController extends AppController
             'products' => function($query) {
                 $query->orderBy('created_at', 'desc')->limit(10);
             }
-        ])->active()->where('parent_id', null)->get();
+        ])->active()->get();
         
         $this->setSEO([
             'title' => trans('web::label.home'),
