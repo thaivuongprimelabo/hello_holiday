@@ -96,7 +96,7 @@ class ProductController extends AppController
         $price = $request->price;
         $keyword = $request->keyword;
         $view = 'web::pages.product.list';
-        $limit = 6;
+        $limit = 9;
 
         switch ($action) {
 
