@@ -24,5 +24,13 @@ class WebServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
         $this->loadViewsFrom(__DIR__ . '/Views', 'web');
         $this->loadTranslationsFrom(__DIR__ . '/Locale', 'web');
+
+        \DB::listen(function ($query) {
+            \Log::info(
+                $query->sql,
+                $query->bindings,
+                $query->time
+            );
+        });
     }
 }
