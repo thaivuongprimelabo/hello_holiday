@@ -18,11 +18,12 @@ class HomeController extends AppController
         $banners = Banner::query()->active()->where('pos', 'slider')->get();
         $bannerCenter = Banner::query()->active()->where('pos', 'center')->first();
         $posts = Post::query()->orderBy('created_at', 'desc')->limit(4)->get();
-        $productCategories = Category::query()->with([
-            'products' => function($query) {
-                $query->orderBy('created_at', 'desc')->limit(5);
-            }
-        ])->active()->get();
+        $productCategories = Category::query()->active()->has('products')->limit(2)->get();
+        foreach($productCategories as $category) {
+            $category->load(['products' => function($query) {
+                $query->where('status', 1)->orderBy('created_at', 'desc')->limit(5);
+            }]);
+        }
         
         $this->setSEO([
             'title' => trans('web::label.home'),
