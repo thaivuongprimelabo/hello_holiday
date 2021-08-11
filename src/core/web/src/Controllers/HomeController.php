@@ -20,7 +20,7 @@ class HomeController extends AppController
         $posts = Post::query()->orderBy('created_at', 'desc')->limit(4)->get();
         $productCategories = Category::query()->with([
             'products' => function($query) {
-                $query->orderBy('created_at', 'desc')->limit(10);
+                $query->orderBy('created_at', 'desc')->limit(5);
             }
         ])->active()->get();
         
