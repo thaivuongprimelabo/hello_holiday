@@ -18,7 +18,7 @@ class HomeController extends AppController
         $banners = Banner::query()->active()->where('pos', 'slider')->get();
         $bannerCenter = Banner::query()->active()->where('pos', 'center')->first();
         $posts = Post::query()->orderBy('created_at', 'desc')->limit(4)->get();
-        $productCategories = Category::query()->active()->has('products')->limit(5)->get();
+        $productCategories = Category::query()->active()->has('products')->get();
         foreach($productCategories as $category) {
             $category->load(['products' => function($query) {
                 $query->where('status', 1)->orderBy('created_at', 'desc')->limit(5);
