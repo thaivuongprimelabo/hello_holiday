@@ -47,4 +47,11 @@ Route::group(['middleware' => 'web'], function () {
 
 });
 
+Route::get('/config-cache', function () {
+    $exitCode = Artisan::call('config:cache');
+    return 'Config cache cleared ' . $exitCode;
+})->name("config.cache");
+
+
+
 
