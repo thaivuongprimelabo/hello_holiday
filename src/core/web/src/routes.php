@@ -14,7 +14,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('warranty', [PageController::class, 'warranty'])->name('page.warranty');
     Route::get('delivery', [PageController::class, 'delivery'])->name('page.delivery');
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
-    Route::get('news', [PostController::class, 'index'])->name('post.index');
 
     Route::group(['as' => 'product.'], function () {
         Route::get('category/{slug}', [ProductController::class, 'productsByCategory'])->name('productsByCategory');
