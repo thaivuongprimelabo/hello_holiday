@@ -58,10 +58,10 @@ class CmsServiceProvider extends ServiceProvider
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('auth.cms', AuthCms::class);
 
-        $this->app->bind(
-            \App\Exceptions\Handler::class,
-            \Cms\Exceptions\CmsHandler::class
-        );
+        // $this->app->bind(
+        //     \App\Exceptions\Handler::class,
+        //     \Cms\Exceptions\CmsHandler::class
+        // );
 
         $this->app->bind(
             \App\Providers\EventServiceProvider::class,
