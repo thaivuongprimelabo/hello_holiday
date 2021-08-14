@@ -31,10 +31,10 @@
                         </div>
                     </section>
                     <section>
-                        <div class="loader"></div>
                         <section id="product_list">
                             
                         </section>
+                        <div class="loader"></div>
                     </section>
                 </div>
             </div>
