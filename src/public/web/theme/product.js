@@ -52,6 +52,7 @@ $(document).ready(function() {
 
     $(document).on('click', "#load_more", function() {
         $(this).remove();
+        $(".loader").show();
         params.page = Number($(this).attr('data-next-page'));
         $.getProducts(params);
     });
