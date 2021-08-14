@@ -20,7 +20,7 @@ class PostController extends AppController
 
     public function getPosts()
     {
-        $posts = Post::query()->active()->simplePaginate(8);
+        $posts = Post::query()->active()->orderBy('created_at', 'desc')->simplePaginate(8);
         return view('web::pages.post.list', compact('posts'));
     }
 

@@ -25,6 +25,7 @@
                     <div id="post_list" class="row">
                         
                     </div>
+                    <div class="loader"></div>
                 </section>
             </section>
         </div>
