@@ -2,6 +2,9 @@
 return [
     'home' => 'Trang chủ',
     'about' => 'Giới thiệu',
+    'racing' => 'Trường đua',
+    'vrrc' => 'Giải VRRC',
+    'gulfoil' => 'Gulf Oil',
     'product' => 'Sản phẩm',
     'news' => 'Tin tức',
     'contact' => 'Liên hệ',

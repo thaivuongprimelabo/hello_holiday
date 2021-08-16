@@ -93,7 +93,9 @@
                             @endif
                             <li class="menu-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"><a href="/" target="_self">{{ trans('web::label.home') }}</a></li>
                             
-                            <li class="menu-item {{ Route::currentRouteName() == 'page.about' ? 'active' : '' }}"><a href="{{ route('page.about') }}" target="_self">{{ trans('web::label.about') }}</a></li>
+                            <li class="menu-item"><a href="https://truongdua2k.com" target="_self">{{ trans('web::label.racing') }}</a></li>
+                            <li class="menu-item"><a href="#" target="_self">{{ trans('web::label.vrrc') }}</a></li>
+                            <li class="menu-item"><a href="https://gulfoil.vn/" target="_self">{{ trans('web::label.gulfoil') }}</a></li>
                             <li class="menu-item {{ strpos(Route::currentRouteName(), 'post.') !== false ? 'active' : '' }}"><a href="{{ route('post.index') }}" target="_self">{{ trans('web::label.news') }}</a></li>
                             <li class="menu-item {{ Route::currentRouteName() == 'page.contact' ? 'active' : '' }}"><a href="{{ route('contact.index') }}" target="_self">{{ trans('web::label.contact') }}</a></li>
 
