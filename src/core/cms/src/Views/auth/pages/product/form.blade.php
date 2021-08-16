@@ -14,24 +14,13 @@
                                 'name' => 'name',
                                 'item' => $product
                             ])
-
-                            @php
-                                $field = null;
-                                if ($product->exists) {
-                                    if (!is_null($product->category_id)) {
-                                        $field = 'category_id';
-                                    } else {
-                                        $field = 'category_parent_id';
-                                    }
-                                }
-                            @endphp
                             
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Loại sản phẩm</label>
                                 <select class="form-control form-control-sm" name="category_id" id="field_category_id">
                                     <option value="">---</option>
                                     @foreach($categories as $category)
-                                    <option value="{{ $category->getKey() }}" {{ $product->category_id == $category->getKey() ? 'selected' : '' }}>{{ $category->getName() }}</option>
+                                    <option value="{{ $category->getKey() }}" disabled {{ $product->category_id == $category->getKey() ? 'selected' : '' }}>{{ $category->getName() }}</option>
                                     @foreach($category->childCategories as $childCategory)
                                     <option value="{{ $childCategory->getKey() }}" {{ $product->category_id == $childCategory->getKey() ? 'selected' : '' }}>&nbsp;&nbsp;&nbsp;|--{{ $childCategory->getName() }}</option>
                                     @endforeach

@@ -23,14 +23,6 @@ class ProductController extends AppController
             $product->name_url = Str::of($request->name)->slug('-') . time();
             $product->price = $request->input('price', 'Liên hệ');
             $product->category_id = $request->input('category_id', 0);
-            $category = Category::find($product->category_id);
-            if(is_null($category->parent_id)) {
-                $product->category_id = $category->getKey();
-                $product->category_parent_id = $category->getKey();
-            } else {
-                $product->category_id = $category->getKey();
-                $product->category_parent_id = !is_null($category) ? $category->parent_id : null;
-            }
             $product->vendor_id = $request->input('vendor_id', 0);
             $product->description = $request->input('description');
             $product->summary = $request->input('summary');

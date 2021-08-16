@@ -10311,7 +10311,7 @@ body.common-home .vertical-menu > ul {
     left: 100%;
     top: 0;
     width: 670px;
-    height: auto;
+    min-height: 502px;
     border-left: 1px solid #ddd;
     background: #fff;
     background: linear-gradient(90deg, rgba(255, 255, 255, 1) 53%, rgba(255, 255, 255, .6292892156862745) 100%)

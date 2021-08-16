@@ -4,3 +4,6 @@
 supervisord.pid
 xdebug.log
 src/public/cms/upload
+src/public/upload
+src/public/web/image
+vendor
