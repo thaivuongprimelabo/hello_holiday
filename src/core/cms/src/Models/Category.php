@@ -26,4 +26,10 @@ class Category extends Model
     {
         return route('product.productsByCategory', ['slug' => $this->name_url]);
     }
+
+    public function getProducts()
+    {
+        $products = Product::query()->whereRaw('category_id IN (SELECT id FROM categories WHERE parent_id = ' . $this->id . ')')->orderBy('created_at', 'desc')->limit(5)->get();
+        return $products;
+    }
 }

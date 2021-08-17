@@ -47,11 +47,12 @@
             </section>
             @endif
             
-            @foreach($productCategories as $category)
+            @foreach($categories as $category)
             @php
                 $stt = 1;
+                $products = $category->getProducts();
             @endphp
-            @if($category->products->count())
+            @if($products->count())
             <section class="awe-section-6 product_bestseller product_by_category " id="product_by_category-{{ $stt }}">
                 <section class="section_bedroom">
                     <div class="container">
@@ -71,7 +72,7 @@
                                         <div class="owl_product_item_content owl-carousel not-dot not-nav3 not-nav"
                                             data-dot="false" data-nav='false' data-autoPlay='true' data-lg-items='4'
                                             data-md-items='4' data-sm-items='3' data-xs-items="2">
-                                            @foreach($category->products as $product)
+                                            @foreach($products as $product)
                                             <div class="item saler_item col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
                                                 <div class="owl_item_product product-col">
                                                     @include('web::components.product_block')
