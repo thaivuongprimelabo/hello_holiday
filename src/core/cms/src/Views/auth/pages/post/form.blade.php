@@ -13,7 +13,8 @@
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Tựa đề', 
                                 'name' => 'name', 
-                                'item' => $post
+                                'item' => $post,
+                                'maxlength' => 255,
                             ])
 
                             @include('cms::auth.components.form.input', [

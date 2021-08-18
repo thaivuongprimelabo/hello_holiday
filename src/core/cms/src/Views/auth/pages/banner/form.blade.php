@@ -14,7 +14,8 @@
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Link bài viết', 
                                 'name' => 'link', 
-                                'item' => $banner
+                                'item' => $banner,
+                                'maxlength' => 255,
                             ])
 
                             @include('cms::auth.components.form.checkbox', [

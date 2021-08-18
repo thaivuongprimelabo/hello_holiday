@@ -22,7 +22,8 @@
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Link', 
                                 'name' => 'link', 
-                                'item' => $banner
+                                'item' => $banner,
+                                'maxlength' => 255,
                             ])
 
                             @include('cms::auth.components.form.checkbox', [

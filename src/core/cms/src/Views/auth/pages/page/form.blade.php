@@ -13,7 +13,8 @@
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Tựa đề', 
                                 'name' => 'name', 
-                                'item' => $page
+                                'item' => $page,
+                                'maxlength' => 255,
                             ])
                         </div>
 

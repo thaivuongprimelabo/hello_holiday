@@ -11023,7 +11023,7 @@ section.products-view.products-view-grid.collection_reponsive{
 }
 .button-buy{
     color: #fff;
-    background: -webkit-linear-gradient(top,#f62d3e,#f62d3e);
+    background: -webkit-linear-gradient(top,var(--main_color),var(--main_color));
     border: none;
 }
 .product-detail{

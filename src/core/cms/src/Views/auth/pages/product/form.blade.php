@@ -12,7 +12,8 @@
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Tên sản phẩm',
                                 'name' => 'name',
-                                'item' => $product
+                                'item' => $product,
+                                'maxlength' => 255,
                             ])
                             
                             <div class="form-group">
@@ -46,7 +47,8 @@
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Meta Keywords',
                                 'name' => 'seo_keywords',
-                                'item' => $product
+                                'item' => $product,
+                                'maxlength' => 255,
                             ])
 
                             @include('cms::auth.components.form.textarea', [

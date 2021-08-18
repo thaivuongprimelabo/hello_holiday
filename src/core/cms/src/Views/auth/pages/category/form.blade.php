@@ -20,7 +20,8 @@
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Tên loại sản phẩm', 
                                 'name' => 'name', 
-                                'item' => $category
+                                'item' => $category,
+                                'maxlength' => 255,
                             ])
 
                             @include('cms::auth.components.form.checkbox', [

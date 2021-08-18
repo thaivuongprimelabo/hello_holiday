@@ -13,7 +13,8 @@
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Tên nhà cung cấp', 
                                 'name' => 'name', 
-                                'item' => $vendor
+                                'item' => $vendor,
+                                'maxlength' => 255,
                             ])
 
                             @include('cms::auth.components.form.checkbox', [

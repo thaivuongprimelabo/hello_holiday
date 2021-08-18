@@ -13,37 +13,43 @@
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Tên gọi', 
                                 'name' => 'name', 
-                                'item' => $user
+                                'item' => $user,
+                                'maxlength' => 255,
                             ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Email', 
                                 'name' => 'email', 
-                                'item' => $user
+                                'item' => $user,
+                                'maxlength' => 255,
                             ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Phone', 
                                 'name' => 'phone', 
-                                'item' => $user
+                                'item' => $user,
+                                'maxlength' => 20,
                             ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Address', 
                                 'name' => 'address', 
-                                'item' => $user
+                                'item' => $user,
+                                'maxlength' => 255,
                             ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Mật khẩu', 
                                 'name' => 'password',
-                                'type' => 'password'
+                                'type' => 'password',
+                                'maxlength' => 40,
                             ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Xác nhận mật khẩu', 
                                 'name' => 'password_confirmation',
-                                'type' => 'password'
+                                'type' => 'password',
+                                'maxlength' => 40,
                             ])
 
                             @include('cms::auth.components.form.checkbox', [

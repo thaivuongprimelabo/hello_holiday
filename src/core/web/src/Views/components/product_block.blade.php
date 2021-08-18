@@ -18,7 +18,7 @@
         <div class="product-action-grid clearfix">
             <form class="variants form-nut-grid">
                 <div>
-                    @if($product->avail_flg)
+                    @if($product->avail_flg && $product->price)
                     <button
                         class="btn-cart button_wh_40 left-to buy-now"
                         data-id="{{ $product->getKey() }}"
