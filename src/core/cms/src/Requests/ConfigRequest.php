@@ -34,9 +34,9 @@ class ConfigRequest extends FormRequest
         $rules = [
             //
             'web_title' => 'required|max:200',
-            'upload_file.web_logo.*' => 'max:' . Constants::MAX_UPLOAD_WEB_LOGO . '|mimes:png,jpg,jpeg',
-            'upload_file.web_ico.*' => 'max:' . Constants::MAX_UPLOAD_PRODUCT . '|mimes:png,jpg,jpeg',
-            'upload_file.web_banner.*' => 'max:' . Constants::MAX_UPLOAD_PHOTO . '|mimes:png,jpg,jpeg'
+            'upload_file.web_logo.*' => 'max:' . \Cms\Constants::formatMemory(session('config')->max_upload_list['web_logo'], true) . '|mimes:png,jpg,jpeg',
+            'upload_file.web_ico.*' => 'max:' . \Cms\Constants::formatMemory(session('config')->max_upload_list['web_ico'], true) . '|mimes:png,jpg,jpeg',
+            'upload_file.web_banner.*' => 'max:' . \Cms\Constants::formatMemory(session('config')->max_upload_list['web_banner'], true) . '|mimes:png,jpg,jpeg'
         ];
 
         return $rules;
