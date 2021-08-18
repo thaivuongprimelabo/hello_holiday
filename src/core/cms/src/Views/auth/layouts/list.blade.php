@@ -72,5 +72,5 @@
 @endif
 @endsection
 @section('scripts')
-<script type="text/javascript" src="{{ asset('cms/list.js') }}"></script>
+<script type="text/javascript" src="{{ asset('cms/list.js?t=' . time()) }}"></script>
 @endsection
