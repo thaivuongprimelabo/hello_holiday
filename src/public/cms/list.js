@@ -24,10 +24,15 @@ $(function () {
             if ($("#search-result").length) {
                 $("#page-overlay").show();
                 $.get(_url).then(function (data) {
+                    if (!data.search_result) {
+                        alert("Không tìm thấy dữ liệu nào.");
+                    }
+
                     $("#search-result").html(data.search_result);
                     $("#pagination").html(data.pagination);
                     $("#total-record").html(data.total);
                     $("#page-overlay").hide();
+                    
                 });
             }
         },
