@@ -4,6 +4,15 @@ $(function () {
         params: {},
         searchList: function (url) {
             let _url = url ? url : $.url;
+            let base_url = localStorage.getItem("url");
+            if (_url.indexOf(base_url) >= 0) {
+                $.params['page'] = localStorage.getItem("page");
+            } else {
+                $.params['page'] = 1;
+                localStorage.removeItem("url");
+                localStorage.removeItem("page");
+            }
+
             let _param = $.param($.params);
             if (Object.keys(_param).length) {
                 if (_url.indexOf("?") >= 0) {
@@ -32,11 +41,14 @@ $(function () {
 
     $(document).on("click", ".page-link", function () {
         let page = $(this).attr("data-page");
+        localStorage.setItem("url", window.location.href);
+        localStorage.setItem("page", page);
         $.params["page"] = page;
         $.searchList();
     });
 
     $(document).on("click", "#search-btn", function () {
+        localStorage.setItem("page", 1);
         let keyword = $("#search-form").serialize();
         let params = Object.fromEntries(new URLSearchParams(keyword));
         $.params = { ...params };
@@ -44,6 +56,8 @@ $(function () {
     });
 
     $(document).on("click", "#create-btn", function () {
+        localStorage.removeItem("url");
+        localStorage.removeItem("page");
         window.open($("#create_url").val(), "_self");
     });
 
