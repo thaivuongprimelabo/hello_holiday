@@ -2,7 +2,7 @@
     <label for="exampleInputEmail1">
         {{ $label }}
         @if(isset($maxlength))
-        (Tối đa {{ $maxlength }} ký tự)
+        (Tối đa {{ $maxlength }} ký tư)
         @endif
     </label>
     <input 
@@ -12,7 +12,7 @@
         {{ isset($disabled) && $disabled ? 'disabled' : ''}} 
         value="{{ old($name, optional($item ?? '')->$name) }}" 
         placeholder="{{ $label }}"
-        maxlength="{{ isset($maxlength) ? $maxlength : '' }}"
+        {{ isset($maxlength) ? 'maxlength=' . $maxlength : '' }}
     />
     @error($name)<span class="text-danger">{{ $message }}</span>@enderror
 </div>
