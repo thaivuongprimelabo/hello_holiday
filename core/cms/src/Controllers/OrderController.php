@@ -81,4 +81,15 @@ class OrderController extends AppController
     {
         return view('cms::auth.pages.order.print', compact('order'));
     }
+
+    public function remove(Request $request)
+    {
+        $ids = $request->has('ids') ? $request->ids : [$request->user];
+        Order::query()->whereIn('id', $ids)->delete();
+        OrderDetail::query()->whereIn('order_id', $ids)->delete();
+
+        $message = trans('cms::auth.message.remove_success');
+
+        return response()->json(['success' => $message]);
+    }
 }

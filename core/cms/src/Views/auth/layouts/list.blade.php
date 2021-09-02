@@ -19,12 +19,23 @@
         <div class="card-header">
             <div class="mailbox-controls">
                 @if(Route::has($remove_route))
-                <div class="btn-group">
-                  <button type="button" id="remove-btn" class="btn btn-default btn-sm">
-                    <i class="far fa-trash-alt"></i>
-                    Xoá
-                  </button>
-                </div>
+                    @if($current == 'auth.order.list')
+                        @if(Auth::user()->role_id == 0)
+                        <div class="btn-group">
+                        <button type="button" id="remove-btn" class="btn btn-default btn-sm">
+                            <i class="far fa-trash-alt"></i>
+                            Xoá
+                        </button>
+                        </div>
+                        @endif
+                    @else
+                    <div class="btn-group">
+                    <button type="button" id="remove-btn" class="btn btn-default btn-sm">
+                        <i class="far fa-trash-alt"></i>
+                        Xoá
+                    </button>
+                    </div>
+                    @endif
                 @endif
                 <!-- /.btn-group -->
                 <button type="button" id="reload" class="btn btn-default btn-sm">
