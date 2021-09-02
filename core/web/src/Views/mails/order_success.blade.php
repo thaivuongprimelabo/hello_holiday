@@ -1,6 +1,6 @@
 Xin chào, {{ $order->customer_name }}<br/>
 <br/>
-Cảm ơn Anh/chị đã đặt hàng tại <b>{{ config('app.name') }}</b><br/>
+Cảm ơn Anh/chị đã đặt hàng tại <b>{{ $order->web_name }}</b><br/>
 <br/>
 Đơn hàng của Anh/chị đã được tiếp nhận, chúng tôi sẽ nhanh chóng liên hệ với Anh/chị.<br/>
 <hr/>

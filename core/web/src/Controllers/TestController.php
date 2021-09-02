@@ -14,7 +14,6 @@ class TestController extends AppController
     public function testMail()
     {
         $order = Order::first();
-        $order->hotline = $this->config->phone1;
         Mail::to("thaivuong1503@gmail.com")->send(new OrderSuccessMail($order));
         echo 'test-mail';
     }
