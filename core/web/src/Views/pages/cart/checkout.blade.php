@@ -239,15 +239,15 @@
                                     <table class="table">
                                         <tbody class="orderSummary">
                                             <tr class="row-total-amount">
-                                                <td class="text-left">Thành tiền</td>
+                                                <td class="text-left">Tạm tính</td>
                                                 <td class="text-right">
                                                     <strong class="">{{ $cart->getSubTotalFormat() }}</strong>
                                                 </td>
                                             </tr>
                                             <tr class="row-total-amount">
-                                                <td class="text-left">Tổng số</td>
+                                                <td class="text-left">Thành tiền</td>
                                                 <td class="text-right">
-                                                    <strong class="text-danger">{{ $cart->getTotalFormat() }}</strong>
+                                                    <strong class="">{{ $cart->getTotalFormat() }}</strong>
                                                 </td>
                                             </tr>
                                         </tbody>

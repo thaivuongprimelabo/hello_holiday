@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Web\Controllers\AppController;
 use Web\Helpers\Cart;
 use Web\Helpers\CartItem;
+use Web\Mails\OrderSuccessMail;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends AppController
 {
@@ -140,6 +142,8 @@ class CartController extends AppController
                     $order->orderDetails()->saveMany($orderDetails);
 
                 }
+
+                Mail::to($order->customer_email)->send(new OrderSuccessMail($order));
 
                 $cart->destroy();
 

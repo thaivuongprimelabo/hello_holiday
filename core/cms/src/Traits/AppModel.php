@@ -41,7 +41,7 @@ trait AppModel
 
     public function getCost()
     {
-        return $this->price ? Utils::formatCurrency($this->cost) . ' đ' : 'Liên hệ';
+        return $this->cost ? Utils::formatCurrency($this->cost) . ' đ' : 'Liên hệ';
     }
 
     public function getCreatedAt()

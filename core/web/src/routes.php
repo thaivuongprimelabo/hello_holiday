@@ -6,6 +6,7 @@ use Web\Controllers\PageController;
 use Web\Controllers\ProductController;
 use Web\Controllers\ContactController;
 use Web\Controllers\PostController;
+use Web\Controllers\TestController;
 
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -45,6 +46,9 @@ Route::group(['middleware' => 'web'], function () {
     });
 
 });
+
+Route::get('/test-mail', [TestController::class, 'testMail'])->name("config.cache");
+
 
 Route::get('/config-cache', function () {
     $exitCode = Artisan::call('config:cache');
