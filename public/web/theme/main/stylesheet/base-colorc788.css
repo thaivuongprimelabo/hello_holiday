@@ -1,0 +1,32 @@
+:root {
+    --default_color: #111;
+    --line-height: 1.425;
+    --main_color: #d35400;
+    /* top bar */
+    --topbar_color: #d35400;
+    /* end top bar */
+
+    /* main menu */
+    --mainmenu_color: #5D5C5C;
+    --text_mainmenu_color: #fff;
+    --text_mainmenu_hover_color: #ebe9e9;
+    /* end main menu */
+
+    /* text color */
+    --title_color: #27282c;
+    --text_color: #828282;
+    --text_hover_color: #d35400;
+    --text_price_color: #111;
+    /* end text color */
+
+    /* footer */
+    --bg_footer_color: #d35400;
+    --text_link_footer_color: #d35400;
+    --bg_copyright_color: #d35400;
+    --text_copyright_color: #d35400;
+    /* end footer */
+
+    /* btn */
+    --btn_color: #d35400;
+    /* end btn */
+}
