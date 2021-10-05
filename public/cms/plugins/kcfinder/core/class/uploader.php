@@ -447,6 +447,15 @@ class uploader {
         $extension = file::getExtension($file['name']);
         $typePatt = strtolower(text::clearWhitespaces($this->types[$this->type]));
 
+        if (isset($file['size']) && $file['size'] > $this->config['max_upload_size']) {
+            $file['error'] = 99;
+        }
+
+        if ($file['error'] == 99) {
+            return $this->label("The uploaded file exceeds 200KB.");
+        }
+
+
         // CHECK FOR UPLOAD ERRORS
         if ($file['error'])
             return

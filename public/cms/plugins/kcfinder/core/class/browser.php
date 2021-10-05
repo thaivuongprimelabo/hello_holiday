@@ -291,7 +291,8 @@ class browser extends uploader {
                 $return[] = $this->moveUploadFile(array(
                     'name' => $name,
                     'tmp_name' => $this->file['tmp_name'][$i],
-                    'error' => $this->file['error'][$i]
+                    'error' => $this->file['error'][$i],
+                    'size' => $this->file['size'][$i]
                 ), $dir);
             }
             return implode("\n", $return);

@@ -85,6 +85,7 @@ $_CONFIG = array(
     ),
 
     'deniedExts' => "exe com msi bat cgi pl php phps phtml php3 php4 php5 php6 py pyc pyo pcgi pcgi3 pcgi4 pcgi5 pchi6",
+    'max_upload_size' => 204800,
 
 
 // MISC SETTINGS
