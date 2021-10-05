@@ -134,12 +134,12 @@
         $('.ckeditor-full').each(function(e){
             if(!this.id) return;
             CKEDITOR.replace( this.id, {
-                // filebrowserBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:files') }}',
-                // filebrowserImageBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:images') }}',
-                // filebrowserFlashBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:flash') }}',
-                // filebrowserUploadUrl : '{{ asset('cms/plugins/kcfinder/upload.php?opener:ckeditor&type:files') }}',
-                // filebrowserImageUploadUrl : '{{ asset('cms/plugins/kcfinder/upload.php?opener:ckeditor&type:images') }}',
-                // filebrowserFlashUploadUrl : '{{ asset('cms/plugins/kcfinder/upload.php?opener:ckeditor&type:flash') }}',
+                filebrowserBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:files') }}',
+                filebrowserImageBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:images') }}',
+                filebrowserFlashBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:flash') }}',
+                filebrowserUploadUrl : '{{ asset('cms/plugins/kcfinder/upload.php?opener:ckeditor&type:files') }}',
+                filebrowserImageUploadUrl : '{{ asset('cms/plugins/kcfinder/upload.php?opener:ckeditor&type:images') }}',
+                filebrowserFlashUploadUrl : '{{ asset('cms/plugins/kcfinder/upload.php?opener:ckeditor&type:flash') }}',
                 height: 500, 
                 customConfig: '{{ asset('cms/plugins/ckeditor/editor.full.js') }}' 
             });
