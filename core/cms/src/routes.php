@@ -106,6 +106,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/', [ContactController::class, 'index'])->name('list');
             Route::get('/search', [ContactController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/edit/{contact}', [ContactController::class, 'save'])->name('edit');
+            Route::post('/remove}', [ContactController::class, 'remove'])->name('remove');
         });
 
         // Config
