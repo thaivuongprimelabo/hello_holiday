@@ -16,4 +16,8 @@
     </td>
 </tr>
 @endforeach
+@else
+<tr>
+    <td>{{ trans('cms::auth.no_data_found') }}</td>
+</tr>
 @endif

@@ -67,4 +67,5 @@ return [
         'list' => 'Liên hệ',
         'edit' => 'Trả lời'
     ],
+    'no_data_found' => 'Không có dữ liệu.'
 ];
