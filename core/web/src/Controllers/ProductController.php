@@ -34,6 +34,7 @@ class ProductController extends AppController
         $slug = $request->slug;
         $product = Product::query()->active()->where('name_url', $slug)->first();
 
+        $this->error404($product);
         $this->setSEO([
             'title' => $product->getName(),
             'web_description' => $product->seo_description,
@@ -53,6 +54,7 @@ class ProductController extends AppController
         $slug = $request->slug;
         $category = Category::query()->active()->where('name_url', $slug)->first();
 
+        $this->error404($category);
         $this->setSEO([
             'title' => $category->getName(),
             'url' => $category->getLink(),
@@ -67,7 +69,7 @@ class ProductController extends AppController
     {
         $slug = $request->child_slug;
         $category = ChildCategory::query()->active()->where('name_url', $slug)->first();
-
+        $this->error404($category);
         $this->setSEO([
             'title' => $category->getName(),
             'url' => $category->getLink(),

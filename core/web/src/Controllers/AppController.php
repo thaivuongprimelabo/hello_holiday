@@ -57,4 +57,11 @@ class AppController extends Controller
         JsonLd::setType('WebSite');
         JsonLd::addImage($image);
     }
+
+    public function error404($source)
+    {
+        if (is_null($source)) {
+            return abort(404);
+        }
+    }
 }

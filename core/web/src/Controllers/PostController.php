@@ -28,7 +28,7 @@ class PostController extends AppController
     {
         $slug = $request->slug;
         $post = Post::query()->active()->where('name_url', $slug)->first();
-
+        $this->error404($post);
         $this->setSEO([
             'title' => $post->getName(),
             'url' => $post->getLink(),
