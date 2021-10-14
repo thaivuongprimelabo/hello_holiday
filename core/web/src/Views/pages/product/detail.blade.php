@@ -44,6 +44,7 @@
                     <div class="row">
                         <div class="product-detail-left product-images col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <div class="">
+                                @if(!is_null($product->imagesProduct()->first()))
                                 <div class="col_large_default large-image">
                                     <a href="{{ optional($product->imagesProduct()->first())->getLargeImage() }}"
                                         class="large_image_url checkurl">
@@ -52,6 +53,7 @@
                                             data-zoom-image="{{ optional($product->imagesProduct()->first())->getLargeImage() }}" />
                                     </a>
                                 </div>
+                                @endif
                                 <div class="aaa">
                                     <div id="gallery_02"
                                         class="owl-carousel owl-theme thumbnail-product thumb_product_details not-dqowl"

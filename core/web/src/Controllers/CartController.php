@@ -61,8 +61,8 @@ class CartController extends AppController
         $product = Product::find($params['id']);
         $cartItem = new CartItem();
         $cartItem->setId($product->getKey());
-        $cartItem->setName($product->name);
-        $cartItem->setImage($product->imagesProduct()->first()->getSmallImage());
+        $cartItem->setName($product->getName());
+        $cartItem->setImage(optional($product->imagesProduct()->first())->getSmallImage());
         if($product->discount) {
             $cartItem->setPrice($product->getOriginDiscountPrice());
         } else {
