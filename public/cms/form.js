@@ -31,6 +31,7 @@ $(function () {
             uploadField.setAttribute("name", "upload_file[" + id + "][]");
             uploadField.setAttribute("class", "upload_file");
             uploadField.setAttribute("style", "display: none");
+            uploadField.setAttribute("accept", "image/*");
             uploadField.click();
             $(parent).append(uploadField);
         } else {
@@ -69,6 +70,7 @@ $(function () {
         uploadField.setAttribute("name", "upload_file[" + id + "][]");
         uploadField.setAttribute("class", "upload-image-file");
         uploadField.setAttribute("max-upload", parent.attr("max-upload"));
+        uploadField.setAttribute("accept", "image/*");
         uploadField.click();
         $("#submit-form").append(uploadField);
     });
