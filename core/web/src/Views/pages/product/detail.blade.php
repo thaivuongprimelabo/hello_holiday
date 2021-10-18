@@ -6,7 +6,7 @@
             <div class="col-xs-12">
                 <ul class="breadcrumb">
                     <li class="home">
-                        <a href="index.html">
+                        <a href="/">
                             <span><i class="fa fa-home"></i> {{ trans('web::label.home') }}</span>
                         </a>
                         <span><i class="fa">/</i></span>

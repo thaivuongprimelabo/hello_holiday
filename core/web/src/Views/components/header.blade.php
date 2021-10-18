@@ -11,7 +11,7 @@
                             </div>
                             <div class="col-lg-3 col-md-3">
                                 <div class="logo">
-                                    <a href="index.html" class="logo-wrapper ">
+                                    <a href="/" class="logo-wrapper ">
                                         <img src="{{ $config->getWebLogo() }}" alt="$config->company_name">
                                     </a>
                                 </div>
@@ -47,7 +47,7 @@
                                                 <div class="mini-cart text-xs-center">
                                                     <div class="heading-cart">
                                                         <i class="fa fa-shopping-cart" style="font-size: 26px; margin-right: 15px; color: #EB5858" aria-hidden="true"></i>
-                                                        <a class="bg_cart" href="checkout/cart.html" title="Giỏ hàng">
+                                                        <a class="bg_cart" href="{{ route('cart.index') }}" title="Giỏ hàng">
                                                             <span class="count_item count_item_pr cart-total">(0)</span>
                                                         </a>
                                                     </div>
@@ -61,7 +61,7 @@
                                                 class="top-cart-contain f-right hidden-lg hidden-md visible-xs visible-sm">
                                                 <div class="mini-cart text-xs-center">
                                                     <div class="heading-cart-mobi">
-                                                        <a class="bg_cart" href="checkout/cart.html" title="Giỏ hàng">
+                                                        <a class="bg_cart" href="{{ route('cart.index') }}" title="Giỏ hàng">
                                                             <img alt="Giỏ hàng"
                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
                                                                 data-src="{{ asset('web/image/icon_cart_mobi.png') }}"
