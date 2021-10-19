@@ -6,6 +6,7 @@ use Web\Controllers\PageController;
 use Web\Controllers\ProductController;
 use Web\Controllers\ContactController;
 use Web\Controllers\PostController;
+use Web\Controllers\SitemapXmlController;
 use Web\Controllers\TestController;
 
 Route::group(['middleware' => 'web'], function () {
@@ -44,6 +45,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::match(['get', 'post'], '/checkout', [CartController::class, 'checkout'])->name('checkout');
         Route::get('/checkout/success', [CartController::class, 'checkoutSuccess'])->name('checkoutSuccess');
     });
+
+    Route::get('/sitemap.xml', [SitemapXmlController::class, 'index'])->name("sitemap.index");
 
 });
 
