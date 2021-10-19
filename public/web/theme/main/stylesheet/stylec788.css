@@ -3,7 +3,29 @@
 
 @media (max-width: 767px) {
     .awe-section-1 {
-        margin-bottom: 15px !important
+        /* margin-bottom: 15px !important */
+    }
+
+    .post-box{
+        border: 1px solid #ddd;
+        width: 90%;
+        margin: 0px auto;
+        padding: 0px 10px !important;
+        margin-bottom: 10px;
+    }
+
+    .banner-img {
+        display: table-cell;
+        vertical-align: middle;
+        height: 160px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .banner-img {
+        display: table-cell;
+        vertical-align: middle;
+        height: 150px !important;
     }
 }
 
@@ -19,6 +41,20 @@
     .awe-section-8 {
         margin-bottom: 10px
     }
+
+    .post-box{
+        border: 1px solid #ddd;
+        padding:10px !important;
+        margin-left: 10px !important;
+        min-height: 365px;
+    }
+
+    .banner-img {
+        display: table-cell;
+        vertical-align: middle;
+        height: 150px !important;
+    }
+    
 }
 
 .row.row-gutter-10 {
@@ -11384,6 +11420,18 @@ h2.title-line {
   height: 30px;
   animation: spin 2s linear infinite;
   margin: 0px auto;
+}
+
+.post-box img {
+    display: block; 
+    width: 85%; 
+    margin: 0px auto;
+}
+
+.banner-img img {
+    display: block; 
+    width: 70% !important; 
+    margin: 0px auto;
 }
 
 @keyframes spin {

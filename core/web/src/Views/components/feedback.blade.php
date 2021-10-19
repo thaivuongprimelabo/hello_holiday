@@ -1,6 +1,7 @@
 <div class="content_mainbottom">
     <div class="container">
         <div class="row">
+            
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 @if($posts->count())
                 <section class="awe-section-9 " id="news_custom-0">
@@ -9,11 +10,11 @@
                             <div class="row">
                                 <div class="col-12 col-lg-12">
                                     <div class="news">
-                                        <h2 class="title-line mb-0">TIN MỚI NHẤT</h2>
+                                        <h2 class="title-line mb-3">TIN MỚI NHẤT</h2>
                                         <div class="row">
                                             @foreach($posts as $post)
-                                            <div class="col-12 col-sm-3">
-                                                <article class="featured">
+                                            <div class="col-12 col-sm-3 no-padding">
+                                                <article class="post-box">
                                                     <div class="thumb">
                                                         <a
                                                             href="{{ $post->getLink() }}">
