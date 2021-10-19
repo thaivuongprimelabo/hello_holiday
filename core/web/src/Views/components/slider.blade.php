@@ -5,7 +5,7 @@
         @foreach($banners as $banner)
         <div class="item">
             <a href="{{ $banner->link }}" target="_blank">
-            <img src="{{ $banner->getBanner() }}" alt="" class="img-responsive" /></a>
+            <img src="{{ $banner->getBanner() }}" alt="" /></a>
         </div>
         @endforeach
     </div>

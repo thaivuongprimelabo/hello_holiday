@@ -17,7 +17,11 @@
     .banner-img {
         display: table-cell;
         vertical-align: middle;
-        height: 160px !important;
+        height: 135px !important;
+    }
+
+    .home-slider img {
+        height: 200px !important;
     }
 }
 
