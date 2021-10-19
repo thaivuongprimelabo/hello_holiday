@@ -81,7 +81,7 @@
                                     <span style="font-weight:initial">(Tối đa: {{ \Cms\Constants::formatMemory(session('config')->max_upload_list['image_product']) }}. Định dạng: *.jpg, *.png, *.jpeg)</span>
                                 </div>
                                 <div id="selected_images" class="row">
-                                    <div class="col-md-3 mb-2 clone" style="position: relative; display: none">
+                                    <div class="col-md-3 col-lg-2 mb-2 clone" style="position: relative; display: none">
                                         <button type="button" class="btn btn-sm btn-default mb-2 remove-image-btn"  style="position: absolute; top: 4px; right: 16px;" data-default-image="{{ $product->getDefaultImage() }}"><i class="fa fa-trash"></i></button>
                                         <img src="{{ $product->getAvatar() }}" id="preview" class="img-thumbnail" style="width:100px;" />
                                         <br />
@@ -90,7 +90,7 @@
 
                                     @if($product->exists)
                                     @foreach($product->imagesProduct as $images)
-                                    <div class="col-md-3 mb-2" style="position: relative;">
+                                    <div class="col-md-3 col-lg-2 mb-2" style="position: relative;">
                                         <button type="button" class="btn btn-sm btn-default mb-2 remove-image-btn"  style="position: absolute; top: 4px; right: 16px;" data-image-id="{{ $images->id }}" data-default-image="{{ $product->getDefaultImage() }}"><i class="fa fa-trash"></i></button>
                                         <img src="{{ $images->getMediumImage() }}" id="preview" class="img-thumbnail" style="width:100px;" />
                                         <br />

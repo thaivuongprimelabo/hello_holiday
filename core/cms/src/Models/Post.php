@@ -17,7 +17,7 @@ class Post extends Model
 
     public function getDescription()
     {
-        return strip_tags($this->description);
+        return strip_tags(html_entity_decode($this->description));
     }
 
 }
