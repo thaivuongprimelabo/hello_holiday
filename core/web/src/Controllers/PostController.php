@@ -33,6 +33,7 @@ class PostController extends AppController
             'title' => $post->getName(),
             'url' => $post->getLink(),
             'image' => $post->getPhoto(),
+            'web_description' => $post->getDescription(),
         ]);
 
         return view('web::pages.post.detail', compact('post'));
