@@ -9,7 +9,8 @@ $(document).ready(function() {
     });
 
     $(".open-child-level2").click(function () {
-        let level2 = $(this).parent().find(".level2");
+        let id = $(this).attr("data-id");
+        let level2 = $(this).parent().parent().find(".level-2-" + id);
         if (level2.hasClass("hidden")) {
             level2.removeClass("hidden");
         } else {
