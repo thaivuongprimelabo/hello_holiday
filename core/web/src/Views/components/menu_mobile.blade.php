@@ -12,10 +12,10 @@
                     <a href="/">{{ trans('web::label.home') }}</a>
                 </li>
                 <li class="level0 level-top parent level_ico">
-                    <a href="{{ route('page.about') }}">{{ trans('web::label.about') }}</a>
+                    <a href="#" target="_self">{{ trans('web::label.vrrc') }}</a>
                 </li>
                 <li class="level0 level-top parent level_ico">
-                    <a href="{{ route('product.index') }}">{{ trans('web::label.product') }}</a>
+                    <a href="https://gulfoil.vn/" target="_self">{{ trans('web::label.gulfoil') }}</a>
                 </li>
                 <li class="level0 level-top parent level_ico">
                     <a href="{{ route('post.index') }}">{{ trans('web::label.news') }}</a>
@@ -25,7 +25,7 @@
                 </li>
                 @if(isset($categories))
                 <li class="level0 level-top parent level_ico category-menu-mobile">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)" class="category-mobile-1">
                         Danh mục sản phẩm
                     </a>
                     <i class="fa fa-arrow-circle-right open-child-level1" style="color: #ffffff; display:block; line-height: 35px" aria-hidden="true"></i>
@@ -38,21 +38,17 @@
                             <a href="{{ $category->getLink() }}">
                                 {{ $category->getName() }}
                             </a>
-                            @if($count)
-                            <i class="fa fa-arrow-circle-right open-child-level2" style="color: #ffffff" aria-hidden="true"></i>
-                            @endif
-                            @if($count)
-                            <ul class="level2 level-top level_ico hidden">
-                                @foreach($category->childCategories as $childCategory)
-                                <li style="border-bottom: 1px solid #ffffff">
-                                    <a href="{{ $childCategory->getLink() }}">
-                                        {{ $childCategory->getName() }}
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
-                            @endif
+                            <i class="fa fa-arrow-circle-right open-child-level2" style="color: #ffffff; display:block; line-height: 20px" data-id="{{ $category->id }}" aria-hidden="true"></i>
                         </li>
+                        @if($count)
+                            @foreach($category->childCategories as $childCategory)
+                            <li style="border-bottom: 1px solid #ffffff; padding-left: 20px" class="hidden level-2-{{ $category->id }}">
+                                <a href="{{ $childCategory->getLink() }}">
+                                    {{ $childCategory->getName() }}
+                                </a>
+                            </li>
+                            @endforeach
+                        @endif
                         @endforeach
                     </ul>
                 </li>
