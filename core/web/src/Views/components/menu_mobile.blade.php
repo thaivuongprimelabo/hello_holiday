@@ -1,7 +1,8 @@
 <!-- Menu mobile -->
 <div id="mySidenav" class="sidenav menu_mobile hidden-md hidden-lg">
     <div class="top_menu_mobile">
-        <span class="close_menu"><img src="{{ $config->getWebLogo() }}" alt="{{ $config->web_title }}"></span>
+        <span class="close_menu"><img src="{{ $config->getWebLogo() }}" alt="{{ $config->web_title }}" style="height:70px;
+"></span>
     </div>
     <div class="content_memu_mb">
         <div class="link_list_mobile">
@@ -56,11 +57,11 @@
                     </ul>
                 </li>
                 @endif
-                
+
             </ul>
 
             <ul class="ct-mobile">
-                
+
             </ul>
         </div>
     </div>

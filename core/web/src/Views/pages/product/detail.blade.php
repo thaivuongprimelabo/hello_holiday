@@ -184,7 +184,9 @@
                                             {!! $product->summary !!}
                                         </div>
                                         <div id="tab-review" class="tab-pane fade in active">
-                                            <div class=""></div>
+                                            <div class="">
+                                                <div class="fb-comments" data-href="{{ url()->current() }}" data-width="100%" data-numposts="5"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

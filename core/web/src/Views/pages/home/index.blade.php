@@ -19,7 +19,7 @@
 </section>
 <div class="container-fluid">
     <div class="row">
-        <div id="content" class="main">
+        <div id="content">
             @if($categories->count())
             <section class="awe-section-2 container service_banner_custom " id="service_banner-0">
                 <div class="banner_owl owl-carousel owl-theme not-aweowl">
@@ -27,7 +27,7 @@
                     <div class="item">
                         <a href="#">
                             <div class="trend-item">
-                                <figure style="display: table-cell; vertical-align: middle; height: 224px">
+                                <figure class="banner-img">
                                     <img src="{{ $vendor->getLogo() }}" alt="{{ $vendor->getName() }}">
                                 </figure>
                                 <h4 class="title-banner-custom title-banner-custom-0">{{ $vendor->getName() }}</h4>
@@ -112,13 +112,13 @@
             autoplayHoverPause: false,
             responsive: {
                 0: {
-                    items: 1
+                    items: 2
                 },
                 600: {
                     items: 4
                 },
                 1000: {
-                    items: 5
+                    items: 7
                 }
             }
         });
