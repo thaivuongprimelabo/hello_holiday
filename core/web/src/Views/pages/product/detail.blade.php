@@ -183,7 +183,7 @@
                                         <div id="tab-description" class="tab-pane fade in active">
                                             {!! $product->summary !!}
                                         </div>
-                                        <div id="tab-review" class="tab-pane fade in active">
+                                        <div id="tab-review" class="tab-pane">
                                             <div class="">
                                                 <div class="fb-comments" data-href="{{ url()->current() }}" data-width="100%" data-numposts="5"></div>
                                             </div>
