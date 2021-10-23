@@ -28,7 +28,6 @@ class MenuController extends AppController
             $menu->name = $request->input('name');
             $menu->url = $request->input('url');
             $menu->parent_menu_id = $request->input('parent_menu_id');
-            $menu->type = $request->input('type');
             $menu->order = $request->input('order');
             $menu->status = Constants::STATUS_ACTIVE;
             $menu->target = $request->input('target');
@@ -42,6 +41,9 @@ class MenuController extends AppController
 
             return redirect()->route('auth.menu.list')->with('success', $message);
         }
+        $menu->url = route('home');
+        $menu->order = 99;
+        $menu->target = '_self';
         $menuParents = Menu::query()->where('parent_menu_id', null)->get();
         return view('cms::auth.pages.menu.form', compact('menu', 'menuParents'));
     }

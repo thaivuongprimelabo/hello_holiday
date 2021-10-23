@@ -46,6 +46,8 @@
                                 'name' => 'order', 
                                 'item' => $menu,
                                 'type' => 'number',
+                                'min' => 1,
+                                'max' => 9999,
                             ])
 
                             @include('cms::auth.components.form.checkbox', [

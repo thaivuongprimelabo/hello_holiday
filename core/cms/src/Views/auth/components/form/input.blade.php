@@ -13,6 +13,8 @@
         value="{{ old($name, optional($item ?? '')->$name) }}" 
         placeholder="{{ $label }}"
         {{ isset($maxlength) ? 'maxlength=' . $maxlength : '' }}
+        {{ isset($min) ? 'min=' . $min : ''}}
+        {{ isset($max) ? 'max=' . $max : ''}}
     />
     @error($name)<span class="text-danger">{{ $message }}</span>@enderror
 </div>
