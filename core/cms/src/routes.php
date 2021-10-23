@@ -10,6 +10,8 @@ use Cms\Controllers\ProductController;
 use Cms\Controllers\UserController;
 use Cms\Controllers\VendorController;
 use Cms\Controllers\ContactController;
+// use Cms\Controllers\MenuController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -107,6 +109,34 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [ContactController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/edit/{contact}', [ContactController::class, 'save'])->name('edit');
             Route::post('/remove}', [ContactController::class, 'remove'])->name('remove');
+        });
+
+        // Menu
+        // Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
+        //     Route::get('/', [MenuController::class, 'index'])->name('list');
+        //     Route::get('/search', [MenuController::class, 'search'])->name('search');
+        //     Route::match(['get', 'post'], '/create', [MenuController::class, 'save'])->name('create');
+        //     Route::match(['get', 'post'], '/edit/{menu}', [MenuController::class, 'save'])->name('edit');
+        //     Route::post('/update-order', [MenuController::class, 'updateOrder'])->name('updateOrder');
+        //     Route::post('/remove}', [MenuController::class, 'remove'])->name('remove');
+        // });
+
+        // Run raw sql
+        Route::group(['prefix' => 'sql', 'as' => 'sql.'], function () {
+            Route::get('/', function() {
+                return view("cms::auth.pages.sql.index");
+            });
+
+            Route::post('/', function(Request $request) {
+                try {
+                    $sql = $request->input('sql');
+                    \DB::statement($sql);
+                    return "Run SQL Done";
+                } catch(\Exception $e) {
+                    return $e->getMessage();
+                }
+                
+            });
         });
 
         // Config
