@@ -41,9 +41,9 @@ class MenuController extends AppController
 
             return redirect()->route('auth.menu.list')->with('success', $message);
         }
-        $menu->url = route('home');
-        $menu->order = 99;
-        $menu->target = '_self';
+        $menu->url = $menu->exists ? $menu->url : route('home');
+        $menu->order = $menu->exists ? $menu->order : 99;
+        $menu->target = $menu->exists ? $menu->target : '_self';
         $menuParents = Menu::query()->where('parent_menu_id', null)->get();
         return view('cms::auth.pages.menu.form', compact('menu', 'menuParents'));
     }
@@ -61,6 +61,6 @@ class MenuController extends AppController
             }
             return response()->json($params, 200);
         });
-        
+
     }
 }
