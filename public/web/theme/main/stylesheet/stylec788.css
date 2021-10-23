@@ -10515,6 +10515,38 @@ li.menu-item.show-room {
     background: var(--main_color)
 }
 
+li.menu-item {
+    position: relative;
+}
+
+.main-menu .navbar-nav > li {
+    padding: 0px !important;
+}
+
+li.menu-item:hover ul.menu-sub-item {
+    display: block;
+}
+
+ul.menu-sub-item {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    width: 250px;
+    background: var(--mainmenu_color);
+}
+
+ul.menu-sub-item li a {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #dddddd1f;
+    text-align: left;
+    padding-left: 15px !important;
+}
+
+ul.menu-sub-item li a:hover {
+    background: var(--main_color);
+}
+
 @media (max-width: 1199px) {
     .m-toolbar {
         position: absolute;

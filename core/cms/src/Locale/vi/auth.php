@@ -67,5 +67,10 @@ return [
         'list' => 'Liên hệ',
         'edit' => 'Trả lời'
     ],
+    'menu' => [
+        'list' => 'Danh sách menu',
+        'create' => 'Đăng ký menu',
+        'edit' => 'Chỉnh sửa menu'
+    ],
     'no_data_found' => 'Không có dữ liệu.'
 ];

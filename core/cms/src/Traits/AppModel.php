@@ -180,4 +180,9 @@ trait AppModel
     {
         return asset('cms/dist/img/boxed-bg.jpg');
     }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
 }

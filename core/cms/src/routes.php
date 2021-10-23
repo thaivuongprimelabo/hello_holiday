@@ -2,19 +2,17 @@
 use Cms\Controllers\BannerController;
 use Cms\Controllers\CategoryController;
 use Cms\Controllers\ConfigController;
+use Cms\Controllers\ContactController;
 use Cms\Controllers\LoginController;
+use Cms\Controllers\MenuController;
 use Cms\Controllers\OrderController;
 use Cms\Controllers\PageController;
 use Cms\Controllers\PostController;
 use Cms\Controllers\ProductController;
 use Cms\Controllers\UserController;
 use Cms\Controllers\VendorController;
-use Cms\Controllers\ContactController;
-// use Cms\Controllers\MenuController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpFoundation\StreamedResponse;
-
 
 Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], function () {
     Route::match(['get', 'post'], '/login', [LoginController::class, 'index'])->name('login');
@@ -112,30 +110,30 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
         });
 
         // Menu
-        // Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
-        //     Route::get('/', [MenuController::class, 'index'])->name('list');
-        //     Route::get('/search', [MenuController::class, 'search'])->name('search');
-        //     Route::match(['get', 'post'], '/create', [MenuController::class, 'save'])->name('create');
-        //     Route::match(['get', 'post'], '/edit/{menu}', [MenuController::class, 'save'])->name('edit');
-        //     Route::post('/update-order', [MenuController::class, 'updateOrder'])->name('updateOrder');
-        //     Route::post('/remove}', [MenuController::class, 'remove'])->name('remove');
-        // });
+        Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
+            Route::get('/', [MenuController::class, 'index'])->name('list');
+            Route::get('/search', [MenuController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create', [MenuController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{menu}', [MenuController::class, 'save'])->name('edit');
+            Route::post('/update-order', [MenuController::class, 'updateOrder'])->name('updateOrder');
+            Route::post('/remove}', [MenuController::class, 'remove'])->name('remove');
+        });
 
         // Run raw sql
         Route::group(['prefix' => 'sql', 'as' => 'sql.'], function () {
-            Route::get('/', function() {
+            Route::get('/', function () {
                 return view("cms::auth.pages.sql.index");
             });
 
-            Route::post('/', function(Request $request) {
+            Route::post('/', function (Request $request) {
                 try {
                     $sql = $request->input('sql');
                     \DB::statement($sql);
                     return "Run SQL Done";
-                } catch(\Exception $e) {
+                } catch (\Exception $e) {
                     return $e->getMessage();
                 }
-                
+
             });
         });
 
@@ -143,92 +141,6 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
         Route::group(['prefix' => 'config', 'as' => 'config.'], function () {
             Route::match(['get', 'post'], '/edit', [ConfigController::class, 'save'])->name('edit');
         });
-
-        Route::get('export', function () {
-            // $response = new StreamedResponse(function () {
-            //     // Open output stream
-            //     $handle = fopen('php://output', 'w');
-
-            //     // Add CSV headers
-            //     fputcsv($handle, [
-            //         'id',
-            //         'name',
-            //         'email',
-            //     ]);
-
-            //     // Get products
-            //     // foreach (\App\Models\Testing::all() as $product) {
-            //     //     // Add a new row with data
-            //     //     fputcsv($handle, [
-            //     //         $product->id,
-            //     //         $product->name,
-            //     //     ]);
-            //     // }
-
-            //     \App\Models\Testing::chunk(5, function ($products) use ($handle) {
-            //         foreach ($products as $product) {
-            //             // Add a new row with data
-            //             fputcsv($handle, [
-            //                 $product->id,
-            //                 $product->name,
-            //                 $product->email,
-            //             ]);
-            //         }
-            //     });
-
-
-            //     // Close the output stream
-            //     fclose($handle);
-            // }, 200, [
-            //     'Content-Type' => 'text/csv',
-            //     'Content-Disposition' => 'attachment; filename="export.csv"',
-            // ]);
-
-            ini_set('display_errors', 1);
-            error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-
-
-            $result = \Cms\Models\Testing::query()->limit(100000)->get()->toArray();
-
-            echo 'ok';
-            exit;
-
-            $arr_item = array(
-                'id',
-                'name',
-            );
-
-            foreach( $arr_item as $elem )
-                $csv_data .= $elem . ',';
-                $csv_data = rtrim( $csv_data, ',' ) . "\n";
-
-            // CSVデータの作成（データ部）
-            for( $i = 0; $i < count5x( $result ); $i++ ) {
-                $csv_data .= $result[ $i ][ 'id' ] . ','
-                    . $result[ $i ][ 'name' ] . "\n";
-            }
-
-            // CSVファイル名の設定
-            $csv_file = 'product.csv';
-
-            // データの文字コード変更
-            $csv_data = mb_convert_encoding($csv_data, CHAR_CSV, CHAR_DB);
-
-            // MIMEタイプの設定
-            header('Content-Type: application/octet-stream');
-
-            // ファイル名の表示
-            header('Content-Disposition: attachment; filename=' . $csv_file);
-
-            // データの出力
-            print $csv_data;
-            exit;
-
-
-
-            return $response;
-        });
-
 
     });
 });

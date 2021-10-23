@@ -48,6 +48,12 @@
                   Đăng ký mới
                 </a>
                 @endif
+                @if(Route::has('auth.menu.updateOrder'))
+                <a href="javascript:void(0)" id="update-order-btn" class="btn btn-default btn-sm">
+                  <i class="fas fa-sort"></i>
+                  Cập nhật thứ tự
+                </a>
+                @endif
 
                 <div class="float-right">
                     <span id="total-record" class="text-sm"></span>&nbsp;&nbsp;&nbsp;

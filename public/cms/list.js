@@ -1,14 +1,15 @@
 $(function () {
     $.extend({
         url: window.location.href + "/search",
+        update_order_url: window.location.href + "/update-order",
         params: {},
         searchList: function (url) {
             let _url = url ? url : $.url;
             let base_url = localStorage.getItem("url");
             if (_url.indexOf(base_url) >= 0) {
-                $.params['page'] = localStorage.getItem("page");
+                $.params["page"] = localStorage.getItem("page");
             } else {
-                $.params['page'] = 1;
+                $.params["page"] = 1;
                 localStorage.removeItem("url");
                 localStorage.removeItem("page");
             }
@@ -32,10 +33,36 @@ $(function () {
                     $("#pagination").html(data.pagination);
                     $("#total-record").html(data.total);
                     $("#page-overlay").hide();
-                    
                 });
             }
         },
+        updateOrder: function() {
+            let update_orders = [];
+            $(".update-order").each(function () {
+                let id = $(this).attr("data-id");
+                let order = $(this).val();
+                let bef_order = $(`#update_order_hidden_${id}`).val();
+                if (order !== bef_order) {
+                    update_orders.push({
+                        id: id,
+                        order: order,
+                    });
+                }
+            });
+
+            $.post({
+                url: $.update_order_url,
+                data: { update_orders: update_orders },
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+            }).then(function (res) {
+                console.log(res);
+                $.searchList();
+            });
+        }
     });
 
     $.searchList();
@@ -64,6 +91,10 @@ $(function () {
         localStorage.removeItem("url");
         localStorage.removeItem("page");
         window.open($("#create_url").val(), "_self");
+    });
+
+    $(document).on("click", "#update-order-btn", function () {
+        $.updateOrder();
     });
 
     $(document).on("click", "#check-all", function (e) {

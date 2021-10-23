@@ -74,6 +74,16 @@
             </a>
           </li>
           @endif
+          @if(Route::has('auth.menu.list'))
+          <li class="nav-item">
+            <a href="{{ route('auth.menu.list') }}" class="nav-link">
+            <i class="nav-icon fas fa-list"></i>
+              <p>
+                Menu Top
+              </p>
+            </a>
+          </li>
+          @endif
           @if(Route::has('auth.banner.list'))
           <li class="nav-item">
             <a href="{{ route('auth.banner.list') }}" class="nav-link">
