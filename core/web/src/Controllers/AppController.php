@@ -21,7 +21,7 @@ class AppController extends Controller
 
     private function getConfig() {
         $config = Config::first();
-        $menuList = Menu::getMenuList(true);
+        $menuList = Menu::getMenuList(true, true);
         \Log::info($menuList);
         $this->config = $config;
         View::share('config', $config);

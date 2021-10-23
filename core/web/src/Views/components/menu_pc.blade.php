@@ -11,7 +11,7 @@
                     @if($menuList)
                     @foreach($menuList as $menu)
                     <li class="menu-item {{ url()->current() == $menu->getUrl() ? 'active' : '' }}"><a href="{{ $menu->getUrl() }}" target="{{ $menu->target }}">{{ $menu->getName() }}</a>
-                        @if($menu->childMenus)
+                        @if($menu->childMenus && count($menu->childMenus))
                         <ul class="menu-sub-item">
                             @foreach($menu->childMenus as $childMenu)
                             <li><a href="{{ $childMenu->getUrl() }}" target="{{ $childMenu->target }}">{{ $childMenu->getName() }}</a></li>
