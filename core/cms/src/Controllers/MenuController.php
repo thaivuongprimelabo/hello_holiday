@@ -29,7 +29,7 @@ class MenuController extends AppController
             $menu->url = $request->input('url');
             $menu->parent_menu_id = $request->input('parent_menu_id');
             $menu->order = $request->input('order');
-            $menu->status = Constants::STATUS_ACTIVE;
+            $menu->status = $request->input('status');;
             $menu->target = $request->input('target');
             $menu->save();
 
@@ -41,6 +41,7 @@ class MenuController extends AppController
 
             return redirect()->route('auth.menu.list')->with('success', $message);
         }
+        $menu->status = Constants::STATUS_ACTIVE;
         $menu->url = $menu->exists ? $menu->url : route('home');
         $menu->order = $menu->exists ? $menu->order : 99;
         $menu->target = $menu->exists ? $menu->target : '_self';
