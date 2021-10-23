@@ -24,6 +24,10 @@ class Category extends Model
 
     public function getLink()
     {
+        if (!is_null($this->parent_id)) {
+            $parentCategory = Category::find($this->parent_id);
+            return route('product.productsByChildCategory', ['slug' => $parentCategory->name_url, 'child_slug' => $this->name_url]);
+        }
         return route('product.productsByCategory', ['slug' => $this->name_url]);
     }
 

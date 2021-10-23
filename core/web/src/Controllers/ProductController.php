@@ -33,6 +33,7 @@ class ProductController extends AppController
     {
         $slug = $request->slug;
         $product = Product::query()->active()->where('name_url', $slug)->first();
+        $otherProducts = Product::query()->active()->where('category_id', $product->category_id)->limit(10)->get();
 
         $this->error404($product);
         $this->setSEO([
@@ -44,6 +45,7 @@ class ProductController extends AppController
         ]);
 
         $this->output['product'] = $product;
+        $this->output['otherProducts'] = $otherProducts;
 
         return view('web::pages.product.detail', $this->output);
 
@@ -114,6 +116,13 @@ class ProductController extends AppController
                     $childCategories = $category->childCategories->pluck('id');
                     $query = $query->whereIn('category_id', $childCategories);
                 }
+                break;
+
+            case 'other-products':
+                $limit = 8;
+                $view = 'web::pages.product.other_products';
+                $categoryId = $request->category_id;
+                $query = $query->where('category_id', $categoryId);
                 break;
 
         }

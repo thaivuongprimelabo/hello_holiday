@@ -18,9 +18,6 @@ $(function () {
                 console.log(e);
             });
         },
-        getProductsByCategory: function() {
-
-        },
     });
 });
 
