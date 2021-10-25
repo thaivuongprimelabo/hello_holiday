@@ -4,6 +4,7 @@ namespace Cms\Controllers;
 
 use Cms\Controllers\AppController;
 use Cms\Models\Post;
+use Cms\Models\Tag;
 use Cms\Requests\PostRequest;
 use Illuminate\Support\Str;
 
@@ -28,6 +29,10 @@ class PostController extends AppController
             $post->seo_keywords = $request->has('seo_keywords') ? $request->input('seo_keywords') : $request->input('name');
             $post->seo_description = $request->has('seo_description') ? $request->input('seo_description') : $request->input('name');
             $post->status = !is_null($request->status) ? 1 : 0;
+            $tags = $request->input('tags');
+            if ($tags && count($tags)) {
+                $post->tags = implode(',', $tags);
+            }
             $post->save();
 
             if ($post->exists) {
@@ -38,6 +43,7 @@ class PostController extends AppController
 
             return redirect()->route('auth.post.list')->with('success', $message);
         }
-        return view('cms::auth.pages.post.form', compact('post'));
+        $tags = Tag::query()->active()->postTag()->get();
+        return view('cms::auth.pages.post.form', compact('post', 'tags'));
     }
 }

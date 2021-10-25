@@ -72,7 +72,7 @@ class AppController extends Controller
         return $model;
     }
 
-    private function getView()
+    protected function getView()
     {
         $prefix = request()->route()->getPrefix();
         $names = explode('/', $prefix);

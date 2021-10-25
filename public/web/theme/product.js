@@ -18,9 +18,6 @@ $(function () {
                 console.log(e);
             });
         },
-        getProductsByCategory: function() {
-
-        },
     });
 });
 
@@ -35,6 +32,11 @@ $(document).ready(function() {
         params.action = "category";
         params.slug = url[2] !== undefined ? url[2].replace('.html', '') : "";
         params.child_slug = url[3] !== undefined ? url[3].replace(".html", "") : "";
+    }
+
+    if (window.location.pathname.indexOf("tag") >= 0) {
+        params.action = "tag";
+        params.slug = url[3] !== undefined ? url[3].replace('.html', '') : "";
     }
 
     if (window.location.pathname.indexOf("search") < 0) {

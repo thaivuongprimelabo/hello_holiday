@@ -75,6 +75,13 @@
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 details-pro">
                             <h1 class="title-product">{{ $product->getName() }}</h1>
+                            <div class="row mb-3">
+                                <div class="col-sm-12">
+                                   @foreach($product->getTags() as $tag)
+                                   <a class="tag" href="{{ $tag->getProductLink() }}" title="{{ $tag->getName() }}"><i class="fa fa-tag"></i>&nbsp;{{ $tag->getName() }}</a>
+                                   @endforeach
+                                </div>
+                            </div>
                             <div class="group-status">
                                 <span class="first_status">
                                     Tình trạng:
@@ -193,8 +200,9 @@
                             </div>
                         </div>
                     </div>
-
+                    
                 </div>
+                
                 <aside class="col-sm-12 col-xs-12 col-md-3 sidebar right right-content clearfix">
                     <div id="column-right" class="right-column compliance">
                         <div class="module_service_details " id="service-0">
@@ -248,38 +256,31 @@
                     </div>
                 </aside>
             </div>
+            <section class="product_bestseller product_by_category">
+                <section class="section_bedroom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="heading">
+                                <h2 class="title-head">
+                                    <a href="#">Có thể bạn quan tâm</a>
+                                </h2>
+                            </div>
+
+                            <div id="product_list" class="product_comeback_wrap">
+                                
+                            </div>
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                </section>
+            </section>
         </div>
     </div>
 </div>
+<input type="hidden" id="category_id" value="{{ $product->category_id }}" />
 @endsection
 @section('scripts')
 <script type="text/javascript"
     src="{{ asset('web/theme/main/javascript/jquery.elevatezoom.minc788.js') }}"></script>
-<script type="text/javascript">
-    var ww = $(window).width();
-    $(document).ready(function () {
-        $('#gallery_02 a').on('click', function (e) {
-            e.preventDefault()
-        });
-        if (ww > 991) {
-            $('#img_01').elevateZoom({
-                gallery: 'gallery_02',
-                zoomWindowWidth: 300,
-                zoomWindowHeight: 300,
-                zoomWindowOffetx: 0,
-                easing: true,
-                scrollZoom: true,
-                cursor: 'pointer',
-                galleryActiveClass: 'active',
-                imageCrossfade: true,
-                loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
-            });
-        } else {
-            $('#gallery_02 a').on('click', function (e) {
-                var image = $(this).attr('href');
-                $(".large_image_url.checkurl").attr('href', image).find('#img_01').attr('src', image).attr('data-zoom-image', image);
-            });
-        }
-    });
-</script>
+<script type="text/javascript" src="{{ asset('web/theme/detail.js') }}"></script>
 @endsection

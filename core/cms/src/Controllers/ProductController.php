@@ -7,6 +7,7 @@ use Cms\Models\Category;
 use Cms\Models\ImageProduct;
 use Cms\Models\Product;
 use Cms\Models\Vendor;
+use Cms\Models\Tag;
 use Cms\Requests\ProductRequest;
 use Illuminate\Support\Str;
 
@@ -34,6 +35,11 @@ class ProductController extends AppController
             $product->seo_keywords = $request->has('seo_keywords') ? $request->input('seo_keywords') : $request->input('name');
             $product->seo_description = $request->has('seo_description') ? $request->input('seo_description') : $request->input('name');
             $product->status = $request->status == 'on' ? 1 : 0;
+            $tags = $request->input('tags');
+            if ($tags && count($tags)) {
+                $product->tags = implode(',', $tags);
+            }
+            
             $product->save();
 
             if ($product->exists) {
@@ -70,6 +76,7 @@ class ProductController extends AppController
 
         $categories = Category::query()->with('childCategories')->active()->where('parent_id', null)->get();
         $vendors = Vendor::query()->active()->get();
-        return view('cms::auth.pages.product.form', compact('product', 'categories', 'vendors'));
+        $tags = Tag::query()->active()->productTag()->get();
+        return view('cms::auth.pages.product.form', compact('product', 'categories', 'vendors', 'tags'));
     }
 }

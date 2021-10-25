@@ -23,6 +23,20 @@
                                 'item' => $post
                             ])
 
+                            @php
+                                $postTags = [];
+                                if ($post->tags) {
+                                    $postTags = explode(',', $post->tags);
+                                }
+                            @endphp
+
+                            @include('cms::auth.components.form.select_multiple', [
+                                'label' => 'Tags',
+                                'name' => 'tags[]',
+                                'item' => $postTags,
+                                'options' => $tags
+                            ])
+
                             @include('cms::auth.components.form.checkbox', [
                                 'label' => 'Đang hoạt động', 
                                 'name' => 'status', 

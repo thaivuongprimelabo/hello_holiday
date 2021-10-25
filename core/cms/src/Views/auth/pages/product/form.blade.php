@@ -18,7 +18,7 @@
                             
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Loại sản phẩm</label>
-                                <select class="form-control form-control-sm" name="category_id" id="field_category_id">
+                                <select class="select2" name="category_id" id="field_category_id"  style="width: 100%;">
                                     <option value="">---</option>
                                     @foreach($categories as $category)
                                     <option value="{{ $category->getKey() }}" disabled {{ $product->category_id == $category->getKey() ? 'selected' : '' }}>{{ $category->getName() }}</option>
@@ -29,6 +29,20 @@
                                 </select>
                                 @error('category_id')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
+
+                            @php
+                                $productTags = [];
+                                if ($product->tags) {
+                                    $productTags = explode(',', $product->tags);
+                                }
+                            @endphp
+
+                            @include('cms::auth.components.form.select_multiple', [
+                                'label' => 'Tags',
+                                'name' => 'tags[]',
+                                'item' => $productTags,
+                                'options' => $tags
+                            ])
 
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Giá bán (vnđ)',

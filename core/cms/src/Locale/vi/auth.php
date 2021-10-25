@@ -39,7 +39,12 @@ return [
     'product' => [
         'list' => 'Danh sách sản phẩm',
         'create' => 'Đăng ký sản phẩm',
-        'edit' => 'Chỉnh sửa sản phẩm'
+        'edit' => 'Chỉnh sửa sản phẩm',
+        'tag' => [
+            'list' => 'Danh sách tags sản phẩm',
+            'create' => 'Đăng ký tag',
+            'edit' => 'Chỉnh sửa tag'
+        ]
     ],
     'banner' => [
         'list' => 'Danh sách banner',
@@ -54,7 +59,12 @@ return [
     'post' => [
         'list' => 'Danh sách bài viết',
         'create' => 'Đăng ký bài viết',
-        'edit' => 'Chỉnh sửa bài viết'
+        'edit' => 'Chỉnh sửa bài viết',
+        'tag' => [
+            'list' => 'Danh sách tags bài viết',
+            'create' => 'Đăng ký tag',
+            'edit' => 'Chỉnh sửa tag'
+        ]
     ],
     'page' => [
         'list' => 'Danh sách trang',
@@ -66,6 +76,11 @@ return [
     'contact' => [
         'list' => 'Liên hệ',
         'edit' => 'Trả lời'
+    ],
+    'menu' => [
+        'list' => 'Danh sách menu',
+        'create' => 'Đăng ký menu',
+        'edit' => 'Chỉnh sửa menu'
     ],
     'no_data_found' => 'Không có dữ liệu.'
 ];

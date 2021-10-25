@@ -2,17 +2,18 @@
 use Cms\Controllers\BannerController;
 use Cms\Controllers\CategoryController;
 use Cms\Controllers\ConfigController;
+use Cms\Controllers\ContactController;
 use Cms\Controllers\LoginController;
+use Cms\Controllers\MenuController;
 use Cms\Controllers\OrderController;
 use Cms\Controllers\PageController;
 use Cms\Controllers\PostController;
 use Cms\Controllers\ProductController;
+use Cms\Controllers\TagController;
 use Cms\Controllers\UserController;
 use Cms\Controllers\VendorController;
-use Cms\Controllers\ContactController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpFoundation\StreamedResponse;
-
 
 Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], function () {
     Route::match(['get', 'post'], '/login', [LoginController::class, 'index'])->name('login');
@@ -34,7 +35,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [UserController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [UserController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{user}', [UserController::class, 'save'])->name('edit');
-            Route::post('/remove}', [UserController::class, 'remove'])->name('remove');
+            Route::post('/remove', [UserController::class, 'remove'])->name('remove');
         });
 
         // Category
@@ -43,7 +44,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [CategoryController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [CategoryController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{category}', [CategoryController::class, 'save'])->name('edit');
-            Route::post('/remove}', [CategoryController::class, 'remove'])->name('remove');
+            Route::post('/remove', [CategoryController::class, 'remove'])->name('remove');
         });
 
         // Vendor
@@ -52,7 +53,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [VendorController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [VendorController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{vendor}', [VendorController::class, 'save'])->name('edit');
-            Route::post('/remove}', [VendorController::class, 'remove'])->name('remove');
+            Route::post('/remove', [VendorController::class, 'remove'])->name('remove');
         });
 
         // Product
@@ -61,7 +62,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [ProductController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [ProductController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{product}', [ProductController::class, 'save'])->name('edit');
-            Route::post('/remove}', [ProductController::class, 'remove'])->name('remove');
+            Route::post('/remove', [ProductController::class, 'remove'])->name('remove');
         });
 
         // Banners
@@ -70,7 +71,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [BannerController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [BannerController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{banner}', [BannerController::class, 'save'])->name('edit');
-            Route::post('/remove}', [BannerController::class, 'remove'])->name('remove');
+            Route::post('/remove', [BannerController::class, 'remove'])->name('remove');
             Route::match(['get', 'post'], '/center', [BannerController::class, 'center'])->name('center');
         });
 
@@ -91,7 +92,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [PostController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [PostController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{post}', [PostController::class, 'save'])->name('edit');
-            Route::post('/remove}', [PostController::class, 'remove'])->name('remove');
+            Route::post('/remove', [PostController::class, 'remove'])->name('remove');
         });
 
         // Page
@@ -106,99 +107,58 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/', [ContactController::class, 'index'])->name('list');
             Route::get('/search', [ContactController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/edit/{contact}', [ContactController::class, 'save'])->name('edit');
-            Route::post('/remove}', [ContactController::class, 'remove'])->name('remove');
+            Route::post('/remove', [ContactController::class, 'remove'])->name('remove');
+        });
+
+        // Menu
+        Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
+            Route::get('/', [MenuController::class, 'index'])->name('list');
+            Route::get('/search', [MenuController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create', [MenuController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{menu}', [MenuController::class, 'save'])->name('edit');
+            Route::post('/update-order', [MenuController::class, 'updateOrder'])->name('updateOrder');
+            Route::post('/remove', [MenuController::class, 'remove'])->name('remove');
+        });
+
+        // Tag
+        Route::group(['prefix' => 'product/tag', 'as' => 'product.tag.'], function () {
+            Route::get('/', [TagController::class, 'index'])->name('list');
+            Route::get('/search', [TagController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create', [TagController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{tag}', [TagController::class, 'save'])->name('edit');
+            Route::post('/remove', [TagController::class, 'remove'])->name('remove');
+        });
+
+        Route::group(['prefix' => 'post/tag', 'as' => 'post.tag.'], function () {
+            Route::get('/', [TagController::class, 'index'])->name('list');
+            Route::get('/search', [TagController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create', [TagController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{tag}', [TagController::class, 'save'])->name('edit');
+            Route::post('/remove', [TagController::class, 'remove'])->name('remove');
+        });
+
+        // Run raw sql
+        Route::group(['prefix' => 'sql', 'as' => 'sql.'], function () {
+            Route::get('/', function () {
+                return view("cms::auth.pages.sql.index");
+            });
+
+            Route::post('/', function (Request $request) {
+                try {
+                    $sql = $request->input('sql');
+                    \DB::statement($sql);
+                    return "Run SQL Done";
+                } catch (\Exception $e) {
+                    return $e->getMessage();
+                }
+
+            });
         });
 
         // Config
         Route::group(['prefix' => 'config', 'as' => 'config.'], function () {
             Route::match(['get', 'post'], '/edit', [ConfigController::class, 'save'])->name('edit');
         });
-
-        Route::get('export', function () {
-            // $response = new StreamedResponse(function () {
-            //     // Open output stream
-            //     $handle = fopen('php://output', 'w');
-
-            //     // Add CSV headers
-            //     fputcsv($handle, [
-            //         'id',
-            //         'name',
-            //         'email',
-            //     ]);
-
-            //     // Get products
-            //     // foreach (\App\Models\Testing::all() as $product) {
-            //     //     // Add a new row with data
-            //     //     fputcsv($handle, [
-            //     //         $product->id,
-            //     //         $product->name,
-            //     //     ]);
-            //     // }
-
-            //     \App\Models\Testing::chunk(5, function ($products) use ($handle) {
-            //         foreach ($products as $product) {
-            //             // Add a new row with data
-            //             fputcsv($handle, [
-            //                 $product->id,
-            //                 $product->name,
-            //                 $product->email,
-            //             ]);
-            //         }
-            //     });
-
-
-            //     // Close the output stream
-            //     fclose($handle);
-            // }, 200, [
-            //     'Content-Type' => 'text/csv',
-            //     'Content-Disposition' => 'attachment; filename="export.csv"',
-            // ]);
-
-            ini_set('display_errors', 1);
-            error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-
-
-            $result = \Cms\Models\Testing::query()->limit(100000)->get()->toArray();
-
-            echo 'ok';
-            exit;
-
-            $arr_item = array(
-                'id',
-                'name',
-            );
-
-            foreach( $arr_item as $elem )
-                $csv_data .= $elem . ',';
-                $csv_data = rtrim( $csv_data, ',' ) . "\n";
-
-            // CSVデータの作成（データ部）
-            for( $i = 0; $i < count5x( $result ); $i++ ) {
-                $csv_data .= $result[ $i ][ 'id' ] . ','
-                    . $result[ $i ][ 'name' ] . "\n";
-            }
-
-            // CSVファイル名の設定
-            $csv_file = 'product.csv';
-
-            // データの文字コード変更
-            $csv_data = mb_convert_encoding($csv_data, CHAR_CSV, CHAR_DB);
-
-            // MIMEタイプの設定
-            header('Content-Type: application/octet-stream');
-
-            // ファイル名の表示
-            header('Content-Disposition: attachment; filename=' . $csv_file);
-
-            // データの出力
-            print $csv_data;
-            exit;
-
-
-
-            return $response;
-        });
-
 
     });
 });

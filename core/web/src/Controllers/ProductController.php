@@ -5,6 +5,7 @@ namespace Web\Controllers;
 use Cms\Models\Category;
 use Cms\Models\ChildCategory;
 use Cms\Models\Product;
+use Cms\Models\Tag;
 use Illuminate\Http\Request;
 use Web\Controllers\AppController;
 
@@ -33,6 +34,7 @@ class ProductController extends AppController
     {
         $slug = $request->slug;
         $product = Product::query()->active()->where('name_url', $slug)->first();
+        $otherProducts = Product::query()->active()->where('category_id', $product->category_id)->limit(10)->get();
 
         $this->error404($product);
         $this->setSEO([
@@ -44,6 +46,7 @@ class ProductController extends AppController
         ]);
 
         $this->output['product'] = $product;
+        $this->output['otherProducts'] = $otherProducts;
 
         return view('web::pages.product.detail', $this->output);
 
@@ -53,6 +56,7 @@ class ProductController extends AppController
     {
         $slug = $request->slug;
         $category = Category::query()->active()->where('name_url', $slug)->first();
+        $tags = Tag::query()->active()->productTag()->get();
 
         $this->error404($category);
         $this->setSEO([
@@ -61,8 +65,27 @@ class ProductController extends AppController
         ]);
 
         $this->output['category'] = $category;
+        $this->output['tags'] = $tags;
 
         return view('web::pages.product.category', $this->output);
+    }
+
+    public function productsByTag(Request $request)
+    {
+        $slug = $request->slug;
+        $tag = Tag::query()->active()->productTag()->where('slug', $slug)->first();
+        $tags = Tag::query()->active()->productTag()->get();
+
+        $this->error404($tag);
+        $this->setSEO([
+            'title' => $tag->getName(),
+            'url' => $tag->getProductLink(),
+        ]);
+
+        $this->output['tag'] = $tag;
+        $this->output['tags'] = $tags;
+
+        return view('web::pages.product.tag', $this->output);
     }
 
     public function productsByChildCategory(Request $request)
@@ -114,6 +137,19 @@ class ProductController extends AppController
                     $childCategories = $category->childCategories->pluck('id');
                     $query = $query->whereIn('category_id', $childCategories);
                 }
+                break;
+
+            case 'other-products':
+                $limit = 8;
+                $view = 'web::pages.product.other_products';
+                $categoryId = $request->category_id;
+                $query = $query->where('category_id', $categoryId);
+                break;
+
+            case 'tag':
+                $slug = $request->slug;
+                $tag = Tag::query()->productTag()->where('slug', $slug)->first();
+                $query = $query->where('tags', 'LIKE', '%' . $tag->id . '%');
                 break;
 
         }

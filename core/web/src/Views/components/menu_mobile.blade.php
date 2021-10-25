@@ -8,21 +8,22 @@
         <div class="link_list_mobile">
             <ul class="ct-mobile hidden"></ul>
             <ul class="ct-mobile">
-                <li class="level0 level-top parent level_ico">
-                    <a href="/">{{ trans('web::label.home') }}</a>
-                </li>
-                <li class="level0 level-top parent level_ico">
-                    <a href="#" target="_self">{{ trans('web::label.vrrc') }}</a>
-                </li>
-                <li class="level0 level-top parent level_ico">
-                    <a href="https://gulfoil.vn/" target="_self">{{ trans('web::label.gulfoil') }}</a>
-                </li>
-                <li class="level0 level-top parent level_ico">
-                    <a href="{{ route('post.index') }}">{{ trans('web::label.news') }}</a>
-                </li>
-                <li class="level0 level-top parent level_ico">
-                    <a href="{{ route('contact.index') }}">{{ trans('web::label.contact') }}</a>
-                </li>
+                @if($menuList)
+                    @foreach($menuList as $menu)
+                    <li class="level0 level-top parent level_ico">
+                        <a href="{{ $menu->getUrl() }}" class="category-mobile-1" target="{{ $menu->target }}">{{ $menu->getName() }}</a>
+                        @if($menu->childMenus && count($menu->childMenus))
+                        <i class="fa fa-arrow-circle-right open-child-level1" style="color: #ffffff; display:block; line-height: 35px" aria-hidden="true"></i>
+                        <ul class="level1 level-top level_ico hidden">
+                            @foreach($menu->childMenus as $childMenu)
+                            <li style="border-bottom: 1px solid #ffffff; padding-left: 20px"><a href="{{ $childMenu->getUrl() }}" target="{{ $childMenu->target }}">{{ $childMenu->getName() }}</a></li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </li>
+                    
+                    @endforeach
+                @endif
                 @if(isset($categories))
                 <li class="level0 level-top parent level_ico category-menu-mobile">
                     <a href="javascript:void(0)" class="category-mobile-1">

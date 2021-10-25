@@ -80,28 +80,5 @@
                 </div>
             </div>
         </div>
-        <div class="bottom-menu">
-            <div class="container">
-
-                <nav class="navbar navbar-expand-lg main-menu d-none d-xl-block">
-                    <div class="collapse show">
-                        <ul class="navbar-nav mr-auto">
-                            @if(isset($categories))
-                            <li class="menu-item category-item">
-                                <a href="javascript:void(0)" target="_self"><i class="fa fa-bars mr-1" aria-hidden="true"></i>Danh mục sản phẩm</a>
-                            </li>
-                            @endif
-                            <li class="menu-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"><a href="/" target="_self">{{ trans('web::label.home') }}</a></li>
-                            
-                            <li class="menu-item"><a href="https://truongdua2k.com" target="_self">{{ trans('web::label.racing') }}</a></li>
-                            <li class="menu-item"><a href="#" target="_self">{{ trans('web::label.vrrc') }}</a></li>
-                            <li class="menu-item"><a href="https://gulfoil.vn/" target="_self">{{ trans('web::label.gulfoil') }}</a></li>
-                            <li class="menu-item {{ strpos(Route::currentRouteName(), 'post.') !== false ? 'active' : '' }}"><a href="{{ route('post.index') }}" target="_self">{{ trans('web::label.news') }}</a></li>
-                            <li class="menu-item {{ Route::currentRouteName() == 'page.contact' ? 'active' : '' }}"><a href="{{ route('contact.index') }}" target="_self">{{ trans('web::label.contact') }}</a></li>
-
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
+        @include("web::components.menu_pc")
     </header>

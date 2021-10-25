@@ -31,6 +31,13 @@
                                     <i class="fa fa-clock-o"></i>
                                     <div class="news_home_content_short_time">{{ $post->getCreatedAt() }}</div>
                                 </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-12">
+                                    @foreach($post->getTags() as $tag)
+                                    <a class="tag" href="{{ $tag->getPostLink() }}" title="{{ $tag->getName() }}"><i class="fa fa-tag"></i>&nbsp;{{ $tag->getName() }}</a>
+                                    @endforeach
+                                    </div>
+                                </div>
                                 <div class="article-content">
                                     {!! $post->content !!}
                                 </div>

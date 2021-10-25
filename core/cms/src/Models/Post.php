@@ -20,4 +20,10 @@ class Post extends Model
         return strip_tags(html_entity_decode($this->description));
     }
 
+    public function getTags()
+    {
+        $tags = Tag::query()->active()->whereIn('id', explode(',', $this->tags))->get();
+        return $tags;
+    }
+
 }

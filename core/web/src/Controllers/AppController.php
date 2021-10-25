@@ -4,6 +4,7 @@ namespace Web\Controllers;
 
 use App\Http\Controllers\Controller;
 use Cms\Models\Config;
+use Cms\Models\Menu;
 use Illuminate\Support\Facades\View;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
@@ -20,8 +21,10 @@ class AppController extends Controller
 
     private function getConfig() {
         $config = Config::first();
+        $menuList = Menu::getMenuList(true, true);
         $this->config = $config;
         View::share('config', $config);
+        View::share('menuList', $menuList);
     }
 
     public function setSEO($params)

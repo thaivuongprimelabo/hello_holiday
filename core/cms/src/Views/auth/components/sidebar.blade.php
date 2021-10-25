@@ -31,22 +31,30 @@
               </p>
             </a>
           </li>
-          @if(Route::has('auth.product.list'))
           <li class="nav-item">
             <a href="{{ route('auth.product.list') }}" class="nav-link">
-            <i class="nav-icon fas fa-archive"></i>
+              <i class="nav-icon fas fa-archive"></i>
               <p>
                 Sản phẩm
               </p>
             </a>
           </li>
-          @endif
           @if(Route::has('auth.category.list'))
           <li class="nav-item">
             <a href="{{ route('auth.category.list') }}" class="nav-link">
-            <i class="nav-icon fas fa-align-justify"></i>
+            <i class="nav-icon fas fa-tree"></i>
               <p>
                 Loại sản phẩm
+              </p>
+            </a>
+          </li>
+          @endif
+          @if(Route::has('auth.product.tag.list'))
+          <li class="nav-item">
+            <a href="{{ route('auth.product.tag.list') }}" class="nav-link">
+            <i class="fas fa-tag nav-icon"></i>
+              <p>
+                Tags sản phẩm
               </p>
             </a>
           </li>
@@ -70,6 +78,16 @@
                 @if(session()->has('countNewOrders') && session('countNewOrders'))
                 <span class="badge-danger badge right">{{ session('countNewOrders') }}</span>
                 @endif
+              </p>
+            </a>
+          </li>
+          @endif
+          @if(Route::has('auth.menu.list'))
+          <li class="nav-item">
+            <a href="{{ route('auth.menu.list') }}" class="nav-link">
+            <i class="nav-icon fas fa-list"></i>
+              <p>
+                Menu Top
               </p>
             </a>
           </li>
@@ -100,6 +118,16 @@
             <i class="nav-icon fas fa-copy"></i>
               <p>
                 Bài viết
+              </p>
+            </a>
+          </li>
+          @endif
+          @if(Route::has('auth.post.tag.list'))
+          <li class="nav-item">
+            <a href="{{ route('auth.post.tag.list') }}" class="nav-link">
+            <i class="fas fa-tag nav-icon"></i>
+              <p>
+                Tags bài viết
               </p>
             </a>
           </li>

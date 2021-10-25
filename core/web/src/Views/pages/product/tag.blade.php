@@ -8,8 +8,6 @@
                     <div id="column-left" class="left-column compliance">
                         @include('web::components.category')
                         <div class="clearfix"></div>
-                        @include('web::components.price_filter')
-                        <div class="clearfix"></div>
                         @include('web::components.tag_list', ['product' => true])
                     </div>
                 </div>
@@ -25,15 +23,19 @@
                                             </a>
                                             <span><i class="fa">/</i></span>
                                         </li>
-                                        @if(!is_null($category->parentCategory))
                                         <li class="home">
-                                            <a href="{{ $category->parentCategory->getLink() }}">
-                                                <span>{{ $category->parentCategory->getName() }}</span>
+                                            <a href="#">
+                                                <span>Sản phẩm</span>
                                             </a>
                                             <span><i class="fa">/</i></span>
                                         </li>
-                                        @endif
-                                        <li><strong>{{ $category->getName() }}</strong></li>
+                                        <li class="home">
+                                            <a href="#">
+                                                <span>Tag</span>
+                                            </a>
+                                            <span><i class="fa">/</i></span>
+                                        </li>
+                                        <li><strong>{{ $tag->getName() }}</strong></li>
                                     </ul>
                                 </div>
                             </div>
