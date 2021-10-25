@@ -1,8 +1,9 @@
 $(function () {
     $.extend({
-        getPosts: function (page) {
-            $.get({
-                url: "/get-posts?page=" + page,
+        getPosts: function (params) {
+            $.post({
+                url: "/get-posts",
+                data: params,
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                         "content"
@@ -22,11 +23,25 @@ $(function () {
 
 $(document).ready(function() {
     $(".loader").show();
-    $.getPosts(1);
+
+    let params = {
+        page: 1,
+        action: "",
+    };
+
+    let url = window.location.pathname.split("/");
+    if (window.location.pathname.indexOf("tag") >= 0) {
+        params.action = "tag";
+        params.slug = url[3] !== undefined ? url[3].replace(".html", "") : "";
+    }
+
+    $.getPosts(params);
+
+    $(document).on("click", "#load_more", function () {
+        $(this).remove();
+        $(".loader").show();
+        params.page = Number($(this).attr("data-next-page"));
+        $.getPosts(params);
+    });
 });
 
-$(document).on("click", "#load_more", function () {
-    $(this).remove();
-    $(".loader").show();
-    $.getPosts(Number($(this).attr("data-next-page")));
-});

@@ -24,13 +24,14 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('products', [ProductController::class, 'index'])->name('index');
         Route::get('products/search', [ProductController::class, 'search'])->name('search');
         Route::post('get-products', [ProductController::class, 'getProducts'])->name('getProducts');
+        Route::get('product/tag/{slug}', [ProductController::class, 'productsByTag'])->name('productsByTag');
     });
 
     Route::group(['as' => 'post.'], function () {
         Route::get('/post/{slug}', [PostController::class, 'detail'])->name('detail');
         Route::get('/posts', [PostController::class, 'index'])->name('index');
-        Route::get('/get-posts', [PostController::class, 'getPosts'])->name('getPosts');
-
+        Route::post('/get-posts', [PostController::class, 'getPosts'])->name('getPosts');
+        Route::get('post/tag/{slug}', [PostController::class, 'postsByTag'])->name('postsByTag');
     });
 
     Route::match(['get', 'post'], '/contact', [ContactController::class, 'index'])->name('contact.index');

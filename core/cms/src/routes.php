@@ -9,6 +9,7 @@ use Cms\Controllers\OrderController;
 use Cms\Controllers\PageController;
 use Cms\Controllers\PostController;
 use Cms\Controllers\ProductController;
+use Cms\Controllers\TagController;
 use Cms\Controllers\UserController;
 use Cms\Controllers\VendorController;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [UserController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [UserController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{user}', [UserController::class, 'save'])->name('edit');
-            Route::post('/remove}', [UserController::class, 'remove'])->name('remove');
+            Route::post('/remove', [UserController::class, 'remove'])->name('remove');
         });
 
         // Category
@@ -43,7 +44,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [CategoryController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [CategoryController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{category}', [CategoryController::class, 'save'])->name('edit');
-            Route::post('/remove}', [CategoryController::class, 'remove'])->name('remove');
+            Route::post('/remove', [CategoryController::class, 'remove'])->name('remove');
         });
 
         // Vendor
@@ -52,7 +53,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [VendorController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [VendorController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{vendor}', [VendorController::class, 'save'])->name('edit');
-            Route::post('/remove}', [VendorController::class, 'remove'])->name('remove');
+            Route::post('/remove', [VendorController::class, 'remove'])->name('remove');
         });
 
         // Product
@@ -61,7 +62,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [ProductController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [ProductController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{product}', [ProductController::class, 'save'])->name('edit');
-            Route::post('/remove}', [ProductController::class, 'remove'])->name('remove');
+            Route::post('/remove', [ProductController::class, 'remove'])->name('remove');
         });
 
         // Banners
@@ -70,7 +71,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [BannerController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [BannerController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{banner}', [BannerController::class, 'save'])->name('edit');
-            Route::post('/remove}', [BannerController::class, 'remove'])->name('remove');
+            Route::post('/remove', [BannerController::class, 'remove'])->name('remove');
             Route::match(['get', 'post'], '/center', [BannerController::class, 'center'])->name('center');
         });
 
@@ -91,7 +92,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/search', [PostController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/create', [PostController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{post}', [PostController::class, 'save'])->name('edit');
-            Route::post('/remove}', [PostController::class, 'remove'])->name('remove');
+            Route::post('/remove', [PostController::class, 'remove'])->name('remove');
         });
 
         // Page
@@ -106,7 +107,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::get('/', [ContactController::class, 'index'])->name('list');
             Route::get('/search', [ContactController::class, 'search'])->name('search');
             Route::match(['get', 'post'], '/edit/{contact}', [ContactController::class, 'save'])->name('edit');
-            Route::post('/remove}', [ContactController::class, 'remove'])->name('remove');
+            Route::post('/remove', [ContactController::class, 'remove'])->name('remove');
         });
 
         // Menu
@@ -116,7 +117,24 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             Route::match(['get', 'post'], '/create', [MenuController::class, 'save'])->name('create');
             Route::match(['get', 'post'], '/edit/{menu}', [MenuController::class, 'save'])->name('edit');
             Route::post('/update-order', [MenuController::class, 'updateOrder'])->name('updateOrder');
-            Route::post('/remove}', [MenuController::class, 'remove'])->name('remove');
+            Route::post('/remove', [MenuController::class, 'remove'])->name('remove');
+        });
+
+        // Tag
+        Route::group(['prefix' => 'product/tag', 'as' => 'product.tag.'], function () {
+            Route::get('/', [TagController::class, 'index'])->name('list');
+            Route::get('/search', [TagController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create', [TagController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{tag}', [TagController::class, 'save'])->name('edit');
+            Route::post('/remove', [TagController::class, 'remove'])->name('remove');
+        });
+
+        Route::group(['prefix' => 'post/tag', 'as' => 'post.tag.'], function () {
+            Route::get('/', [TagController::class, 'index'])->name('list');
+            Route::get('/search', [TagController::class, 'search'])->name('search');
+            Route::match(['get', 'post'], '/create', [TagController::class, 'save'])->name('create');
+            Route::match(['get', 'post'], '/edit/{tag}', [TagController::class, 'save'])->name('edit');
+            Route::post('/remove', [TagController::class, 'remove'])->name('remove');
         });
 
         // Run raw sql

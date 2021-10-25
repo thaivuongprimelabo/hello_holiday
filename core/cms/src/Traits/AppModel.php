@@ -185,4 +185,9 @@ trait AppModel
     {
         return $this->url;
     }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 }

@@ -12,7 +12,19 @@
                             </a>
                             <span><i class="fa">/</i></span>
                         </li>
-                        <li><strong>Tin tức</strong></li>
+                        <li class="home">
+                            <a href="#">
+                                <span>{{ trans('web::label.news') }}</span>
+                            </a>
+                            <span><i class="fa">/</i></span>
+                        </li>
+                        <li class="home">
+                            <a href="#">
+                                <span>Tag</span>
+                            </a>
+                            <span><i class="fa">/</i></span>
+                        </li>
+                        <li><strong>{{ $tag->getName() }}</strong></li>
                     </ul>
                 </div>
             </div>

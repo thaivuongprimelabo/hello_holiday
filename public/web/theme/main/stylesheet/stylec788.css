@@ -11458,11 +11458,12 @@ h2.title-line {
   margin: 0px auto;
 }
 
-.post-box img {
+.post-box img, .image-blog-left img {
     display: block; 
     width: 85%; 
     margin: 0px auto;
 }
+
 
 .banner-img img {
     display: block; 
@@ -11472,6 +11473,21 @@ h2.title-line {
 
 .banner_owl {
     z-index: 0;
+}
+
+.tag {
+    display: block;
+    background: #dedede;
+    border: 1px solid #dedede;
+    border-radius: 4px;
+    color: #333333;
+    padding: 0px 4px !important;
+    font-weight: 800;
+    width: auto;
+    float:left;
+    margin-right: 4px;
+    font-size: 12px;
+    margin-bottom: 4px;
 }
 
 @keyframes spin {

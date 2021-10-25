@@ -75,6 +75,13 @@
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 details-pro">
                             <h1 class="title-product">{{ $product->getName() }}</h1>
+                            <div class="row mb-3">
+                                <div class="col-sm-12">
+                                   @foreach($product->getTags() as $tag)
+                                   <a class="tag" href="{{ $tag->getProductLink() }}" title="{{ $tag->getName() }}"><i class="fa fa-tag"></i>&nbsp;{{ $tag->getName() }}</a>
+                                   @endforeach
+                                </div>
+                            </div>
                             <div class="group-status">
                                 <span class="first_status">
                                     Tình trạng:

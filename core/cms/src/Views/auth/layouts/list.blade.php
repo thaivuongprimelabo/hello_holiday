@@ -6,6 +6,7 @@
   $create_route = str_replace('list', 'create', $current);
   $remove_route = str_replace('list', 'remove', $current);
   $restore_route = str_replace('list', 'restore', $current);
+  $update_order_route = str_replace('list', 'updateOrder', $current);
 @endphp
 @hasSection('search_condition')
     @yield('search_condition')
@@ -48,7 +49,7 @@
                   Đăng ký mới
                 </a>
                 @endif
-                @if(Route::has('auth.menu.updateOrder'))
+                @if(Route::has($update_order_route))
                 <a href="javascript:void(0)" id="update-order-btn" class="btn btn-default btn-sm">
                   <i class="fas fa-sort"></i>
                   Cập nhật thứ tự

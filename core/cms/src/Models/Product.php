@@ -33,4 +33,10 @@ class Product extends Model
     {
         return route('product.detail', ['slug' => $this->name_url]);
     }
+
+    public function getTags()
+    {
+        $tags = Tag::query()->active()->whereIn('id', explode(',', $this->tags))->get();
+        return $tags;
+    }
 }
