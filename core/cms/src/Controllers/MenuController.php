@@ -42,7 +42,7 @@ class MenuController extends AppController
             return redirect()->route('auth.menu.list')->with('success', $message);
         }
         $menu->status = $menu->exists ? $menu->status : Constants::STATUS_ACTIVE;
-        $menu->url = $menu->exists ? $menu->url : route('home');
+        $menu->url = $menu->exists ? $menu->url : '#';
         $menu->order = $menu->exists ? $menu->order : 99;
         $menu->target = $menu->exists ? $menu->target : '_self';
         $menuParents = Menu::query()->where('parent_menu_id', null)->get();
