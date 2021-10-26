@@ -22,7 +22,7 @@ class Post extends Model
 
     public function getTags()
     {
-        $tags = Tag::query()->active()->whereIn('id', explode(',', $this->tags))->get();
+        $tags = PostTag::query()->active()->whereIn('id', explode(',', $this->tags))->get();
         return $tags;
     }
 

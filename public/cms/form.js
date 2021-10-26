@@ -18,6 +18,19 @@ $(function () {
             }
             return x1 + x2 + "₫";
         },
+        checkName: function (params, success) {
+            $.post({
+                url: "http://localhost:8081/auth/check-duplicate-name",
+                data: params,
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+            }).then(function (res) {
+                success(res);
+            });
+        },
     });
 
     $(".upload-btn").click(function () {
@@ -267,7 +280,25 @@ $(function () {
             },
             submitHandler: function (form) {
                 $("#submit-form").attr("disabled", "disabled");
-                form.submit();
+                let params = {
+                    id: $("#id_check").val().trim(),
+                    name: $("#field_name").val().trim(),
+                    type: $('#type_check').val(),
+                };
+
+                if (params.type !== undefined) {
+                    $.checkName(params, function (res) {
+                        if (res.result) {
+                            let item = $('#field_name').attr('placeholder');
+                            let message = item + " này đang được sử dụng. Vui lòng chọn tên khác.";
+                            toastr.error(message);
+                            return false;
+                        }
+                        form.submit();
+                    });
+                } else {
+                    form.submit();
+                }
             },
         });
     }

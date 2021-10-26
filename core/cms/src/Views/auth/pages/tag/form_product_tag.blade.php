@@ -5,30 +5,27 @@
         <form id="submit-form" action="?" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card card-default">
-                @include('cms::auth.components.form_button', ['route' => 'auth.category.list'])
+                @php
+                    $list = str_replace('create', 'list', request()->route()->getName());
+                    $list = str_replace('edit', 'list', $list);
+                @endphp
+                @include('cms::auth.components.form_button', ['route' => $list])
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="hidden" id="id_check" value="{{ $category->getKey() }}" />
-                            <input type="hidden" id="type_check" value="category" />
-                            @include('cms::auth.components.form.select', [
-                                'label' => 'Loại sản phẩm cha', 
-                                'name' => 'parent_id', 
-                                'item' => $category,
-                                'options' => $parentCategories
-                            ])
-
+                            <input type="hidden" id="id_check" value="{{ $tag->getKey() }}" />
+                            <input type="hidden" id="type_check" value="product_tag" />
                             @include('cms::auth.components.form.input', [
-                                'label' => 'Tên loại sản phẩm', 
+                                'label' => 'Tag name', 
                                 'name' => 'name', 
-                                'item' => $category,
+                                'item' => $tag,
                                 'maxlength' => 255,
                             ])
 
                             @include('cms::auth.components.form.checkbox', [
                                 'label' => 'Đang hoạt động', 
                                 'name' => 'status', 
-                                'item' => $category,
+                                'item' => $tag,
                                 'checked' => true
                             ])
                         </div>

@@ -124,16 +124,16 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
         Route::group(['prefix' => 'product/tag', 'as' => 'product.tag.'], function () {
             Route::get('/', [TagController::class, 'index'])->name('list');
             Route::get('/search', [TagController::class, 'search'])->name('search');
-            Route::match(['get', 'post'], '/create', [TagController::class, 'save'])->name('create');
-            Route::match(['get', 'post'], '/edit/{tag}', [TagController::class, 'save'])->name('edit');
+            Route::match(['get', 'post'], '/create', [TagController::class, 'saveProductTag'])->name('create');
+            Route::match(['get', 'post'], '/edit/{tag}', [TagController::class, 'saveProductTag'])->name('edit');
             Route::post('/remove', [TagController::class, 'remove'])->name('remove');
         });
 
         Route::group(['prefix' => 'post/tag', 'as' => 'post.tag.'], function () {
             Route::get('/', [TagController::class, 'index'])->name('list');
             Route::get('/search', [TagController::class, 'search'])->name('search');
-            Route::match(['get', 'post'], '/create', [TagController::class, 'save'])->name('create');
-            Route::match(['get', 'post'], '/edit/{tag}', [TagController::class, 'save'])->name('edit');
+            Route::match(['get', 'post'], '/create', [TagController::class, 'savePostTag'])->name('create');
+            Route::match(['get', 'post'], '/edit/{tag}', [TagController::class, 'savePostTag'])->name('edit');
             Route::post('/remove', [TagController::class, 'remove'])->name('remove');
         });
 
@@ -166,6 +166,50 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
                 }
                 return 'Done';
             });
+        });
+
+        // Check name
+        Route::post('/check-duplicate-name', function (Request $request) {
+            $id = $request->id;
+            $name = \Illuminate\Support\Str::of($request->name)->slug('-');
+            $result = false;
+            $type = $request->type;
+            $model = null;
+            $wheres = ['name_url' => $name];
+            switch($type) {
+                case 'product';
+                    $model = new \Cms\Models\Product();
+                    break;
+                case 'category':
+                    $model = new \Cms\Models\Category();
+                    break;
+                case 'post':
+                    $model = new \Cms\Models\Post();
+                    break;
+                case 'product_tag':
+                    $model = new \Cms\Models\ProductTag();
+                    break;
+                case 'post_tag':
+                    $model = new \Cms\Models\PostTag();
+                    break;
+
+            }
+            if ($id) {
+                $find = $model::query()->find($id);
+                if ($find->name_url != $name) {
+                    $product = $model::query()->where($wheres)->first();
+                    if ($product) {
+                        $result = true;
+                    }
+                }
+            } else {
+                $product = $model::query()->where($wheres)->first();
+                if ($product) {
+                    $result = true;
+                }
+            }
+
+            return response()->json(['result' => $result], 200);
         });
 
         // Config

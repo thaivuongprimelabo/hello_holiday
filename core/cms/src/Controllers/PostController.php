@@ -4,7 +4,7 @@ namespace Cms\Controllers;
 
 use Cms\Controllers\AppController;
 use Cms\Models\Post;
-use Cms\Models\Tag;
+use Cms\Models\PostTag;
 use Cms\Requests\PostRequest;
 
 class PostController extends AppController
@@ -42,7 +42,7 @@ class PostController extends AppController
 
             return redirect()->route('auth.post.list')->with('success', $message);
         }
-        $tags = Tag::query()->active()->postTag()->get();
+        $tags = PostTag::query()->active()->get();
         return view('cms::auth.pages.post.form', compact('post', 'tags'));
     }
 }
