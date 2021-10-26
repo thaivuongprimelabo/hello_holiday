@@ -38,7 +38,7 @@ class ProductRequest extends FormRequest
             'name' => 'required|max:200',
             'seo_keywords' => 'max:300',
             'seo_description' => 'max:300',
-            'upload_file.image_product.*' => 'max:' . \Cms\Constants::formatMemory(session('config')->max_upload_list['image_product'], true) . '|mimes:png,jpg,jpeg'
+            'upload_file.image_product.*' => 'mimes:png,jpg,jpeg'
         ];
 
         return $rules;
