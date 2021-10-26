@@ -24,7 +24,7 @@
 @foreach($data->childMenus as $childData)
 <tr style="background-color: #f0f0f0;">
     <td>
-        <input type="checkbox" class="primary-id" value="{{ $data->getKey() }}" />
+        <input type="checkbox" class="primary-id" value="{{ $childData->getKey() }}" />
     </td>
     <td>{{ $childData->getKey() }}</td>
     <td style="padding-left: 40px;">{{ $childData->getName() }}</td>
