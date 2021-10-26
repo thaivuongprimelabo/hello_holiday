@@ -5,7 +5,6 @@ namespace Cms\Controllers;
 use Cms\Controllers\AppController;
 use Cms\Models\Category;
 use Cms\Requests\CategoryRequest;
-use Illuminate\Support\Str;
 
 class CategoryController extends AppController
 {
@@ -15,7 +14,7 @@ class CategoryController extends AppController
         if ($request->isMethod('post')) {
 
             $category->name = $request->name;
-            $category->name_url = Str::of($request->name)->slug('-');
+            $category->name_url = $this->slugName($category->name);
             $category->parent_id = $request->has('parent_id') ? $request->parent_id : null;
             $category->status = !is_null($request->status) ? 1 : 0;
             $category->save();

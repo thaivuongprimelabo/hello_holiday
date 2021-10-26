@@ -6,7 +6,6 @@ use Cms\Controllers\AppController;
 use Cms\Models\Post;
 use Cms\Models\Tag;
 use Cms\Requests\PostRequest;
-use Illuminate\Support\Str;
 
 class PostController extends AppController
 {
@@ -15,7 +14,7 @@ class PostController extends AppController
         if ($request->isMethod('post')) {
 
             $post->name = $request->input('name');
-            $post->name_url = Str::of($request->input('name'))->slug('-') . time();
+            $post->name_url = $this->slugName($post->name);
             $post->description = $request->input('description');
             $post->content = $request->input('content');
             $post->author_name = is_null($request->input('author_name')) ? 'Administrator' : $request->input('author_name');

@@ -5,7 +5,6 @@ namespace Cms\Controllers;
 use Cms\Controllers\AppController;
 use Cms\Models\Vendor;
 use Cms\Requests\VendorRequest;
-use Illuminate\Support\Str;
 
 class VendorController extends AppController
 {
@@ -15,7 +14,7 @@ class VendorController extends AppController
         if ($request->isMethod('post')) {
 
             $vendor->name = $request->name;
-            $vendor->name_url = Str::of($request->name)->slug('-');
+            $vendor->name_url = $this->slugName($vendor->name);
 
             $resultUpload = $this->uploadFile->singleUpload('logo');
 
