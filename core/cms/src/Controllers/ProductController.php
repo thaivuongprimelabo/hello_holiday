@@ -6,10 +6,9 @@ use Cms\Controllers\AppController;
 use Cms\Models\Category;
 use Cms\Models\ImageProduct;
 use Cms\Models\Product;
-use Cms\Models\Vendor;
 use Cms\Models\Tag;
+use Cms\Models\Vendor;
 use Cms\Requests\ProductRequest;
-use Illuminate\Support\Str;
 
 class ProductController extends AppController
 {
@@ -21,7 +20,7 @@ class ProductController extends AppController
             $params = $request->all();
             // Create product
             $product->name = $request->input('name');
-            $product->name_url = Str::of($request->name)->slug('-') . time();
+            $product->name_url = $this->slugName($product->name);
             $product->price = $request->input('price', 'Liên hệ');
             $product->category_id = $request->input('category_id', 0);
             $product->vendor_id = $request->input('vendor_id', 0);
@@ -39,7 +38,7 @@ class ProductController extends AppController
             if ($tags && count($tags)) {
                 $product->tags = implode(',', $tags);
             }
-            
+
             $product->save();
 
             if ($product->exists) {

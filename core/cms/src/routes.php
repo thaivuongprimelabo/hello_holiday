@@ -155,6 +155,19 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             });
         });
 
+        // Update slug
+        Route::group(['prefix' => 'update-slug', 'as' => 'updateslug.'], function () {
+
+            Route::get('/', function (Request $request) {
+                $products = \Cms\Models\Product::all();
+                foreach($products as $product) {
+                    $product->name_url = \Illuminate\Support\Str::of($product->name)->slug('-');
+                    $product->save();
+                }
+                return 'Done';
+            });
+        });
+
         // Config
         Route::group(['prefix' => 'config', 'as' => 'config.'], function () {
             Route::match(['get', 'post'], '/edit', [ConfigController::class, 'save'])->name('edit');

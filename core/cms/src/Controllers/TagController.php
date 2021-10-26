@@ -6,7 +6,6 @@ use Cms\Constants;
 use Cms\Controllers\AppController;
 use Cms\Models\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class TagController extends AppController
 {
@@ -20,7 +19,7 @@ class TagController extends AppController
         } else {
             $searchList = $searchList->postTag()->orderBy('created_at', 'desc')->paginate(10);
         }
-        
+
         $view = 'cms::auth.pages.tag';
         return [
             'search_result' => view($view . '.search_result', compact('searchList'))->render(),
@@ -38,7 +37,7 @@ class TagController extends AppController
                 $type = 'product';
             }
             $tag->name = $request->input('name');
-            $tag->slug = Str::of($request->name)->slug('-');
+            $tag->slug = $this->slugName($tag->name);
             $tag->status = !is_null($request->status) ? Constants::STATUS_ACTIVE : Constants::STATUS_UNACTIVE;
             $tag->type = $type;
             $tag->save();

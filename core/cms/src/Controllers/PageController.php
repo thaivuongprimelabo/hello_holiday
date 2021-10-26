@@ -5,7 +5,6 @@ namespace Cms\Controllers;
 use Cms\Controllers\AppController;
 use Cms\Models\Page;
 use Cms\Requests\PageRequest;
-use Illuminate\Support\Str;
 
 class PageController extends AppController
 {
@@ -14,7 +13,7 @@ class PageController extends AppController
         if ($request->isMethod('post')) {
 
             $page->name = $request->input('name');
-            $page->name_url = Str::of($request->input('name'))->slug('-');
+            $page->name_url = $this->slugName($page->name);
             $page->content = $request->input('content');
             $page->save();
 

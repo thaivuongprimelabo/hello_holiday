@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class AppController extends Controller
 {
@@ -125,7 +126,7 @@ class AppController extends Controller
         if ($model instanceof \Cms\Models\User) {
             $query = $query->showByRole();
         }
-        
+
         if ($model instanceof \Cms\Models\Banner) {
             $query = $query->where('pos', 'slider');
         }
@@ -168,5 +169,10 @@ class AppController extends Controller
         $message = trans('cms::auth.message.remove_success');
 
         return response()->json(['success' => $message]);
+    }
+
+    public function slugName($name)
+    {
+        return Str::of($name)->slug('-');
     }
 }
