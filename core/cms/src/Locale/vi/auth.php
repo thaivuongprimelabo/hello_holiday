@@ -49,7 +49,8 @@ return [
     'banner' => [
         'list' => 'Danh sách banner',
         'create' => 'Đăng ký banner',
-        'edit' => 'Chỉnh sửa banner'
+        'edit' => 'Chỉnh sửa banner',
+        'center' => 'Đăng ký banner giữa'
     ],
     'order' => [
         'list' => 'Danh sách đơn hàng',
