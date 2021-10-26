@@ -50,14 +50,14 @@
           </li>
           @endif
           @if(Route::has('auth.product.tag.list'))
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="{{ route('auth.product.tag.list') }}" class="nav-link">
             <i class="fas fa-tag nav-icon"></i>
               <p>
                 Tags sản phẩm
               </p>
             </a>
-          </li>
+          </li> -->
           @endif
           @if(Route::has('auth.vendor.list'))
           <li class="nav-item">
@@ -83,14 +83,14 @@
           </li>
           @endif
           @if(Route::has('auth.menu.list'))
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="{{ route('auth.menu.list') }}" class="nav-link">
             <i class="nav-icon fas fa-list"></i>
               <p>
                 Menu Top
               </p>
             </a>
-          </li>
+          </li> -->
           @endif
           @if(Route::has('auth.banner.list'))
           <li class="nav-item">
@@ -123,14 +123,14 @@
           </li>
           @endif
           @if(Route::has('auth.post.tag.list'))
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="{{ route('auth.post.tag.list') }}" class="nav-link">
             <i class="fas fa-tag nav-icon"></i>
               <p>
                 Tags bài viết
               </p>
             </a>
-          </li>
+          </li> -->
           @endif
           @if(Route::has('auth.page.list'))
           <li class="nav-item">
