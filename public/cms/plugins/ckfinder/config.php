@@ -33,7 +33,7 @@ $config['authentication'] = function () {
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
 $config['licenseName'] = 'motor2k.com';
-$config['licenseKey']  = '29T9K4298YH899BSYJRGJFWEYWQMD';
+$config['licenseKey']  = 'F8H8YMKMR6ASWSDCAXRVJN53R9DF8';
 
 /*============================ CKFinder Internal Directory ============================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_privateDir
