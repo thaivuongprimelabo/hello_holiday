@@ -20,7 +20,7 @@ $(function () {
         },
         checkName: function (params, success) {
             $.post({
-                url: "http://localhost:8081/auth/check-duplicate-name",
+                url: "/auth/check-duplicate-name",
                 data: params,
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
