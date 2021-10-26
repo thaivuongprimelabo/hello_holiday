@@ -5,7 +5,7 @@ namespace Web\Controllers;
 use Cms\Models\Category;
 use Cms\Models\ChildCategory;
 use Cms\Models\Product;
-use Cms\Models\Tag;
+use Cms\Models\ProductTag;
 use Illuminate\Http\Request;
 use Web\Controllers\AppController;
 
@@ -56,7 +56,7 @@ class ProductController extends AppController
     {
         $slug = $request->slug;
         $category = Category::query()->active()->where('name_url', $slug)->first();
-        $tags = Tag::query()->active()->productTag()->get();
+        $tags = ProductTag::query()->active()->get();
 
         $this->error404($category);
         $this->setSEO([
@@ -73,13 +73,13 @@ class ProductController extends AppController
     public function productsByTag(Request $request)
     {
         $slug = $request->slug;
-        $tag = Tag::query()->active()->productTag()->where('slug', $slug)->first();
-        $tags = Tag::query()->active()->productTag()->get();
+        $tag = ProductTag::query()->active()->where('name_url', $slug)->first();
+        $tags = ProductTag::query()->active()->get();
 
         $this->error404($tag);
         $this->setSEO([
             'title' => $tag->getName(),
-            'url' => $tag->getProductLink(),
+            'url' => $tag->getLink(),
         ]);
 
         $this->output['tag'] = $tag;
@@ -92,7 +92,7 @@ class ProductController extends AppController
     {
         $slug = $request->child_slug;
         $category = ChildCategory::query()->active()->where('name_url', $slug)->first();
-        $tags = Tag::query()->active()->productTag()->get();
+        $tags = ProductTag::query()->active()->get();
         $this->error404($category);
         $this->setSEO([
             'title' => $category->getName(),
@@ -150,7 +150,7 @@ class ProductController extends AppController
 
             case 'tag':
                 $slug = $request->slug;
-                $tag = Tag::query()->productTag()->where('slug', $slug)->first();
+                $tag = ProductTag::query()->where('name_url', $slug)->first();
                 $query = $query->where('tags', 'LIKE', '%' . $tag->id . '%');
                 break;
 

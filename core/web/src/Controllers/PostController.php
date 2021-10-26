@@ -3,7 +3,7 @@
 namespace Web\Controllers;
 
 use Cms\Models\Post;
-use Cms\Models\Tag;
+use Cms\Models\PostTag;
 use Illuminate\Http\Request;
 use Web\Controllers\AppController;
 
@@ -11,7 +11,7 @@ class PostController extends AppController
 {
     public function index()
     {
-        $tags = Tag::query()->active()->postTag()->get();
+        $tags = PostTag::query()->active()->get();
         $this->setSEO([
             'title' => trans('web::label.news'),
             'url' => route('post.index'),
@@ -23,13 +23,13 @@ class PostController extends AppController
     public function postsByTag(Request $request)
     {
         $slug = $request->slug;
-        $tag = Tag::query()->active()->postTag()->where('slug', $slug)->first();
-        $tags = Tag::query()->active()->postTag()->get();
+        $tag = PostTag::query()->active()->where('name_url', $slug)->first();
+        $tags = PostTag::query()->active()->get();
 
         $this->error404($tag);
         $this->setSEO([
             'title' => $tag->getName(),
-            'url' => $tag->getPostLink(),
+            'url' => $tag->getLink(),
         ]);
 
         $this->output['tag'] = $tag;
@@ -45,7 +45,7 @@ class PostController extends AppController
         $slug = $request->slug;
         switch($action) {
             case 'tag': 
-                $tag = Tag::query()->postTag()->where('slug', $slug)->first();
+                $tag = PostTag::query()->where('name_url', $slug)->first();
                 $query = $query->where('tags', 'LIKE', '%' . $tag->id . '%');
                 break;
         }

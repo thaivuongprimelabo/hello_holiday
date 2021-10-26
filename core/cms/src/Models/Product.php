@@ -36,7 +36,7 @@ class Product extends Model
 
     public function getTags()
     {
-        $tags = Tag::query()->active()->whereIn('id', explode(',', $this->tags))->get();
+        $tags = ProductTag::query()->active()->whereIn('id', explode(',', $this->tags))->get();
         return $tags;
     }
 }

@@ -78,7 +78,7 @@
                             <div class="row mb-3">
                                 <div class="col-sm-12">
                                    @foreach($product->getTags() as $tag)
-                                   <a class="tag" href="{{ $tag->getProductLink() }}" title="{{ $tag->getName() }}"><i class="fa fa-tag"></i>&nbsp;{{ $tag->getName() }}</a>
+                                   <a class="tag" href="{{ $tag->getLink() }}" title="{{ $tag->getName() }}"><i class="fa fa-tag"></i>&nbsp;{{ $tag->getName() }}</a>
                                    @endforeach
                                 </div>
                             </div>

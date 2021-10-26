@@ -13,7 +13,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-
+                            <input type="hidden" id="id_check" value="{{ $tag->getKey() }}" />
+                            <input type="hidden" id="type_check" value="post_tag" />
                             @include('cms::auth.components.form.input', [
                                 'label' => 'Tag name', 
                                 'name' => 'name', 

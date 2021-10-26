@@ -6,7 +6,7 @@ use Cms\Controllers\AppController;
 use Cms\Models\Category;
 use Cms\Models\ImageProduct;
 use Cms\Models\Product;
-use Cms\Models\Tag;
+use Cms\Models\ProductTag;
 use Cms\Models\Vendor;
 use Cms\Requests\ProductRequest;
 
@@ -75,7 +75,7 @@ class ProductController extends AppController
 
         $categories = Category::query()->with('childCategories')->active()->where('parent_id', null)->get();
         $vendors = Vendor::query()->active()->get();
-        $tags = Tag::query()->active()->productTag()->get();
+        $tags = ProductTag::query()->active()->get();
         return view('cms::auth.pages.product.form', compact('product', 'categories', 'vendors', 'tags'));
     }
 }
