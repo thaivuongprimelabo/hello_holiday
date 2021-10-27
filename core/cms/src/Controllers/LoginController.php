@@ -20,6 +20,9 @@ class LoginController extends Controller
 
             if (Auth::attempt($credentials)) {
 
+                session_start();
+                $_SESSION['ckfinder_auth'] = true;
+
                 return redirect()->route('auth.dashboard');
             } else {
                 return redirect()->route('auth.login')->withError(trans('cms::auth.failed'));
@@ -36,6 +39,9 @@ class LoginController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+
+        session_start();
+        unset($_SESSION['ckfinder_auth']);
 
         return redirect(route('auth.login'));
     }

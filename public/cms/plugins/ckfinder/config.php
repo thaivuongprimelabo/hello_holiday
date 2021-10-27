@@ -24,9 +24,9 @@ $config = array();
 
 /*============================ Enable PHP Connector HERE ==============================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_authentication
-
+session_start();
 $config['authentication'] = function () {
-    return true;
+    return !empty($_SESSION['ckfinder_auth']);
 };
 
 /*============================ License Key ============================================*/
