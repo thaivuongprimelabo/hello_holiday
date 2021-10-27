@@ -31,7 +31,7 @@ class BannerRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'upload_file.banner.*' => 'max:' . \Cms\Constants::formatMemory(session('config')->max_upload_list['banner'], true) . '|mimes:png,jpg,jpeg'
+            'upload_file.banner.*' => 'mimes:png,jpg,jpeg'
         ];
 
         return $rules;

@@ -32,7 +32,7 @@ class MenuRequest extends FormRequest
     {
         $rules = [
             //
-            'name' => 'required|max:200',
+            'name' => 'required|max:255',
         ];
 
         return $rules;

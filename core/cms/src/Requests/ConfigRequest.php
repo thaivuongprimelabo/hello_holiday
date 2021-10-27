@@ -33,10 +33,10 @@ class ConfigRequest extends FormRequest
     {
         $rules = [
             //
-            'web_title' => 'required|max:200',
-            'upload_file.web_logo.*' => 'max:' . \Cms\Constants::formatMemory(session('config')->max_upload_list['web_logo'], true) . '|mimes:png,jpg,jpeg',
-            'upload_file.web_ico.*' => 'max:' . \Cms\Constants::formatMemory(session('config')->max_upload_list['web_ico'], true) . '|mimes:png,jpg,jpeg',
-            'upload_file.web_banner.*' => 'max:' . \Cms\Constants::formatMemory(session('config')->max_upload_list['web_banner'], true) . '|mimes:png,jpg,jpeg'
+            'web_title' => 'required|max:255',
+            'upload_file.web_logo.*' => 'mimes:png,jpg,jpeg',
+            'upload_file.web_ico.*' => 'mimes:png,jpg,jpeg',
+            'upload_file.web_banner.*' => 'mimes:png,jpg,jpeg'
         ];
 
         return $rules;

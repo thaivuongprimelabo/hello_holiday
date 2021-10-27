@@ -35,9 +35,7 @@ class ProductRequest extends FormRequest
     {
         $rules = [
             //
-            'name' => 'required|max:200',
-            'seo_keywords' => 'max:300',
-            'seo_description' => 'max:300',
+            'name' => 'required|max:255',
             'upload_file.image_product.*' => 'mimes:png,jpg,jpeg'
         ];
 

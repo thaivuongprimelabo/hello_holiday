@@ -3487,8 +3487,8 @@ footer.footer .bottom-ft .list-menu-bft li a {
 
 @media (min-width: 1441px) {
     .backtop {
-        right: 15px;
-        bottom: 20px
+        right: 20px;
+        bottom: 100px
     }
 
     .phone_backtotop {

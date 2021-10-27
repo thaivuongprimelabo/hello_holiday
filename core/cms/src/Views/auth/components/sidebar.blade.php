@@ -155,14 +155,14 @@
             </a>
           </li>
           @endif
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="{{ route('auth.user.list') }}" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
               <p>
                 Tài khoản
               </p>
             </a>
-          </li>
+          </li> -->
 
         </ul>
       </nav>

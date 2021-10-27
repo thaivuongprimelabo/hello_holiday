@@ -32,8 +32,7 @@ class PageRequest extends FormRequest
     {
         $rules = [
             //
-            'name' => 'required',
-            'upload_file' => 'max:200|mimes:png,jpg,jpeg'
+            'name' => 'required|max:255',
         ];
 
         return $rules;

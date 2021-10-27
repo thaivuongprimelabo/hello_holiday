@@ -33,7 +33,7 @@ class VendorRequest extends FormRequest
         $rules = [
             //
             'name' => 'required',
-            'upload_file.logo.*' => 'max:' . \Cms\Constants::formatMemory(session('config')->max_upload_list['logo'], true) . '|mimes:png,jpg,jpeg'
+            'upload_file.logo.*' => 'mimes:png,jpg,jpeg'
         ];
 
         return $rules;
