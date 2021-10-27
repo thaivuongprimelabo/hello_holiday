@@ -1,4 +1,5 @@
-const ERROR_UPLOAD_SIZE = "Tập tin được chọn có kích thước không hợp lệ.";
+const ERROR_UPLOAD_SIZE =
+    "Tập tin được chọn có dung lượng không hợp lệ. Tối đa {0}.";
 const ERROR_UPLOAD_TYPE = "Vui lòng chọn hình ảnh (jpg, jpeg, png, gif).";
 
 $(function () {
@@ -58,7 +59,8 @@ $(function () {
         const file = $(this).get(0).files[0];
 
         if (file.size > maxFileSize) {
-            toastr.error(ERROR_UPLOAD_SIZE);
+            let error = ERROR_UPLOAD_SIZE.replace("{0}", $("#size_text").val());
+            toastr.error(error);
             return false;
         }
 
@@ -93,7 +95,11 @@ $(function () {
         for (let i = 0; i < $(this).get(0).files.length; i++) {
             let file = $(this).get(0).files[i];
             if (file.size > maxFileSize) {
-                toastr.error(ERROR_UPLOAD_SIZE);
+                let error = ERROR_UPLOAD_SIZE.replace(
+                    "{0}",
+                    $("#size_text").val()
+                );
+                toastr.error(error);
                 continue;
             }
 
@@ -283,14 +289,16 @@ $(function () {
                 let params = {
                     id: $("#id_check").val().trim(),
                     name: $("#field_name").val().trim(),
-                    type: $('#type_check').val(),
+                    type: $("#type_check").val(),
                 };
 
                 if (params.type !== undefined) {
                     $.checkName(params, function (res) {
                         if (res.result) {
-                            let item = $('#field_name').attr('placeholder');
-                            let message = item + " này đang được sử dụng. Vui lòng chọn tên khác.";
+                            let item = $("#field_name").attr("placeholder");
+                            let message =
+                                item +
+                                " này đang được sử dụng. Vui lòng chọn tên khác.";
                             toastr.error(message);
                             return false;
                         }

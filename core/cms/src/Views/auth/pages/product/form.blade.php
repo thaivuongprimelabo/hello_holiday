@@ -94,21 +94,22 @@
                             <div class="form-group" id="image_product"  max-upload="{{ (session('config')->max_upload_list['image_product']) }}">
                                 <div class="row">
                                     <button type="button" class="btn btn-sm btn-primary mb-2 ml-2 upload-mutiple-btn"><i class="fa fa-upload"></i> Chọn hình sản phẩm</button>
-                                    <span style="font-weight:initial">(Tối đa: {{ \Cms\Constants::formatMemory(session('config')->max_upload_list['image_product']) }}. Định dạng: *.jpg, *.png, *.jpeg)</span>
+                                    <span style="font-weight:initial">&nbsp;(Tối đa: {{ \Cms\Constants::formatMemory(session('config')->max_upload_list['image_product']) }}. Định dạng: *.jpg, *.png, *.jpeg)</span>
+                                    <input type="hidden" id="size_text" value="{{ \Cms\Constants::formatMemory(session('config')->max_upload_list['image_product']) }}" />
                                 </div>
                                 <div id="selected_images" class="row">
-                                    <div class="col-md-3 col-lg-2 mb-2 clone" style="position: relative; display: none">
+                                    <div class="col-md-3 col-lg-2 mb-2 clone" style="position: relative; max-height: 120px; display: none">
                                         <button type="button" class="btn btn-sm btn-default mb-2 remove-image-btn"  style="position: absolute; top: 4px; right: 16px;" data-default-image="{{ $product->getDefaultImage() }}"><i class="fa fa-trash"></i></button>
-                                        <img src="{{ $product->getAvatar() }}" id="preview" class="img-thumbnail" style="width:100px;" />
+                                        <img src="{{ $product->getAvatar() }}" id="preview" class="img-thumbnail" style="max-height:120px; overflow: hidden" />
                                         <br />
                                         @error('upload_file')<span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
 
                                     @if($product->exists)
                                     @foreach($product->imagesProduct as $images)
-                                    <div class="col-md-3 col-lg-2 mb-2" style="position: relative;">
-                                        <button type="button" class="btn btn-sm btn-default mb-2 remove-image-btn"  style="position: absolute; top: 4px; right: 16px;" data-image-id="{{ $images->id }}" data-default-image="{{ $product->getDefaultImage() }}"><i class="fa fa-trash"></i></button>
-                                        <img src="{{ $images->getMediumImage() }}" id="preview" class="img-thumbnail" style="width:100px;" />
+                                    <div class="col-md-3 col-lg-2 mb-2" style="position: relative; max-height: 120px; overflow: hidden">
+                                        <button type="button" class="btn btn-sm btn-default mb-2 remove-image-btn" style="position: absolute; top: 4px; right: 16px;" data-image-id="{{ $images->id }}" data-default-image="{{ $product->getDefaultImage() }}"><i class="fa fa-trash"></i></button>
+                                        <img src="{{ $images->getMediumImage() }}" id="preview" class="img-thumbnail" style="max-height:120px; overflow: hidden" />
                                         <br />
                                         @error('upload_file')<span class="text-danger">{{ $message }}</span>@enderror
                                     </div>

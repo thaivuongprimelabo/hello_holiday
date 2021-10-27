@@ -8,3 +8,4 @@
     <br/>
     @error('upload_file.' . $name)<span class="text-danger">{{ $message }}</span>@enderror
 </div>
+<input type="hidden" id="size_text" value="{{ \Cms\Constants::formatMemory(session('config')->max_upload_list[$name]) }}" />
