@@ -134,8 +134,8 @@
         $('.ckeditor-full').each(function(e){
             if(!this.id) return;
             CKEDITOR.replace( this.id, {
-                filebrowserBrowseUrl: "{{ asset('cms/plugins/ckfinder/ckfinder.html') }}",
-	            filebrowserUploadUrl: "{{ asset('cms/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}",
+                filebrowserBrowseUrl: "{{ asset('cms/plugins/ckfinder/ckfinder.html?t=' . time()) }}",
+	            filebrowserUploadUrl: "{{ asset('cms/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images?t=' . time()) }}",
                 // filebrowserBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:files') }}',
                 // filebrowserImageBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:images') }}',
                 // filebrowserFlashBrowseUrl : '{{ asset('cms/plugins/kcfinder/browse.php?opener:ckeditor&type:flash') }}',
