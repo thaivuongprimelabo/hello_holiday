@@ -38,6 +38,18 @@
                                 'options' => $tags
                             ])
 
+                            @include('cms::auth.components.form.input', [
+                                'label' => 'Meta Keywords',
+                                'name' => 'seo_keywords',
+                                'item' => $post,
+                            ])
+
+                            @include('cms::auth.components.form.textarea', [
+                                'label' => 'Meta Description',
+                                'name' => 'seo_description',
+                                'item' => $post
+                            ])
+
                             @include('cms::auth.components.form.checkbox', [
                                 'label' => 'Đang hoạt động', 
                                 'name' => 'status', 

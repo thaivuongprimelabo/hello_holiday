@@ -64,7 +64,6 @@
                                 'label' => 'Meta Keywords',
                                 'name' => 'seo_keywords',
                                 'item' => $product,
-                                'maxlength' => 255,
                             ])
 
                             @include('cms::auth.components.form.textarea', [

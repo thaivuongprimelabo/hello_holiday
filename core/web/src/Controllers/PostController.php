@@ -60,9 +60,10 @@ class PostController extends AppController
         $this->error404($post);
         $this->setSEO([
             'title' => $post->getName(),
+            'web_keywords' => $post->seo_keywords,
+            'web_description' => !is_null($post->seo_description) ? $post->seo_description : $post->getDescription(),
             'url' => $post->getLink(),
             'image' => $post->getPhoto(),
-            'web_description' => $post->getDescription(),
         ]);
 
         return view('web::pages.post.detail', compact('post'));

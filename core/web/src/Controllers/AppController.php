@@ -29,12 +29,12 @@ class AppController extends Controller
 
     public function setSEO($params)
     {
-        $title_default = isset($params['title_default']) ? $params['title_default'] : $this->config->web_title;
-        $title = isset($params['title']) ? $params['title'] : $this->config->web_title;
-        $web_description= isset($params['web_description']) ? $params['web_description'] : $this->config->web_description;
-        $web_keywords = isset($params['web_keywords']) ? $params['web_keywords'] : $this->config->web_keywords;
-        $url = isset($params['url']) ? $params['url'] : route('home');
-        $image = isset($params['image']) ? $params['image'] : $this->config->getWebBanner();
+        $title_default = isset($params['title_default']) && !empty($params['title_default']) ? $params['title_default'] : $this->config->web_title;
+        $title = isset($params['title']) && !empty($params['title']) ? $params['title'] : $this->config->web_title;
+        $web_description= isset($params['web_description']) && !empty($params['web_description']) ? $params['web_description'] : $this->config->web_description;
+        $web_keywords = isset($params['web_keywords']) && !empty($params['web_keywords']) ? $params['web_keywords'] : $this->config->web_keywords;
+        $url = isset($params['url']) && !empty($params['url']) ? $params['url'] : route('home');
+        $image = isset($params['image']) && !empty($params['image']) ? $params['image'] : $this->config->getWebBanner();
 
         SEOMeta::setTitleDefault($title_default);
         SEOMeta::setTitle($title);
