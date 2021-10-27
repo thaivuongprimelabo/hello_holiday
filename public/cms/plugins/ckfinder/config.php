@@ -31,11 +31,16 @@ $config['authentication'] = function () {
 
 /*============================ License Key ============================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey
-
-// $config['licenseName'] = 'motor2k.com';
-// $config['licenseKey']  = 'F8H8YMKMR6ASWSDCAXRVJN53R9DF8';
-$config['licenseName'] = 'localhost';
-$config['licenseKey']  = '1GZGMGBWP7PH6QP8PVG64Z656USJ3';
+if ($_SERVER['HTTP_HOST'] == 'motor2k.com') {
+    $config['licenseName'] = 'motor2k.com';
+    $config['licenseKey']  = 'F8H8YMKMR6ASWSDCAXRVJN53R9DF8';
+} if ($_SERVER['HTTP_HOST'] == 'thaivuong.com') {
+    $config['licenseName'] = 'thaivuong.com';
+    $config['licenseKey']  = 'XYUY7AYJ8284U9TGVF77EKXENVPCE';
+} else {
+    $config['licenseName'] = 'localhost';
+    $config['licenseKey']  = '1GZGMGBWP7PH6QP8PVG64Z656USJ3';
+}
 
 
 /*============================ CKFinder Internal Directory ============================*/
