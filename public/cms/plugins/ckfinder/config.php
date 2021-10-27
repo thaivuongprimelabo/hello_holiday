@@ -32,10 +32,10 @@ $config['authentication'] = function () {
 /*============================ License Key ============================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey
 $hostname = $_SERVER['SERVER_NAME'];
-if ($hostname == 'www.motor2k.com') {
+if (strpos($hostname, 'motor2k.com') !== false) {
     $config['licenseName'] = 'motor2k.com';
     $config['licenseKey']  = 'XVNVFX6LQUJDYRC6FWV7JWTYTETB5';
-} elseif ($hostname == 'www.thaivuong.com') {
+} elseif (strpos($hostname, 'thaivuong.com') !== false) {
     $config['licenseName'] = 'thaivuong.com';
     $config['licenseKey']  = 'XYUY7AYJ8284U9TGVF77EKXENVPCE';
 } else {
