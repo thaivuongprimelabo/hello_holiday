@@ -20,7 +20,7 @@
 <div class="container-fluid">
     <div class="row">
         <div id="content">
-            @if($categories->count())
+            @if($vendors->count())
             <section class="awe-section-2 container service_banner_custom " id="service_banner-0">
                 <div class="banner_owl owl-carousel owl-theme not-aweowl">
                     @foreach($vendors as $vendor)
