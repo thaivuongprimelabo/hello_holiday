@@ -5,6 +5,7 @@ namespace Cms\Controllers;
 use App\Http\Controllers\Controller;
 use Cms\Constants;
 use Cms\Helpers\UploadFile;
+use Cms\Models\ActionHistory;
 use Cms\Models\Config;
 use Cms\Models\Contact;
 use Cms\Models\ImageProduct;
@@ -13,6 +14,7 @@ use Cms\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 
@@ -27,6 +29,10 @@ class AppController extends Controller
 
         $this->middleware(function ($request, $next) {
             $this->saveSession();
+            ActionHistory::createHistory([
+                'action' => Route::getCurrentRoute()->getActionName(),
+            ]);
+
             return $next($request);
         });
 

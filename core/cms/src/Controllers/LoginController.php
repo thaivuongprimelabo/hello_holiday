@@ -3,8 +3,10 @@
 namespace Cms\Controllers;
 
 use App\Http\Controllers\Controller;
+use Cms\Models\ActionHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class LoginController extends Controller
 {
@@ -29,6 +31,9 @@ class LoginController extends Controller
             }
 
         }
+        ActionHistory::createHistory([
+            'action' => Route::getCurrentRoute()->getActionName()
+        ]);
         return view('cms::auth.pages.login.index');
     }
 
@@ -42,6 +47,10 @@ class LoginController extends Controller
 
         session_start();
         unset($_SESSION['ckfinder_auth']);
+
+        ActionHistory::createHistory([
+            'action' => Route::getCurrentRoute()->getActionName()
+        ]);
 
         return redirect(route('auth.login'));
     }
