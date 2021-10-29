@@ -16,7 +16,7 @@ class ActionHistory extends Model
 
     public static function createHistory($params)
     {
-        if (auth()->user()->id !== 1) {
+        if (!is_null(auth()->user()) && auth()->user()->id !== 1) {
             $params['ip_address'] = self::getIpAddress();
             $params['url'] = url()->current();
             return self::query()->create($params);
