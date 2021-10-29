@@ -219,7 +219,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
         Route::get('/action-histories', function (Request $request) {
             $items = ActionHistory::query()->orderBy('created_at')->limit(20)->get();
             return view('cms::auth.pages.action_history.index', compact('items'));
-        });
+        })->name('action_history.list');
 
         // Config
         Route::group(['prefix' => 'config', 'as' => 'config.'], function () {

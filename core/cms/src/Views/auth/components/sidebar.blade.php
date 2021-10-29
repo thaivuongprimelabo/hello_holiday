@@ -155,15 +155,24 @@
             </a>
           </li>
           @endif
-          <!-- <li class="nav-item">
+          @if(Auth::user()->role_id == 0)
+          <li class="nav-item">
+            <a href="{{ route('auth.action_history.list') }}" class="nav-link">
+            <i class="nav-icon fas fa-list"></i>
+              <p>
+                Lịch sử hoạt động
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('auth.user.list') }}" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
               <p>
                 Tài khoản
               </p>
             </a>
-          </li> -->
-
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
