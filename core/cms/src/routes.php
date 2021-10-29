@@ -1,4 +1,6 @@
 <?php
+
+use Carbon\Carbon;
 use Cms\Controllers\BannerController;
 use Cms\Controllers\CategoryController;
 use Cms\Controllers\ConfigController;
@@ -12,7 +14,9 @@ use Cms\Controllers\ProductController;
 use Cms\Controllers\TagController;
 use Cms\Controllers\UserController;
 use Cms\Controllers\VendorController;
+use Cms\Models\ActionHistory;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Action;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], function () {
@@ -210,6 +214,11 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
             }
 
             return response()->json(['result' => $result], 200);
+        });
+
+        Route::get('/action-histories', function (Request $request) {
+            $items = ActionHistory::query()->orderBy('created_at')->limit(20)->get();
+            return view('cms::auth.pages.action_history.index', compact('items'));
         });
 
         // Config
