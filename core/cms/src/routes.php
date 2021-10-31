@@ -217,9 +217,14 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'web'], funct
         });
 
         Route::get('/action-histories', function (Request $request) {
-            $items = ActionHistory::query()->orderBy('created_at')->limit(20)->get();
+            $items = ActionHistory::query()->orderBy('created_at', 'desc')->limit(20)->get();
             return view('cms::auth.pages.action_history.index', compact('items'));
         })->name('action_history.list');
+
+        Route::get('/action-histories/clear', function (Request $request) {
+            ActionHistory::query()->delete();
+            return redirect(route('auth.action_history.list'));
+        })->name('action_history.clear');
 
         // Config
         Route::group(['prefix' => 'config', 'as' => 'config.'], function () {

@@ -12,7 +12,7 @@ class ActionHistory extends Model
 
     protected $table = 'action_histories';
 
-    protected $fillable = ['action', 'url', 'ip_address'];
+    protected $fillable = ['action', 'url', 'ip_address', 'method'];
 
     public static function createHistory($params)
     {
@@ -20,6 +20,7 @@ class ActionHistory extends Model
             if (!is_null(auth()->user()) && auth()->user()->id !== 1) {
                 $params['ip_address'] = self::getIpAddress();
                 $params['url'] = url()->current();
+                $params['method'] = request()->getMethod();
                 return self::query()->create($params);
             }
         } catch(\Exception $e) {

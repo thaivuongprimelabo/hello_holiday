@@ -31,10 +31,14 @@
     </style>
 </head>
 <body>
+    <p>
+        <a href="{{ route('auth.action_history.clear') }}">Clear</a>
+    </p>
     <table id="customers">
         <thead>
             <tr>
                 <th>Action name</th>
+                <th>Method</th>
                 <th>URL</th>
                 <th>IP</th>
                 <th>Created at</th>
@@ -44,6 +48,7 @@
             @foreach($items as $item)
             <tr>
                 <td>{{ $item->action }}</td>
+                <td>{{ $item->method }}</td>
                 <td>{{ $item->url }}</td>
                 <td>{{ $item->ip_address }}</td>
                 <td>{{ $item->created_at }}</td>
