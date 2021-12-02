@@ -33,7 +33,7 @@ class Category extends Model
 
     public function getProducts()
     {
-        $products = Product::query()->whereRaw('category_id IN (SELECT id FROM categories WHERE parent_id = ' . $this->id . ')')->orderBy('created_at', 'desc')->limit(5)->get();
+        $products = Product::query()->active()->whereRaw('category_id IN (SELECT id FROM categories WHERE parent_id = ' . $this->id . ')')->orderBy('created_at', 'desc')->limit(5)->get();
         return $products;
     }
 }
